@@ -19,7 +19,10 @@ namespace FootballClubBackend.Model
         public string Surname { get; set; }
 
         [Required]
-        public DateOnly DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
+
+        [Required]
+        public string PlaceOfBirth { get; set; }
 
         [Required]
         public Team Team { get; set; }
@@ -34,12 +37,29 @@ namespace FootballClubBackend.Model
         public FirstTeamStatus Status { get; set; }
 
         [Required]
+        public DateTime DateJoined { get; set; }
+
+        [Required]
         public string Image {  get; set; }
 
         public Player(string name, string surname)
         {
             Name = name;
             Surname = surname;
+        }
+
+        public Player(string name, string surname, DateTime dateOfBirth, string placeOfBirth, Team team, Position position, int squadNumber, FirstTeamStatus status, DateTime dateJoined, string image)
+        {
+            Name = name;
+            Surname = surname;
+            DateOfBirth = dateOfBirth;
+            PlaceOfBirth = placeOfBirth;
+            Team = team;
+            Position = position;
+            SquadNumber = squadNumber;
+            Status = status;
+            DateJoined = dateJoined;
+            Image = image;
         }
     }
 }

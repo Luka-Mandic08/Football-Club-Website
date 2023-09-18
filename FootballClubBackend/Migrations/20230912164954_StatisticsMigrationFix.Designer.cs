@@ -4,6 +4,7 @@ using FootballClubBackend.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FootballClubBackend.Migrations
 {
     [DbContext(typeof(FootballClubDbContext))]
-    partial class FootballClubDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230912164954_StatisticsMigrationFix")]
+    partial class StatisticsMigrationFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -229,20 +232,20 @@ namespace FootballClubBackend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AttackingStatisticsId")
+                    b.Property<Guid>("AttackingStatisticsId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Competition")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("DefendingStatisticsId")
+                    b.Property<Guid>("DefendingStatisticsId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("GeneralStatisticsId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("GoalkeepingStatisticsId")
+                    b.Property<Guid>("GoalkeepingStatisticsId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("PassingStatisticsId")
@@ -273,11 +276,15 @@ namespace FootballClubBackend.Migrations
                 {
                     b.HasOne("FootballClubBackend.Model.Statistics.AttackingStatistics", "AttackingStatistics")
                         .WithMany()
-                        .HasForeignKey("AttackingStatisticsId");
+                        .HasForeignKey("AttackingStatisticsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("FootballClubBackend.Model.Statistics.DefendingStatistics", "DefendingStatistics")
                         .WithMany()
-                        .HasForeignKey("DefendingStatisticsId");
+                        .HasForeignKey("DefendingStatisticsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("FootballClubBackend.Model.Statistics.GeneralStatistics", "GeneralStatistics")
                         .WithMany()
@@ -287,7 +294,9 @@ namespace FootballClubBackend.Migrations
 
                     b.HasOne("FootballClubBackend.Model.Statistics.GoalkeepingStatistics", "GoalkeepingStatistics")
                         .WithMany()
-                        .HasForeignKey("GoalkeepingStatisticsId");
+                        .HasForeignKey("GoalkeepingStatisticsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("FootballClubBackend.Model.Statistics.PassingStatistics", "PassingStatistics")
                         .WithMany()

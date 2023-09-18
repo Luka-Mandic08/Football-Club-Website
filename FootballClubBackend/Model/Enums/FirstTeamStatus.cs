@@ -2,6 +2,6 @@
 {
     public enum FirstTeamStatus
     {
-        Activa,Inactive,OnLoan
+        Active,Inactive,OnLoan
     }
 }

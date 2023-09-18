@@ -1,6 +1,7 @@
 ﻿using FootballClubBackend.Model;
 using FootballClubBackend.Repository;
 using FootballClubBackend.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FootballClubBackend.Controllers
@@ -25,8 +26,17 @@ namespace FootballClubBackend.Controllers
         [HttpPost]
         public ActionResult Create()
         {
-            _playerService.Create(new Player("Marko", "Markovic"));
-            return Ok("Kreiran valjda");
+            string[] myStringArray = {"Premier league", "FA cup"};
+            bool success = _playerService.Create(new Player("Marko", "Markovic",new DateTime(2000,8,28),"Belgrade, Serbia",0,Model.Enums.Position.Attacker,9,0,DateTime.Now,"image string"), myStringArray);
+            return success?Ok("Kreiran valjda"):BadRequest("Error occurred");
+        }
+
+        [HttpGet("getById/{id}")]
+        public ActionResult GetById()
+        {
+            string[] myStringArray = { "Premier league", "FA cup" };
+            bool success = _playerService.Create(new Player("Marko", "Markovic", new DateTime(2000, 8, 28), "Belgrade, Serbia", 0, Model.Enums.Position.Attacker, 9, 0, DateTime.Now, "image string"), myStringArray);
+            return success ? Ok("Kreiran valjda") : BadRequest("Error occurred");
         }
     }
 }

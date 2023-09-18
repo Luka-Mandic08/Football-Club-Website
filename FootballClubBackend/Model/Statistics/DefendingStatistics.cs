@@ -5,6 +5,9 @@ namespace FootballClubBackend.Model.Statistics
 {
     public class DefendingStatistics
     {
+        [Key]
+        public Guid Id { get; set; }
+
         [Required]
         [DefaultValue(0)]
         [Range(0, int.MaxValue)]
@@ -22,17 +25,17 @@ namespace FootballClubBackend.Model.Statistics
 
         [Required]
         [DefaultValue(0)]
-        [Range(0, int.MaxValue)]
+        [Range(0, 100)]
         public float TackleSuccessRate { get; set; }
 
         [Required]
         [DefaultValue(0)]
-        [Range(0, int.MaxValue)]
+        [Range(0, 100)]
         public float AerialDuelSuccessRate { get; set; }
 
         [Required]
         [DefaultValue(0)]
-        [Range(0, int.MaxValue)]
+        [Range(0, 100)]
         public float GroundDuelSuccessRate { get; set; }
     }
 }

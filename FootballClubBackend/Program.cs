@@ -23,6 +23,7 @@ builder.Services.AddDbContext<FootballClubDbContext>(options =>
 
 builder.Services.AddScoped<PlayerService>();
 builder.Services.AddScoped<PlayerRepository>();
+builder.Services.AddScoped<PlayerStatisticRepository>();
 
 var app = builder.Build();
 
