@@ -1,4 +1,5 @@
 ﻿using FootballClubBackend.Model;
+using FootballClubBackend.Model.DTO;
 using FootballClubBackend.Model.Statistics;
 using FootballClubBackend.Repository;
 
@@ -29,31 +30,35 @@ namespace FootballClubBackend.Service
             Player playerWithId = _playerRepository.Create(player);
             foreach (var competition in competitions)
             {
-                PlayerStatistic playerStatistic = new PlayerStatistic(GetYearForNewPlayer(), competition,playerWithId.Id,player.Position == 0);
+                PlayerStatistic playerStatistic = new PlayerStatistic(GetYearForCurrentSeason(), competition, playerWithId.Id, player.Position == 0);
                 _playerStatisticRepository.Create(playerStatistic);
             }
             return true;
         }
 
-        public Player? GetById(String id)
+        public PlayerWithStatistics? GetById(String id)
         {
             try
-            { 
+            {
                 Guid guid = Guid.Parse(id);
-                return _playerRepository.GetById(guid);
+                Player player = _playerRepository.GetById(guid);
+                IEnumerable<PlayerStatistic> playerStatistics = _playerStatisticRepository.GetForPlayerAndYear(player, GetYearForCurrentSeason());
+                PlayerWithStatistics playerWithStatistics = new PlayerWithStatistics(player, playerStatistics);
+                return playerWithStatistics;
             }
-            
+
             catch (Exception)
             {
                 return null;
             }
-            
+
         }
 
-        public int GetYearForNewPlayer()
+        public int GetYearForCurrentSeason()
         {
             DateTime currentDate = DateTime.Today;
-            if (currentDate.Month >= 7) {
+            if (currentDate.Month >= 7)
+            {
                 return currentDate.Year;
             }
             return currentDate.Year - 1;

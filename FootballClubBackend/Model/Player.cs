@@ -1,4 +1,5 @@
-﻿using FootballClubBackend.Model.Enums;
+﻿using FootballClubBackend.Model.DTO;
+using FootballClubBackend.Model.Enums;
 using System;
 using System.ComponentModel.DataAnnotations;
 namespace FootballClubBackend.Model
@@ -60,6 +61,20 @@ namespace FootballClubBackend.Model
             Status = status;
             DateJoined = dateJoined;
             Image = image;
+        }
+
+        public Player(CreatePlayer dto)
+        {
+            Name = dto.Name;
+            Surname = dto.Surname;
+            DateOfBirth = dto.DateOfBirth;
+            PlaceOfBirth = dto.PlaceOfBirth;
+            Team = (Team)dto.Team;
+            Position = (Position)dto.Position;
+            SquadNumber = dto.SquadNumber;
+            Status = (FirstTeamStatus)dto.Status; 
+            DateJoined = dto.DateJoined;
+            Image = dto.Image;
         }
     }
 }

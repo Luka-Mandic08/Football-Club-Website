@@ -1,6 +1,7 @@
 ﻿using FootballClubBackend.Database;
 using FootballClubBackend.Model;
 using FootballClubBackend.Model.Statistics;
+using Microsoft.EntityFrameworkCore;
 
 namespace FootballClubBackend.Repository
 {
@@ -13,9 +14,20 @@ namespace FootballClubBackend.Repository
             _context = context;
         }
 
-        public PlayerStatistic GetForPlayerAndYear(Guid id,int year)
+        public IEnumerable<PlayerStatistic> GetForPlayerAndYear(Player player,int year)
         {
-            return _context.PlayerStatistics.Where(ps => ps.PlayerId==id && ps.Year == year).First();
+            var initialQuery = _context.PlayerStatistics;
+            if (player.Position == 0)
+            {
+                var gkQuery = initialQuery.Include(ps => ps.GoalkeepingStatistics);
+                return gkQuery.Include(ps => ps.GeneralStatistics).Include(ps => ps.PassingStatistics).Where(ps => ps.PlayerId == player.Id && ps.Year == year).ToList();
+            }
+            else 
+            {
+                var partialQuery = initialQuery.Include(ps => ps.DefendingStatistics);
+                var outfieldQuery = partialQuery.Include(ps => ps.AttackingStatistics);
+                return outfieldQuery.Include(ps => ps.GeneralStatistics).Include(ps => ps.PassingStatistics).Where(ps => ps.PlayerId == player.Id && ps.Year == year).ToList();
+            }
         }
 
         public PlayerStatistic Create(PlayerStatistic playerStatistic)

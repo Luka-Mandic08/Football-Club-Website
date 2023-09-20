@@ -1,4 +1,5 @@
 ﻿using FootballClubBackend.Model;
+using FootballClubBackend.Model.DTO;
 using FootballClubBackend.Repository;
 using FootballClubBackend.Service;
 using Microsoft.AspNetCore.Authorization;
@@ -24,19 +25,22 @@ namespace FootballClubBackend.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create()
+        public ActionResult Create(CreatePlayer dto)
         {
-            string[] myStringArray = {"Premier league", "FA cup"};
-            bool success = _playerService.Create(new Player("Marko", "Markovic",new DateTime(2000,8,28),"Belgrade, Serbia",0,Model.Enums.Position.Attacker,9,0,DateTime.Now,"image string"), myStringArray);
-            return success?Ok("Kreiran valjda"):BadRequest("Error occurred");
+            return _playerService.Create(new Player(dto), dto.Competitions) ? Ok("Kreiran valjda") : BadRequest("Error occurred");
         }
 
         [HttpGet("getById/{id}")]
-        public ActionResult GetById()
+        public ActionResult GetById(string id)
         {
-            string[] myStringArray = { "Premier league", "FA cup" };
-            bool success = _playerService.Create(new Player("Marko", "Markovic", new DateTime(2000, 8, 28), "Belgrade, Serbia", 0, Model.Enums.Position.Attacker, 9, 0, DateTime.Now, "image string"), myStringArray);
-            return success ? Ok("Kreiran valjda") : BadRequest("Error occurred");
+            PlayerWithStatistics? player = _playerService.GetById(id);
+            return player != null ? Ok(player) : BadRequest("Could not find player with requested id");
+        }
+
+        [HttpPut("updateStatistics/{id}")]
+        public ActionResult UpdateStatistics(UpdateStatistics updateStatistics)
+        {
+            return Ok();
         }
     }
 }
