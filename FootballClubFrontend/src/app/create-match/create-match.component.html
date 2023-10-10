@@ -1,0 +1,59 @@
+<div class="form">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" novalidate>
+        <div class="form-group">
+            <label for="opponent">Opponent:</label>
+            <input type="text" id="opponent" name="opponent" formControlName="opponent" required class="input">
+            <div *ngIf="form.get('opponent')?.touched">
+                <div *ngIf="form.get('opponent')?.hasError('required')" class="error-message">
+                    Opponent is required.
+                </div>
+                <div *ngIf="form.get('opponent')?.hasError('minlength')" class="error-message">
+                    Opponent length must be at least 2.
+                </div>
+            </div>
+        </div>
+    
+        <div class="form-group">
+            <label for="venue">Venue:</label>
+            <input type="text" id="venue" name="venue" formControlName="venue" required class="input">
+            <div *ngIf="form.get('venue')?.touched">
+                <div *ngIf="form.get('venue')?.hasError('required')" class="error-message">
+                    Venue is required.
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="referee">Referee:</label>
+            <input type="text" id="referee" name="referee" formControlName="referee" required class="input">
+            <div *ngIf="form.get('referee')?.touched">
+                <div *ngIf="form.get('referee')?.hasError('required')" class="error-message">
+                    Referee is required.
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="competition">Competition:</label>
+            <input type="text" id="competition" name="competition" formControlName="competition" required class="input">
+            <div *ngIf="form.get('competition')?.touched">
+                <div *ngIf="form.get('competition')?.hasError('required')" class="error-message">
+                    Competition is required.
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="start">Start:</label>
+            <input type="datetime-local" id="start" name="start" formControlName="start" required class="input">
+            <div *ngIf="form.get('start')?.touched">
+                <div *ngIf="form.get('start')?.hasError('required')" class="error-message">
+                    Start is required.
+                </div>
+            </div>
+        </div>
+        <div class="form-group" style="margin-top: 20px;">
+            <button type="submit" [disabled]="form.invalid">Schedule match</button>
+        </div>
+    </form>
+</div>

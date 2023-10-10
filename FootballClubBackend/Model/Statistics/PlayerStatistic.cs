@@ -19,6 +19,8 @@ namespace FootballClubBackend.Model.Statistics
         [ForeignKey("PlayerId")]
         public Guid PlayerId { get; set; }
 
+        public string? PlayerName { get; set; }
+
         [Required]
         public GeneralStatistics GeneralStatistics { get; set; }
 

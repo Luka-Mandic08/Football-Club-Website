@@ -12,10 +12,18 @@ namespace FootballClubBackend.Database
         public DbSet<Player> Players { get; set; }
         public DbSet<PlayerStatistic> PlayerStatistics { get; set; }
 
+        public DbSet<Match> Matches { get; set; }
+        public DbSet<MatchEvent> MatchEvents { get; set; }
+
+        public DbSet<News> News { get; set; }
+
+        public DbSet<User> Users { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Player>().HasKey(e => e.Id);
-            modelBuilder.Entity<PlayerStatistic>().HasKey(e => e.Id);
+            modelBuilder.Entity<Match>().HasMany(m => m.MatchEvents).WithOne(e => e.Match);
+            modelBuilder.Entity<Match>().HasMany(m => m.SquadStatistics);
+            modelBuilder.Entity<Match>().HasMany(m => m.OpponentSquadStatistics);
         }
     }
 }

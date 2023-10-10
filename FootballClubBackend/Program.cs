@@ -1,5 +1,6 @@
 using FootballClubBackend.Controllers;
 using FootballClubBackend.Database;
+using FootballClubBackend.Helper;
 using FootballClubBackend.Repository;
 using FootballClubBackend.Service;
 using Microsoft.EntityFrameworkCore;
@@ -21,9 +22,7 @@ IConfigurationRoot configuration = new ConfigurationBuilder()
 builder.Services.AddDbContext<FootballClubDbContext>(options =>
     options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<PlayerService>();
-builder.Services.AddScoped<PlayerRepository>();
-builder.Services.AddScoped<PlayerStatisticRepository>();
+var addScoped = new Helper(builder);
 
 var app = builder.Build();
 
