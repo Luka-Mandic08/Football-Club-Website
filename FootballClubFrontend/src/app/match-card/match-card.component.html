@@ -1,0 +1,21 @@
+<a href="your-link-url">
+    <div class="match-card">
+      <div class="match-info">
+        <div>{{match.start}}|{{match.venue}} </div>
+        <div>{{match.competition}}</div>
+      </div>
+      <div *ngIf="match.venue=='Stadion Novi Sad'" class="match-teams">
+        <div>FK FTN</div>
+        <div *ngIf="match.goals!==undefined">{{match.goals}} - {{match.opponentGoals}}</div>
+        <div *ngIf="match.goals!==undefined">V</div>
+        <div>{{match.opponent}}</div>
+      </div>
+      <div *ngIf="match.venue!='Stadion Novi Sad'" class="match-teams">
+        <div>{{match.opponent}}</div>
+        <div *ngIf="match.goals!==undefined">{{match.opponentGoals}} - {{match.goals}}</div>
+        <div *ngIf="match.goals!==undefined">V</div>    
+        <div>FK FTN</div>
+      </div>
+      <div>Referee: {{match.referee}}</div>
+    </div>
+  </a>

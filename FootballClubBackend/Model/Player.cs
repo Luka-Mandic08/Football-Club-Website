@@ -1,12 +1,13 @@
 ﻿using FootballClubBackend.Model.DTO;
 using FootballClubBackend.Model.Enums;
+using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.ComponentModel.DataAnnotations;
 namespace FootballClubBackend.Model
 {
     public class Player
     {
-        [Key]
+        [BsonId]
         public Guid Id { get; set; }
 
         [Required]
@@ -24,9 +25,6 @@ namespace FootballClubBackend.Model
 
         [Required]
         public string PlaceOfBirth { get; set; }
-
-        [Required]
-        public Team Team { get; set; }
 
         [Required]
         public Position Position { get; set; }
@@ -49,13 +47,12 @@ namespace FootballClubBackend.Model
             Surname = surname;
         }
 
-        public Player(string name, string surname, DateTime dateOfBirth, string placeOfBirth, Team team, Position position, int squadNumber, FirstTeamStatus status, DateTime dateJoined, string image)
+        public Player(string name, string surname, DateTime dateOfBirth, string placeOfBirth, Position position, int squadNumber, FirstTeamStatus status, DateTime dateJoined, string image)
         {
             Name = name;
             Surname = surname;
             DateOfBirth = dateOfBirth;
             PlaceOfBirth = placeOfBirth;
-            Team = team;
             Position = position;
             SquadNumber = squadNumber;
             Status = status;
@@ -69,7 +66,6 @@ namespace FootballClubBackend.Model
             Surname = dto.Surname;
             DateOfBirth = dto.DateOfBirth;
             PlaceOfBirth = dto.PlaceOfBirth;
-            Team = (Team)dto.Team;
             Position = (Position)dto.Position;
             SquadNumber = dto.SquadNumber;
             Status = (FirstTeamStatus)dto.Status; 

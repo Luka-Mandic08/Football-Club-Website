@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FootballClubBackend.Controllers
 {
     [ApiController]
-    [Route("match")]
+    [Route("matches")]
     public class MatchController :ControllerBase
     {
 
@@ -21,6 +21,35 @@ namespace FootballClubBackend.Controllers
         public ActionResult Create(CreateMatch dto)
         {
             return _matchService.Create(dto) ? Ok("Kreiran mec valjda") : BadRequest("Error occurred");
+        }
+
+        [HttpGet("fixtures")]
+        public ActionResult GetFixtures()
+        {
+            List<MatchPreview> fixtures = new List<MatchPreview>();
+            foreach(var fixture in _matchService.GetFixtures())
+            {
+                fixtures.Add(new MatchPreview(fixture,false));
+            }
+            return Ok(fixtures);
+        }
+
+        [HttpGet("results")]
+        public ActionResult GetResults()
+        {
+            List<MatchPreview> results = new List<MatchPreview>();
+            foreach (var result in _matchService.GetResults())
+            {
+                results.Add(new MatchPreview(result,true));
+            }
+            return Ok(results);
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult GetMatch(string id)
+        {
+            Guid guid = Guid.Parse(id);
+            return Ok(_matchService.GetMatch(guid));
         }
     }
 

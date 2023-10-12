@@ -13,10 +13,10 @@ export class CreateMatchComponent {
 
   constructor(private fb: FormBuilder,private matchService:MatchService) {
     this.form = this.fb.group({
-      opponent: ['',[Validators.required,Validators.minLength(2)]],
-      venue: ['',Validators.required],
-      referee: ['',Validators.required],
-      competition: ['',Validators.required],
+      opponent: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(40)]],
+      venue: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(40)]],
+      referee: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(40)]],
+      competition: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(40)]],
       start: [null,Validators.required]
     })
   }
@@ -25,10 +25,10 @@ export class CreateMatchComponent {
     if (this.form.valid) {
       console.log('Form submitted with data:', this.form);
       this.matchService.createMatch(this.form.value).subscribe(
-        response => {
+        (response) => {
           console.log(response)
       },
-      error => {
+      (error) => {
         alert(error)
       })
     }

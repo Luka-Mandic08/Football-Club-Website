@@ -5,9 +5,7 @@ namespace FootballClubBackend.Model.Statistics
 {
     public class AttackingStatistics
     {
-        [Key]
-        public Guid Id { get; set; }
-
+        
         [Required]
         [DefaultValue(0)]
         [Range(0, int.MaxValue)]

@@ -5,8 +5,6 @@ namespace FootballClubBackend.Model.Statistics
 {
     public class PassingStatistics
     {
-        [Key]
-        public Guid Id { get; set; }
 
         [Required]
         [DefaultValue(0)]

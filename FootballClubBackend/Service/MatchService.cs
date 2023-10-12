@@ -16,7 +16,24 @@ namespace FootballClubBackend.Service
         public bool Create(CreateMatch dto)
         {
             Match match = new Match(dto);
-            return _matchRepository.Create(match) != null;
+            _matchRepository.Create(match);
+            return true;
+        }
+
+        public IEnumerable<Match> GetFixtures()
+        {
+            var referenceDate = new DateTime();
+            return _matchRepository.GetFixtures(referenceDate);
+        }
+
+        public IEnumerable<Match> GetResults()
+        {
+            return _matchRepository.GetResults();
+        }
+
+        public Match GetMatch(Guid id)
+        {
+            return _matchRepository.GetMatch(id);
         }
     }
 }

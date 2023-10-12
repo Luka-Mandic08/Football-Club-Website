@@ -1,38 +1,52 @@
 ﻿using FootballClubBackend.Database;
 using FootballClubBackend.Model;
 using FootballClubBackend.Model.Enums;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using System;
+using System.Text.RegularExpressions;
+using static MongoDB.Driver.WriteConcern;
 
 namespace FootballClubBackend.Repository
 {
     public class PlayerRepository
     {
-        private readonly FootballClubDbContext _context;
+        private readonly IMongoCollection<Player> collection;
 
-        public PlayerRepository(FootballClubDbContext context)
+        public PlayerRepository()
         {
-            _context = context;
+            var client = new MongoClient("mongodb://localhost:27017");
+            var database = client.GetDatabase("FootballClubDb");
+            collection = database.GetCollection<Player>("Players");
         }
 
         public IEnumerable<Player> GetAll()
         {
-            return _context.Players.ToList();
+            var filter = Builders<Player>.Filter.Empty;
+            return collection.Find(filter).ToList();
+
         }
 
-        public Player Create(Player player)
+        public void Create(Player player)
         {
-            var Player = _context.Players.Add(player).Entity;
-            _context.SaveChanges();
-            return Player;
+            player.Id = Guid.NewGuid();
+            collection.InsertOne(player);
+            return;
         }
 
-        public bool CheckSquadNumberAvailability(int squadNumber, Team team)
+        public bool CheckSquadNumberAvailability(int squadNumber)
         {
-            return !_context.Players.Any(p => p.SquadNumber == squadNumber && p.Team == team && (int)p.Status != 1);
+            var filter = Builders<Player>.Filter.And(
+                Builders<Player>.Filter.Eq(p => p.SquadNumber, squadNumber),
+                Builders<Player>.Filter.Ne(p => (int)p.Status, 1)
+            );
+            return collection.Find(filter).Any();
         }
 
         public Player GetById(Guid id)
         {
-            return _context.Players.Where(p => p.Id == id).First();
+            var filter = Builders<Player>.Filter.Eq(p => p.Id, id);
+            return collection.Find(filter).First();
         }
     }
 }

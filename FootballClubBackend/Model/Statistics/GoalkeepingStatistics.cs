@@ -5,9 +5,6 @@ namespace FootballClubBackend.Model.Statistics
 {
     public class GoalkeepingStatistics
     {
-        [Key]
-        public Guid Id { get; set; }
-
         [Required]
         [DefaultValue(0)]
         [Range(0, int.MaxValue)]

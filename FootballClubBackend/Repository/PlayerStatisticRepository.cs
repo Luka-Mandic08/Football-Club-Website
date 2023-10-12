@@ -1,5 +1,4 @@
-﻿using FootballClubBackend.Database;
-using FootballClubBackend.Model;
+﻿using FootballClubBackend.Model;
 using FootballClubBackend.Model.Statistics;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +6,7 @@ namespace FootballClubBackend.Repository
 {
     public class PlayerStatisticRepository
     {
+        /*
         private readonly FootballClubDbContext _context;
 
         public PlayerStatisticRepository(FootballClubDbContext context)
@@ -36,5 +36,6 @@ namespace FootballClubBackend.Repository
             _context.SaveChanges(); 
             return PlayerStatistic;
         }
+        */
     }
 }

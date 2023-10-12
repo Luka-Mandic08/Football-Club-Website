@@ -5,11 +5,13 @@ import { AppComponent } from './app.component';
 import { CreateMatchComponent } from './create-match/create-match.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MatchCardComponent } from './match-card/match-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreateMatchComponent
+    CreateMatchComponent,
+    MatchCardComponent
   ],
   imports: [
     BrowserModule,

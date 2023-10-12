@@ -5,56 +5,56 @@ namespace FootballClubBackend.Model.Statistics
 {
     public class MatchStatistics
     {
-        private Guid Id { get; set; }
+        public Guid Id { get; set; }
 
-        private GeneralMatchStatistics GeneralMatchStatistics { get; set; }
-        private AttackingMatchStatistics AttackingMatchStatistics { get; set; }
-        private PassingMatchStatistics PassingMatchStatistics { get; set; }
-        private DefendingMatchStatistics DefendingMatchStatistics { get; set; }
+        public GeneralMatchStatistics GeneralMatchStatistics { get; set; }
+        public AttackingMatchStatistics AttackingMatchStatistics { get; set; }
+        public PassingMatchStatistics PassingMatchStatistics { get; set; }
+        public DefendingMatchStatistics DefendingMatchStatistics { get; set; }
     }
 
     public class GeneralMatchStatistics
     {
-        private Guid Id { get; set; }
-        private float Possession { get; set; }
-        private float DuelSuccessRate { get; set; }
-        private float AerialDuelSuccessRate { get; set; }
-        private int Interceptions { get; set; }
-        private int Offsides { get; set; }
-        private int Corners { get; set; }
-        private int Passes { get; set; }
+        public Guid Id { get; set; }
+        public float Possession { get; set; }
+        public float DuelSuccessRate { get; set; }
+        public float AerialDuelSuccessRate { get; set; }
+        public int Interceptions { get; set; }
+        public int Offsides { get; set; }
+        public int Corners { get; set; }
+        public int Passes { get; set; }
     }
 
     public class AttackingMatchStatistics
     {
-        private Guid Id { get; set; }
-        private int Goals { get; set; }
-        private int Shots { get; set; }
-        private int ShotsOnTarget { get; set; }
-        private int BlockedShots { get; set; }
-        private int ShotsOutsideTheBox { get; set; }
-        private int ShotsInsideTheBox { get; set; }
-        private float ShootingAccuracy { get; set; }
+        public Guid Id { get; set; }
+        public int Goals { get; set; }
+        public int Shots { get; set; }
+        public int ShotsOnTarget { get; set; }
+        public int BlockedShots { get; set; }
+        public int ShotsOutsideTheBox { get; set; }
+        public int ShotsInsideTheBox { get; set; }
+        public float ShootingAccuracy { get; set; }
     }
 
     public class PassingMatchStatistics
     {
-        private Guid Id { get; set; }
-        private int LongPasses { get; set; }
-        private float PassingAccuracy { get; set; }
-        private float PassingAccuracyInOpponentsHalf { get; set; }
-        private int Crosses { get; set; }
-        private float CrossingAccuracy { get; set; }
+        public Guid Id { get; set; }
+        public int LongPasses { get; set; }
+        public float PassingAccuracy { get; set; }
+        public float PassingAccuracyInOpponentsHalf { get; set; }
+        public int Crosses { get; set; }
+        public float CrossingAccuracy { get; set; }
     }
 
     public class DefendingMatchStatistics
     {
-        private Guid Id { get; set; }
-        private int Tackles { get; set; }
-        private float TackleSuccessRate { get; set; }
-        private int Clearances { get; set; }
-        private int YellowCards { get; set; }
-        private int RedCards { get; set; }
-        private int Fouls { get; set; }
+        public Guid Id { get; set; }
+        public int Tackles { get; set; }
+        public float TackleSuccessRate { get; set; }
+        public int Clearances { get; set; }
+        public int YellowCards { get; set; }
+        public int RedCards { get; set; }
+        public int Fouls { get; set; }
     }
 }

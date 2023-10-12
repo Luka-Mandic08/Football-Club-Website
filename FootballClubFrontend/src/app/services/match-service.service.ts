@@ -9,12 +9,15 @@ export class MatchService {
 
   headers = new HttpHeaders({
     //'Authorization': 'Bearer your-token',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin':'true'
   });
+
+  route = 'http://localhost:5238/'
 
   constructor(private http: HttpClient) { }
 
   createMatch(match:any): Observable<any> {
-    return this.http.post<any>('api/match/create',match,{headers: this.headers});
+    return this.http.post<any>(this.route+'matches',match,{headers: this.headers});
   }
 }

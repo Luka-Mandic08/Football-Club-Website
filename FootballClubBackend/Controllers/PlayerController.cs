@@ -30,12 +30,13 @@ namespace FootballClubBackend.Controllers
             return _playerService.Create(new Player(dto), dto.Competitions) ? Ok("Kreiran valjda") : BadRequest("Error occurred");
         }
 
+        /*
         [HttpGet("getById/{id}")]
         public ActionResult GetById(string id)
         {
             PlayerWithStatistics? player = _playerService.GetById(id);
             return player != null ? Ok(player) : BadRequest("Could not find player with requested id");
-        }
+        }*/
 
         [HttpPut("updateStatistics/{id}")]
         public ActionResult UpdateStatistics(UpdateStatistics updateStatistics)

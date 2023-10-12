@@ -36,7 +36,7 @@ namespace FootballClubBackend.Model
 
         public ICollection<MatchEvent>? MatchEvents { get; set; }
 
-        public MatchStatistics? Statistics { get; set; }
+        public MatchStatistics Statistics { get; set; }
         public MatchStatistics? OpponentStatistics { get; set; }
 
         public ICollection<PlayerStatistic>? SquadStatistics {  get; set; }

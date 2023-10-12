@@ -23,20 +23,15 @@ namespace FootballClubBackend.Service
 
         public bool Create(Player player, string[] competitions)
         {
-            if (!_playerRepository.CheckSquadNumberAvailability(player.SquadNumber, player.Team))
+            if (!_playerRepository.CheckSquadNumberAvailability(player.SquadNumber))
             {
                 return false;
             }
-            Player playerWithId = _playerRepository.Create(player);
-            foreach (var competition in competitions)
-            {
-                PlayerStatistic playerStatistic = new PlayerStatistic(GetYearForCurrentSeason(), competition, playerWithId.Id, player.Position == 0);
-                _playerStatisticRepository.Create(playerStatistic);
-            }
+            _playerRepository.Create(player);
             return true;
         }
 
-        public PlayerWithStatistics? GetById(String id)
+        /*public PlayerWithStatistics? GetById(String id)
         {
             try
             {
@@ -52,7 +47,7 @@ namespace FootballClubBackend.Service
                 return null;
             }
 
-        }
+        }*/
 
         public int GetYearForCurrentSeason()
         {
