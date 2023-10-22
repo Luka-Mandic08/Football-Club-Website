@@ -6,12 +6,14 @@ import { CreateMatchComponent } from './create-match/create-match.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatchCardComponent } from './match-card/match-card.component';
+import { MatchesComponent } from './matches/matches.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateMatchComponent,
-    MatchCardComponent
+    MatchCardComponent,
+    MatchesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-class MatchPreview {
+export class MatchPreview {
   id: string = '';
   opponent: string = '';
   venue: string = '';

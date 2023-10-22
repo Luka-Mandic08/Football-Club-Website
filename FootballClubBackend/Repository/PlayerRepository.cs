@@ -1,5 +1,4 @@
-﻿using FootballClubBackend.Database;
-using FootballClubBackend.Model;
+﻿using FootballClubBackend.Model;
 using FootballClubBackend.Model.Enums;
 using MongoDB.Bson;
 using MongoDB.Driver;

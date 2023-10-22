@@ -2,12 +2,13 @@
 using FootballClubBackend.Model;
 using FootballClubBackend.Service;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
 
 namespace FootballClubBackend.Controllers
 {
     [ApiController]
     [Route("matches")]
-    public class MatchController :ControllerBase
+    public class MatchController : ControllerBase
     {
 
         private readonly MatchService _matchService;
@@ -20,17 +21,18 @@ namespace FootballClubBackend.Controllers
         [HttpPost]
         public ActionResult Create(CreateMatch dto)
         {
-            return _matchService.Create(dto) ? Ok("Kreiran mec valjda") : BadRequest("Error occurred");
+            return _matchService.Create(dto) ? Ok("Kreiran mec valjda") : Ok("Error occurred");
         }
 
         [HttpGet("fixtures")]
         public ActionResult GetFixtures()
         {
             List<MatchPreview> fixtures = new List<MatchPreview>();
-            foreach(var fixture in _matchService.GetFixtures())
+            foreach (var fixture in _matchService.GetFixtures())
             {
-                fixtures.Add(new MatchPreview(fixture,false));
+                fixtures.Add(new MatchPreview(fixture, false));
             }
+
             return Ok(fixtures);
         }
 
@@ -40,8 +42,9 @@ namespace FootballClubBackend.Controllers
             List<MatchPreview> results = new List<MatchPreview>();
             foreach (var result in _matchService.GetResults())
             {
-                results.Add(new MatchPreview(result,true));
+                results.Add(new MatchPreview(result, true));
             }
+
             return Ok(results);
         }
 
@@ -51,7 +54,8 @@ namespace FootballClubBackend.Controllers
             Guid guid = Guid.Parse(id);
             return Ok(_matchService.GetMatch(guid));
         }
-    }
 
-    
+        
+    }
 }
+

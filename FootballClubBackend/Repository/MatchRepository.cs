@@ -1,5 +1,4 @@
-﻿using FootballClubBackend.Database;
-using FootballClubBackend.Model;
+﻿using FootballClubBackend.Model;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -8,19 +7,27 @@ namespace FootballClubBackend.Repository
     public class MatchRepository
     {
         private readonly IMongoCollection<Match> collection;
+        private readonly IMongoDatabase database;
 
         public MatchRepository()
         {
             var client = new MongoClient("mongodb://localhost:27017");
-            var database = client.GetDatabase("FootballClubDb");
+            database = client.GetDatabase("FootballClubDb");
             collection = database.GetCollection<Match>("Matches");
         }
 
-        public void Create(Match match)
+        public bool Create(Match match)
         {
             match.Id = Guid.NewGuid();
             collection.InsertOne(match);
-            return;
+            var matchCollection = database.GetCollection<Team>("Teams");
+            var filter = Builders<Team>.Filter.Eq(t => t.Name, match.Opponent);
+            if (!matchCollection.Find(filter).Any())
+            {
+                matchCollection.InsertOne(new Team(match.Opponent));
+                return false;
+            }
+            return true;
         }
 
         public IEnumerable<Match> GetFixtures(DateTime refDate)

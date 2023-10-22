@@ -1,5 +1,4 @@
 using FootballClubBackend.Controllers;
-using FootballClubBackend.Database;
 using FootballClubBackend.Helper;
 using FootballClubBackend.Repository;
 using FootballClubBackend.Service;
@@ -18,9 +17,6 @@ IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
                 .Build();
-
-builder.Services.AddDbContext<FootballClubDbContext>(options =>
-    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
 var addScoped = new Helper(builder);
 

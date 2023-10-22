@@ -10,8 +10,8 @@ namespace FootballClubBackend.Model.DTO
         public string Referee { get; set; }
         public string Competition { get; set; }
         public DateTime Start { get; set; }
-        public int Goals { get; set; }
-        public int OpponentGoals { get; set; }
+        public int? Goals { get; set; }
+        public int? OpponentGoals { get; set; }
 
         public MatchPreview(Match match,bool isResult)
         {

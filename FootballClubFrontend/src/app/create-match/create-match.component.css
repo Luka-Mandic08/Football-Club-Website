@@ -18,11 +18,16 @@
     transition: all 0.3s;
     height: 15px;
     font-size: 14;
+    margin-top: 3px;
 }
 
 .input:focus{
     box-shadow: 2px 2px 3px darkgray;
     height: 20px;
+}
+
+.input:focus-visible{
+    outline:0;
 }
 
 .error-message {

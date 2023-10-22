@@ -16,8 +16,7 @@ namespace FootballClubBackend.Service
         public bool Create(CreateMatch dto)
         {
             Match match = new Match(dto);
-            _matchRepository.Create(match);
-            return true;
+            return _matchRepository.Create(match);
         }
 
         public IEnumerable<Match> GetFixtures()

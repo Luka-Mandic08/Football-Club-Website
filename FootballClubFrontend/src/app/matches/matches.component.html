@@ -1,0 +1,15 @@
+<div>
+    <ul class="tabs">
+        <li (click)="selectTab('Fixtures')" [class.selected]="selectedTab === 'Fixtures'">Fixtures</li>
+        <li (click)="selectTab('Results')" [class.selected]="selectedTab === 'Results'">Results</li>
+        <li (click)="selectTab('Table')" [class.selected]="selectedTab === 'Table'">Table</li>
+    </ul>
+    <div *ngIf="selectedTab=='Fixtures' || selectedTab=='Results'">
+        <div *ngFor="let match of matches">
+            <app-match-card [match]="match"></app-match-card>
+        </div>
+    </div>
+    <div *ngIf="selectedTab=='Table'">
+        Table
+    </div>  
+</div>
