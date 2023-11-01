@@ -1,0 +1,23 @@
+<p>match-details works!</p>
+<div>{{match.start}}</div>
+<app-match-card [match]="match"></app-match-card>
+<div style="justify-content: center;margin-left: 200px;">
+    <ul class="tabs">
+        <li (click)="selectTab('News')" [class.selected]="selectedTab === 'News'">News</li>
+        <li (click)="selectTab('As it happened')" [class.selected]="selectedTab === 'As it happened'">As it happened</li>
+        <li (click)="selectTab('Teams')" [class.selected]="selectedTab === 'Teams'">Teams</li>
+        <li (click)="selectTab('Stats')" [class.selected]="selectedTab === 'Stats'">Stats</li>
+    </ul>
+    <div *ngIf="selectedTab=='News'">
+        News
+    </div>
+    <div *ngIf="selectedTab=='As it happened'">
+        <app-match-events [events]="match.matchEvents" [matchId]="match.id" (updateEvent)="updateMatch($event)"></app-match-events>
+    </div>
+    <div *ngIf="selectedTab=='Teams'">
+        Teams
+    </div>
+    <div *ngIf="selectedTab=='Stats'">
+        Stats
+    </div>
+</div>

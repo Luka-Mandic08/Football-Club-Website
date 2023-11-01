@@ -55,5 +55,7 @@ namespace FootballClubBackend.Model
             Opponent = dto.Opponent;
             Competition = dto.Competition;
         }
+
+        
     }
 }

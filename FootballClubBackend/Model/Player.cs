@@ -41,12 +41,6 @@ namespace FootballClubBackend.Model
         [Required]
         public string Image {  get; set; }
 
-        public Player(string name, string surname)
-        {
-            Name = name;
-            Surname = surname;
-        }
-
         public Player(string name, string surname, DateTime dateOfBirth, string placeOfBirth, Position position, int squadNumber, FirstTeamStatus status, DateTime dateJoined, string image)
         {
             Name = name;
@@ -64,13 +58,13 @@ namespace FootballClubBackend.Model
         {
             Name = dto.Name;
             Surname = dto.Surname;
-            DateOfBirth = dto.DateOfBirth;
+            DateOfBirth = dto.DateOfBirth.AddHours(2);
             PlaceOfBirth = dto.PlaceOfBirth;
             Position = (Position)dto.Position;
             SquadNumber = dto.SquadNumber;
-            Status = (FirstTeamStatus)dto.Status; 
-            DateJoined = dto.DateJoined;
-            Image = dto.Image;
+            Status = FirstTeamStatus.Active; 
+            DateJoined = DateTime.Today.AddHours(1);
+            Image = "assets/Images/Players/" + dto.Image.Split('\\').Last();
         }
     }
 }

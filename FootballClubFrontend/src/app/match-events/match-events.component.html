@@ -1,0 +1,40 @@
+<div class="row">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" novalidate>
+        <div class="form-group">
+            <label for="minute">Minute:</label>
+            <input type="text" id="minute" name="minute" formControlName="minute" required class="input">
+            <div *ngIf="form.get('minute')?.touched">
+                <div *ngIf="form.get('minute')?.hasError('required')" class="error-message">
+                    Minute is required.
+                </div>
+                <div *ngIf="form.get('minute')?.hasError('maxlength')" class="error-message">
+                    Minute length must be at most 6.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="text">Event text:</label>
+            <input type="text" id="text" name="text" formControlName="text" required class="input">
+            <div *ngIf="form.get('text')?.touched">
+                <div *ngIf="form.get('text')?.hasError('required')" class="error-message">
+                    Text is required.
+                </div>
+                <div *ngIf="form.get('text')?.hasError('minlength')" class="error-message">
+                    Text length must be at least 5.
+                </div>
+                <div *ngIf="form.get('text')?.hasError('maxlength')" class="error-message">
+                    Text length must be at most 100.
+                </div>
+            </div>
+        </div>
+        <div>
+            <button type="submit" [disabled]="form.invalid">Add event</button>
+        </div>
+    </form>
+    <div>
+        <button type="button" (click)="saveChanges()">Save changes</button>
+    </div>
+</div>
+<div *ngFor="let event of events">
+    <app-match-event-card [event]="event" (removeEvent)="removeEvent($event)"></app-match-event-card>
+</div>

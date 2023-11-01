@@ -27,7 +27,7 @@ namespace FootballClubBackend.Controllers
         [HttpPost]
         public ActionResult Create(CreatePlayer dto)
         {
-            return _playerService.Create(new Player(dto), dto.Competitions) ? Ok("Kreiran valjda") : BadRequest("Error occurred");
+            return _playerService.Create(new Player(dto)) ? Ok("Kreiran valjda") : BadRequest("Error occurred");
         }
 
         /*

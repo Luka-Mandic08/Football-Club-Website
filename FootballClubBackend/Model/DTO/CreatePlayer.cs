@@ -22,23 +22,12 @@ namespace FootballClubBackend.Model.DTO
         public string PlaceOfBirth { get; set; }
 
         [Required]
-        public int Team { get; set; }
-
-        [Required]
         public int Position { get; set; }
 
         [Range(1, 99)]
         public int SquadNumber { get; set; }
 
         [Required]
-        public int Status { get; set; }
-
-        [Required]
-        public DateTime DateJoined { get; set; }
-
-        [Required]
         public string Image { get; set; }
-
-        public string[] Competitions { get; set; }
     }
 }

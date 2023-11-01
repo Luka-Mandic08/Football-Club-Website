@@ -21,9 +21,9 @@ namespace FootballClubBackend.Service
             return _playerRepository.GetAll();
         }
 
-        public bool Create(Player player, string[] competitions)
+        public bool Create(Player player)
         {
-            if (!_playerRepository.CheckSquadNumberAvailability(player.SquadNumber))
+            if (_playerRepository.CheckSquadNumberAvailability(player.SquadNumber))
             {
                 return false;
             }

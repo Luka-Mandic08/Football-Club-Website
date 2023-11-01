@@ -23,7 +23,6 @@ namespace FootballClubBackend.Repository
         {
             var filter = Builders<Player>.Filter.Empty;
             return collection.Find(filter).ToList();
-
         }
 
         public void Create(Player player)
@@ -46,6 +45,12 @@ namespace FootballClubBackend.Repository
         {
             var filter = Builders<Player>.Filter.Eq(p => p.Id, id);
             return collection.Find(filter).First();
+        }
+
+        public ICollection<Player> GetEligableForMatch(ICollection<Guid> ids)
+        {
+            var filter = Builders<Player>.Filter.And(Builders<Player>.Filter.Eq(p=>p.Status,FirstTeamStatus.Active),Builders<Player>.Filter.Nin(p=>p.Id,ids));
+            return collection.Find(filter).ToList();
         }
     }
 }

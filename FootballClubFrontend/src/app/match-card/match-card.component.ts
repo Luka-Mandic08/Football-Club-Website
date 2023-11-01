@@ -10,9 +10,13 @@ export class MatchCardComponent {
 
   @Input() match !: MatchPreview; 
   formatedDate !: string;
+  formatedDateForUrl !: string;
+  formatedOpponentName !:string;
 
   ngOnInit(){
     this.formatedDate = this.formatDate(this.match.start)
+    this.formatedDateForUrl = this.formatDateForUrl(this.match.start)
+    this.formatedOpponentName = this.formatTeamName(this.match.opponent)
   }
 
   formatDate(date:Date): string{
@@ -34,5 +38,16 @@ export class MatchCardComponent {
       case 6: return 'Saturday'
       default: return ''
     }
+  }
+
+  formatDateForUrl(date:Date): string{
+    date = new Date(date)
+    let formated = '';
+    formated += date.getDate() + '-' + (date.getMonth()+1) + '-' + date.getFullYear()
+    return formated
+  }
+
+  formatTeamName(name:string):string{
+    return name.replace(' ','-').toLowerCase()
   }
 }

@@ -1,5 +1,4 @@
 ﻿using FootballClubBackend.Model;
-using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace FootballClubBackend.Repository
@@ -33,19 +32,39 @@ namespace FootballClubBackend.Repository
         public IEnumerable<Match> GetFixtures(DateTime refDate)
         {
             var filter = Builders<Match>.Filter.Gte(m => m.Start, refDate);
-            return collection.Find(filter).ToList();
+            var sortDefinition = Builders<Match>.Sort.Ascending(m => m.Start);
+            return collection.Find(filter).Sort(sortDefinition).ToList();
         }
 
-        public IEnumerable<Match> GetResults() 
+        public IEnumerable<Match> GetResults()
         {
             var filter = Builders<Match>.Filter.Ne(m => m.Statistics, null);
-            return collection.Find(filter).ToList();
+            var sortDefinition = Builders<Match>.Sort.Descending(m => m.Start);
+            return collection.Find(filter).Sort(sortDefinition).ToList();
         }
 
-        public Match GetMatch(Guid id)
+        public Match GetById(Guid id)
         {
             var filter = Builders<Match>.Filter.Eq(m => m.Id, id);
             return (Match)collection.Find(filter);
+        }
+
+        public Match? GetByDate(DateTime start)
+        {
+            var helperDateFrom = start.Date;
+            var helperDateTo = helperDateFrom.AddDays(1);
+            var matchFilter = Builders<Match>.Filter.And(Builders<Match>.Filter.Gte(m => m.Start, helperDateFrom),
+                Builders<Match>.Filter.Lte(m => m.Start, helperDateTo)
+            );
+            return collection.Find(matchFilter).First();
+        }
+
+        public Match UpdateMatchEvents(Guid id, ICollection<MatchEvent> events)
+        {
+            var filter = Builders<Match>.Filter.Eq(m => m.Id, id);
+            var update = Builders<Match>.Update.Set(m => m.MatchEvents, events);
+            var options = new FindOneAndUpdateOptions<Match>{ ReturnDocument = ReturnDocument.After };
+            return collection.FindOneAndUpdate(filter, update, options);
         }
     }
 }

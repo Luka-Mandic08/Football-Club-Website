@@ -7,4 +7,10 @@ export class MatchPreview {
   start!: Date;
   goals!: Number;
   opponentGoals!: Number;
+  matchEvents: MatchEvent[] = []; 
+}
+
+export class MatchEvent {
+  minute: string = ''
+  text: string = ''
 }

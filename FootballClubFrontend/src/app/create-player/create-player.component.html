@@ -1,0 +1,100 @@
+<div class="form">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" novalidate>
+        <div class="form-group">
+            <label for="name">First name:</label>
+            <input type="text" id="name" name="name" formControlName="name" required class="input">
+            <div *ngIf="form.get('name')?.touched">
+                <div *ngIf="form.get('name')?.hasError('required')" class="error-message">
+                    Name is required.
+                </div>
+                <div *ngIf="form.get('name')?.hasError('minlength')" class="error-message">
+                    Name length must be at least 2.
+                </div>
+                <div *ngIf="form.get('name')?.hasError('maxlength')" class="error-message">
+                    Name length must be at most 40.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="surname">Last name:</label>
+            <input type="text" id="surname" name="surname" formControlName="surname" required class="input">
+            <div *ngIf="form.get('surname')?.touched">
+                <div *ngIf="form.get('surname')?.hasError('required')" class="error-message">
+                    Surname is required.
+                </div>
+                <div *ngIf="form.get('surname')?.hasError('minlength')" class="error-message">
+                    Surname length must be at least 2.
+                </div>
+                <div *ngIf="form.get('surname')?.hasError('maxlength')" class="error-message">
+                    Surname length must be at most 40.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="dateofbirth">Date of birth:</label>
+            <input type="date" id="dateofbirth" name="dateofbirth" formControlName="dateOfBirth" required class="input">
+            <div *ngIf="form.get('dateOfBirth')?.touched">
+                <div *ngIf="form.get('dateOfBirth')?.hasError('required')" class="error-message">
+                    Date of birth is required.
+                </div>
+                <div *ngIf="form.get('dateOfBirth')?.hasError('futureDate')" class="error-message">
+                    Date of birth must be in the past.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="placeofbirth">Place of birth:</label>
+            <input type="text" id="placeofbirth" name="placeofbirth" formControlName="placeOfBirth" required class="input">
+            <div *ngIf="form.get('placeOfBirth')?.touched">
+                <div *ngIf="form.get('placeOfBirth')?.hasError('required')" class="error-message">
+                    Place of birth is required.
+                </div>
+                <div *ngIf="form.get('placeOfBirth')?.hasError('minlength')" class="error-message">
+                    Place of birth length must be at least 2.
+                </div>
+                <div *ngIf="form.get('placeOfBirth')?.hasError('maxlength')" class="error-message">
+                    Place of birth length must be at most 40.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="number">Squad number:</label>
+            <input type="number" id="number" name="number" formControlName="number" required class="input" min="1" max="99">
+            <div *ngIf="form.get('number')?.touched">
+                <div *ngIf="form.get('number')?.hasError('required')" class="error-message">
+                    Squad number is required.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="position">Position:</label>
+            <select id="position" name="position" formControlName="position" required >
+                <option value=0>Goalkeeper</option>
+                <option value=1>Defender</option>
+                <option value=2>Midfielder</option>
+                <option value=3>Attacker</option>
+            </select>
+            <div *ngIf="form.get('position')?.touched">
+                <div *ngIf="form.get('position')?.hasError('required')" class="error-message">
+                    Position is required.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image" formControlName="image" required class="input">
+            <div *ngIf="form.get('image')?.touched">
+                <div *ngIf="form.get('image')?.hasError('required')" class="error-message">
+                    Image is required.
+                </div>
+                <div *ngIf="form.get('image')?.hasError('invalidFileType')" class="error-message">
+                    Image must of type jpg/jpeg/png.
+                </div>
+            </div>
+        </div>
+        <div class="form-group" style="margin-top: 20px; align-items: center;">
+            <button type="submit" [disabled]="form.invalid">Schedule match</button>
+        </div>
+    </form>
+</div>
+<!-- <img src="assets/Images/Players/Default.jpg"> -->

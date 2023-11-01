@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { MatchPreview } from '../model/match';
+import { MatchEvent, MatchPreview } from '../model/match';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +28,13 @@ export class MatchService {
 
   getResults(): Observable<MatchPreview[]> {
     return this.http.get<MatchPreview[]>(this.route+'matches/results',{headers:this.headers});
+  }
+
+  getByDate(date:string): Observable<any> {
+    return this.http.get<any>(this.route+'matches/getByDate/'+date,{headers:this.headers});
+  }
+
+  updateMatchEvents(id:string,events:MatchEvent[]): Observable<any> {
+    return this.http.put<any>(this.route+'matches/update/matchevents/'+id,events,{headers:this.headers});
   }
 }
