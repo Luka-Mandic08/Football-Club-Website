@@ -23,8 +23,8 @@ namespace FootballClubBackend.Model.DTO
             Start = match.Start;
             if (isResult)
             {
-                Goals = match.Statistics.AttackingMatchStatistics.Goals;
-                OpponentGoals = match.OpponentStatistics.AttackingMatchStatistics.Goals;
+                Goals = match.Statistics != null ? match.Statistics.AttackingMatchStatistics.Goals : -1;
+                OpponentGoals = match.Statistics != null ? match.OpponentStatistics.AttackingMatchStatistics.Goals : -1; 
             }
         }
     }

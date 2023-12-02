@@ -1,0 +1,21 @@
+<app-match-card [match]="match"></app-match-card>
+<div style="justify-content: center;margin-left: 200px;margin-right: 200px;">
+    <ul class="tabs">
+        <li (click)="selectTab('News')" [class.selected]="selectedTab === 'News'">News</li>
+        <li (click)="selectTab('As it happened')" [class.selected]="selectedTab === 'As it happened'">As it happened</li>
+        <li (click)="selectTab('Teams')" [class.selected]="selectedTab === 'Teams'">Teams</li>
+        <li (click)="selectTab('Stats')" [class.selected]="selectedTab === 'Stats'">Stats</li>
+    </ul>
+    <div *ngIf="selectedTab=='News'">
+        News
+    </div>
+    <div *ngIf="selectedTab=='As it happened'">
+        <app-match-events [matchId]="match.id" (updateEvent)="updateMatch($event)"></app-match-events>
+    </div>
+    <div *ngIf="selectedTab=='Teams'">
+        <app-match-squads [matchId]="match.id" [opponentName]="match.opponent"></app-match-squads>
+    </div>
+    <div *ngIf="selectedTab=='Stats'">
+        <app-match-statistics [matchId]="match.id" ></app-match-statistics>
+    </div>
+</div>

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MatchEvent, MatchPreview } from '../model/match';
+import { Squads } from '../model/players-for-squad';
+import { MatchStatistics, MatchStatisticsDto } from '../model/match-statistics';
 
 @Injectable({
   providedIn: 'root'
@@ -11,30 +13,51 @@ export class MatchService {
   headers = new HttpHeaders({
     //'Authorization': 'Bearer your-token',
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin':'true'
+    'Access-Control-Allow-Origin':'true',
+    'Authorization': ''
   });
 
-  route = 'http://localhost:5238/'
+  route = 'http://localhost:5238/matches/'
 
   constructor(private http: HttpClient) { }
 
   createMatch(match:any): Observable<any> {
-    return this.http.post<any>(this.route+'matches',match,{headers: this.headers});
+    return this.http.post<any>(this.route,match,{headers: this.headers});
   }
 
   getFixtures(): Observable<MatchPreview[]> {
-    return this.http.get<MatchPreview[]>(this.route+'matches/fixtures',{headers:this.headers});
+    return this.http.get<MatchPreview[]>(this.route+'fixtures',{headers:this.headers});
   }
 
   getResults(): Observable<MatchPreview[]> {
-    return this.http.get<MatchPreview[]>(this.route+'matches/results',{headers:this.headers});
+    return this.http.get<MatchPreview[]>(this.route+'results',{headers:this.headers});
   }
 
   getByDate(date:string): Observable<any> {
-    return this.http.get<any>(this.route+'matches/getByDate/'+date,{headers:this.headers});
+    return this.http.get<any>(this.route+'getByDate/'+date,{headers:this.headers});
   }
 
-  updateMatchEvents(id:string,events:MatchEvent[]): Observable<any> {
-    return this.http.put<any>(this.route+'matches/update/matchevents/'+id,events,{headers:this.headers});
+  getMatchEvents(id:string): Observable<MatchEvent[]> {
+    return this.http.get<MatchEvent[]>(this.route+'matchevents/'+id,{headers:this.headers});
+  }
+
+  updateMatchEvents(id:string,events:MatchEvent[]): Observable<MatchEvent[]> {
+    return this.http.put<MatchEvent[]>(this.route+'update/matchevents/'+id,events,{headers:this.headers});
+  }
+
+  getMatchSquads(id:string): Observable<Squads> {
+    return this.http.get<Squads>(this.route+'squads/'+id,{headers:this.headers});
+  }
+
+  updateMatchSquads(id:string,squads: Squads): Observable<Squads> {
+    return this.http.put<Squads>(this.route+'update/squads/'+id,squads,{headers:this.headers});
+  }
+
+  getMatchStatistics(id:string): Observable<MatchStatisticsDto> {
+    return this.http.get<MatchStatisticsDto>(this.route+'statistics/'+id,{headers:this.headers});
+  }
+
+  updateMatchStatistics(id:string,dto: MatchStatisticsDto): Observable<MatchStatisticsDto> {
+    return this.http.put<MatchStatisticsDto>(this.route+'update/statistics/'+id,dto,{headers:this.headers});
   }
 }

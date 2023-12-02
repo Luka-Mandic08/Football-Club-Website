@@ -27,21 +27,8 @@ namespace FootballClubBackend.Controllers
         [HttpPost]
         public ActionResult Create(CreatePlayer dto)
         {
-            return _playerService.Create(new Player(dto)) ? Ok("Kreiran valjda") : BadRequest("Error occurred");
+            return _playerService.Create(new Player(dto)) ? Ok(new { message = "Player created successfully" }) : BadRequest(new { message = "Error occurred" });
         }
 
-        /*
-        [HttpGet("getById/{id}")]
-        public ActionResult GetById(string id)
-        {
-            PlayerWithStatistics? player = _playerService.GetById(id);
-            return player != null ? Ok(player) : BadRequest("Could not find player with requested id");
-        }*/
-
-        [HttpPut("updateStatistics/{id}")]
-        public ActionResult UpdateStatistics(UpdateStatistics updateStatistics)
-        {
-            return Ok();
-        }
     }
 }

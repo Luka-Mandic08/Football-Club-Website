@@ -1,4 +1,6 @@
 ﻿using FootballClubBackend.Model;
+using FootballClubBackend.Model.DTO;
+using FootballClubBackend.Model.Statistics;
 using MongoDB.Driver;
 
 namespace FootballClubBackend.Repository
@@ -29,16 +31,16 @@ namespace FootballClubBackend.Repository
             return true;
         }
 
-        public IEnumerable<Match> GetFixtures(DateTime refDate)
+        public IEnumerable<Match> GetFixtures()
         {
-            var filter = Builders<Match>.Filter.Gte(m => m.Start, refDate);
+            var filter = Builders<Match>.Filter.Gte(m => m.Start, DateTime.Now);
             var sortDefinition = Builders<Match>.Sort.Ascending(m => m.Start);
             return collection.Find(filter).Sort(sortDefinition).ToList();
         }
 
         public IEnumerable<Match> GetResults()
         {
-            var filter = Builders<Match>.Filter.Ne(m => m.Statistics, null);
+            var filter = Builders<Match>.Filter.Lte(m => m.Start, DateTime.Now);
             var sortDefinition = Builders<Match>.Sort.Descending(m => m.Start);
             return collection.Find(filter).Sort(sortDefinition).ToList();
         }
@@ -46,7 +48,7 @@ namespace FootballClubBackend.Repository
         public Match GetById(Guid id)
         {
             var filter = Builders<Match>.Filter.Eq(m => m.Id, id);
-            return (Match)collection.Find(filter);
+            return collection.Find(filter).First();
         }
 
         public Match? GetByDate(DateTime start)
@@ -64,6 +66,23 @@ namespace FootballClubBackend.Repository
             var filter = Builders<Match>.Filter.Eq(m => m.Id, id);
             var update = Builders<Match>.Update.Set(m => m.MatchEvents, events);
             var options = new FindOneAndUpdateOptions<Match>{ ReturnDocument = ReturnDocument.After };
+            return collection.FindOneAndUpdate(filter, update, options);
+        }
+        public Match UpdateMatchSquads(Guid id, List<string>? squad, List<string>? subs, ICollection<PlayerForSquad>? oppositionSquad, ICollection<PlayerForSquad>? oppositionSubs)
+        {
+            List<Guid> squadGuidList = squad.Select(Guid.Parse).ToList();
+            List<Guid> subsGuidList = subs.Select(Guid.Parse).ToList();
+            var filter = Builders<Match>.Filter.Eq(m => m.Id, id);
+            var update = Builders<Match>.Update.Set(m => m.SquadIds, squadGuidList).Set(m => m.SubsIds, subsGuidList).Set(m=>m.OpponentSquad,oppositionSquad).Set(m => m.OpponentSubs, oppositionSubs);
+            var options = new FindOneAndUpdateOptions<Match> { ReturnDocument = ReturnDocument.After };
+            return collection.FindOneAndUpdate(filter, update, options);
+        }
+
+        public Match UpdateMatchStatistics(Guid id, MatchStatistics? statistics, MatchStatistics? opponentStatistics)
+        {
+            var filter = Builders<Match>.Filter.Eq(m => m.Id, id);
+            var update = Builders<Match>.Update.Set(m => m.Statistics, statistics).Set(m => m.OpponentStatistics, opponentStatistics);
+            var options = new FindOneAndUpdateOptions<Match> { ReturnDocument = ReturnDocument.After };
             return collection.FindOneAndUpdate(filter, update, options);
         }
     }

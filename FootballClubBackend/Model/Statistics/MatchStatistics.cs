@@ -5,8 +5,6 @@ namespace FootballClubBackend.Model.Statistics
 {
     public class MatchStatistics
     {
-        public Guid Id { get; set; }
-
         public GeneralMatchStatistics GeneralMatchStatistics { get; set; }
         public AttackingMatchStatistics AttackingMatchStatistics { get; set; }
         public PassingMatchStatistics PassingMatchStatistics { get; set; }
@@ -15,7 +13,6 @@ namespace FootballClubBackend.Model.Statistics
 
     public class GeneralMatchStatistics
     {
-        public Guid Id { get; set; }
         public float Possession { get; set; }
         public float DuelSuccessRate { get; set; }
         public float AerialDuelSuccessRate { get; set; }
@@ -27,7 +24,6 @@ namespace FootballClubBackend.Model.Statistics
 
     public class AttackingMatchStatistics
     {
-        public Guid Id { get; set; }
         public int Goals { get; set; }
         public int Shots { get; set; }
         public int ShotsOnTarget { get; set; }
@@ -39,7 +35,6 @@ namespace FootballClubBackend.Model.Statistics
 
     public class PassingMatchStatistics
     {
-        public Guid Id { get; set; }
         public int LongPasses { get; set; }
         public float PassingAccuracy { get; set; }
         public float PassingAccuracyInOpponentsHalf { get; set; }
@@ -49,7 +44,6 @@ namespace FootballClubBackend.Model.Statistics
 
     public class DefendingMatchStatistics
     {
-        public Guid Id { get; set; }
         public int Tackles { get; set; }
         public float TackleSuccessRate { get; set; }
         public int Clearances { get; set; }

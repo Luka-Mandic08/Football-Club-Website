@@ -11,10 +11,7 @@ namespace FootballClubBackend.Model.Statistics
         public Guid Id { get; set; }
 
         [Required]
-        public int Year { get; set; }
-
-        [Required]
-        public string Competition { get; set; }
+        public Guid MatchId { get; set; }
 
         [ForeignKey("PlayerId")]
         public Guid PlayerId { get; set; }
@@ -35,8 +32,6 @@ namespace FootballClubBackend.Model.Statistics
 
         public PlayerStatistic(int year, string competition,Guid playerId,bool isGoalkeeper)
         {
-            Year = year;
-            Competition = competition;
             PlayerId = playerId;
             GeneralStatistics = new GeneralStatistics();
             PassingStatistics = new PassingStatistics();

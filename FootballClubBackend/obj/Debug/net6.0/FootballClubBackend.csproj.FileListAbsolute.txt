@@ -98,3 +98,4 @@ E:\Faks\Diplomski\FootballClubBackend\bin\Debug\net6.0\ZstdSharp.dll
 E:\Faks\Diplomski\FootballClubBackend\bin\Debug\net6.0\runtimes\linux\native\libmongocrypt.so
 E:\Faks\Diplomski\FootballClubBackend\bin\Debug\net6.0\runtimes\osx\native\libmongocrypt.dylib
 E:\Faks\Diplomski\FootballClubBackend\bin\Debug\net6.0\runtimes\win\native\mongocrypt.dll
+E:\Faks\Diplomski\FootballClubBackend\bin\Debug\net6.0\BCrypt.Net-Next.dll

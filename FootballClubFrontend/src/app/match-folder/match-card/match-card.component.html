@@ -1,0 +1,21 @@
+<a [routerLink]="['/match', formatedDateForUrl,formatedOpponentName]" routerLinkActive="active">
+    <div class="match-card">
+      <div class="match-info">
+        <div>{{formatedDate}}&nbsp;|&nbsp;{{match.venue}} </div>
+        <div>{{match.competition}}</div>
+      </div>
+      <div *ngIf="match.venue=='Stadion Novi Sad'" class="match-teams">
+        <div>FK FTN</div>
+        <div *ngIf="match.goals!==-1">{{match.goals}} - {{match.opponentGoals}}</div>
+        <div *ngIf="match.goals===-1">V</div>
+        <div>{{match.opponent}}</div>
+      </div>
+      <div *ngIf="match.venue!='Stadion Novi Sad'" class="match-teams">
+        <div>{{match.opponent}}</div>
+        <div *ngIf="match.goals!==-1">{{match.opponentGoals}} - {{match.goals}}</div>
+        <div *ngIf="match.goals===-1">V</div>    
+        <div>FK FTN</div>
+      </div>
+      <div>Referee: {{match.referee}}</div>
+    </div>
+  </a>

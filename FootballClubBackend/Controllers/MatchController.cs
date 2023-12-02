@@ -3,6 +3,8 @@ using FootballClubBackend.Model;
 using FootballClubBackend.Service;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
+using FootballClubBackend.Model.Statistics;
+using FootballClubBackend.Helper;
 
 namespace FootballClubBackend.Controllers
 {
@@ -23,10 +25,10 @@ namespace FootballClubBackend.Controllers
         {
             switch (_matchService.Create(dto))
             {
-                case "Ok": return Ok("Match created successfully");
-                case "Add image": return Ok("Image missing");
-                case "Date taken": return BadRequest("Date taken");
-                    default: return BadRequest("Something went wrong");
+                case "Ok": return Ok(new { message = "Match created successfully" });
+                case "Add image": return Ok(new { message = "Image missing" });
+                case "Date taken": return BadRequest(new { message = "Date taken" });
+                    default: return BadRequest(new { message = "Something went wrong" });
             }
         }
 
@@ -67,6 +69,13 @@ namespace FootballClubBackend.Controllers
             return Ok(_matchService.GetByDate(date));
         }
 
+        [HttpGet("matchevents/{id}")]
+        public ActionResult GetMatchEvents(string id)
+        {
+            var guid = Guid.Parse(id);
+            return Ok(_matchService.GetMatchEvents(guid));
+        }
+
         [HttpPut("update/matchevents/{id}")]
         public ActionResult UpdateMatchEvents(string id,ICollection<MatchEvent> events)
         {
@@ -76,9 +85,49 @@ namespace FootballClubBackend.Controllers
             {
                 return Ok(updatedMatch);
             }
-            return BadRequest("Unable to update match events");
+            return BadRequest(new { message = "Unable to update match events" });
         }
-        
+
+        [HttpGet("squads/{id}")]
+        public ActionResult GetSquads(string id)
+        {
+            var guid = Guid.Parse(id);
+            return Ok(_matchService.GetMatchSquads(guid));
+        }
+
+        [HttpPut("update/squads/{id}")]
+        public ActionResult UpdateSquads(string id, Squads squads)
+        {
+            var guid = Guid.Parse(id);
+            Squads updatedSquads = _matchService.UpdateMatchSquads(guid, squads);
+            if (updatedSquads != null)
+            {
+                return Ok(updatedSquads);
+            }
+            return BadRequest(new { message = "Unable to update match events" });
+        }
+
+        [HttpGet("statistics/{id}")]
+        public ActionResult GetStatistics(string id)
+        {
+            //if (!Authorizer.CheckAuthorization(Request.Headers.Authorization, "any"))
+                //return BadRequest(new { message = "no token" });
+            var guid = Guid.Parse(id);
+            return Ok(_matchService.GetMatchStatistics(guid));
+        }
+
+        [HttpPut("update/statistics/{id}")]
+        public ActionResult UpdateStatistics(string id, MatchStatisticsDto statistics)
+        {
+            var guid = Guid.Parse(id);
+            Match updatedMatch = _matchService.UpdateMatchStatistics(guid, statistics);
+            if (updatedMatch != null)
+            {
+                return Ok(statistics);
+            }
+            return BadRequest(new { message = "Unable to update match events" });
+        }
+
     }
 }
 

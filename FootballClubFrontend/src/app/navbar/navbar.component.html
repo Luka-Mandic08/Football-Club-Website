@@ -1,0 +1,6 @@
+<div class="main-div">
+    <div class="nav-button" routerLink="matches" (click)="selectTab('matches')" [class.selected]="selectedTab=='matches'"><p>Matches</p></div>
+    <div class="nav-button" routerLink="players/create" (click)="selectTab('createPlayer')" [class.selected]="selectedTab=='createPlayer'"><p>Create player</p></div>
+    <div *ngIf="userIsLoggedIn" ><p>Profile</p></div>
+    <div *ngIf="!userIsLoggedIn" (click)="loginPopup()"><p>Login</p></div>
+</div>

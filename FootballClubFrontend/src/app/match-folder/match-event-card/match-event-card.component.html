@@ -1,0 +1,31 @@
+<div class="card">
+    <div class="minute-div">
+        {{event.minute}}'
+    </div>
+
+    <div *ngIf="event.text.includes('Goal!')" class="icon">
+        <img src="assets/Images/Static/goal.png">
+    </div>
+    <div *ngIf="event.text.includes('Goal ')" class="icon">
+        <img src="assets/Images/Static/opp_goal.png">
+    </div>
+    <div *ngIf="event.text.includes('Yellow')" class="icon">
+        <img src="assets/Images/Static/yellow_card.png">
+    </div>
+    <div *ngIf="event.text.includes('Red')" class="icon">
+        <img src="assets/Images/Static/red_card.png">
+    </div>
+    <div *ngIf="event.text.includes('Substitution')" class="icon">
+        <img src="assets/Images/Static/substitution.png">
+    </div>
+    <div *ngIf="event.text.includes('Kick off')" class="icon">
+        <img src="assets/Images/Static/whistle.png">
+    </div>
+
+    <div>
+        {{event.text}}
+    </div>
+        <button type="button" class="delete-button" (click)="deleteEvent(event)">
+            <img src="assets//Images/Static/remove_event.png">
+        </button>
+</div>

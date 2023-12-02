@@ -1,4 +1,5 @@
 ﻿using FootballClubBackend.Model;
+using FootballClubBackend.Model.DTO;
 using FootballClubBackend.Model.Enums;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -47,9 +48,37 @@ namespace FootballClubBackend.Repository
             return collection.Find(filter).First();
         }
 
-        public ICollection<Player> GetEligableForMatch(ICollection<Guid> ids)
+        public ICollection<Player> GetEligibleForMatch(ICollection<Guid>? squadIds, ICollection<Guid>? subsIds)
         {
-            var filter = Builders<Player>.Filter.And(Builders<Player>.Filter.Eq(p=>p.Status,FirstTeamStatus.Active),Builders<Player>.Filter.Nin(p=>p.Id,ids));
+            if (squadIds == null)
+            {
+                squadIds = subsIds;
+            }
+            if (subsIds == null)
+            {
+                subsIds = squadIds;
+            }
+
+            var filter = Builders<Player>.Filter.And(
+                Builders<Player>.Filter.Eq(p => p.Status,FirstTeamStatus.Active),
+                Builders<Player>.Filter.Nin(p => p.Id, squadIds),
+                Builders<Player>.Filter.Nin(p => p.Id, subsIds));
+            return collection.Find(filter).ToList();
+        }
+
+        public ICollection<Player> GetInMatchSquad(ICollection<Guid>? ids)
+        {
+            if (ids == null)
+            {
+                return null;
+            }
+            var filter =Builders<Player>.Filter.In(p => p.Id, ids);
+            return collection.Find(filter).ToList();
+        }
+
+        public ICollection<Player> GetAllActive()
+        {
+            var filter = Builders<Player>.Filter.Eq(p => p.Status, FirstTeamStatus.Active);
             return collection.Find(filter).ToList();
         }
     }

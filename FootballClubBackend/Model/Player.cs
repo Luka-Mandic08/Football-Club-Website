@@ -66,5 +66,6 @@ namespace FootballClubBackend.Model
             DateJoined = DateTime.Today.AddHours(1);
             Image = "assets/Images/Players/" + dto.Image.Split('\\').Last();
         }
+
     }
 }

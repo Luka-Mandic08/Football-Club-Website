@@ -36,11 +36,13 @@ namespace FootballClubBackend.Model
 
         public ICollection<MatchEvent>? MatchEvents { get; set; }
 
-        public MatchStatistics Statistics { get; set; }
+        public MatchStatistics? Statistics { get; set; }
         public MatchStatistics? OpponentStatistics { get; set; }
 
-        public ICollection<PlayerStatistic>? SquadStatistics {  get; set; }
-        public ICollection<PlayerStatistic>? OpponentSquadStatistics { get; set; }
+        public ICollection<Guid>? SquadIds {  get; set; }
+        public ICollection<Guid>? SubsIds { get; set; }
+        public ICollection<PlayerForSquad>? OpponentSquad { get; set; }
+        public ICollection<PlayerForSquad>? OpponentSubs { get; set; }
 
         public Match()
         {

@@ -1,0 +1,27 @@
+.main-div{
+    background-color: rgb(45, 45, 148);
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-button {
+    background-color: transparent;
+    color: white;
+    text-align: center;
+    margin: 10px
+}
+
+.nav-button.selected {
+    text-decoration: underline;
+}
+
+.nav-button:hover {
+    cursor: pointer;
+}
+
+.mat-dialog-container {
+    border-radius: 10px;
+  }

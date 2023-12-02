@@ -1,0 +1,454 @@
+<div class="main-div">
+    <div class="form">
+        <div class="header-div">
+            FK FTN
+        </div>
+    <form (ngSubmit)="onSubmit()" [formGroup]="statisticsForm" novalidate>
+        <div class="form-group">
+            <input type="number" id="possession" name="possession" formControlName="possession" required class="input" min="1" max="99" step="0.1" (change)="possessionChange($event)">
+            <div *ngIf="statisticsForm.get('possession')?.touched">
+                <div *ngIf="statisticsForm.get('possession')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="number" id="duelSuccessRate" name="duelSuccessRate" formControlName="duelSuccessRate" required class="input" min="1" max="99" step="0.1" (change)="duelSuccessRateChange($event)"> 
+            <div *ngIf="statisticsForm.get('duelSuccessRate')?.touched">
+                <div *ngIf="statisticsForm.get('duelSuccessRate')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="number" id="aerialDuelSuccessRate" name="aerialDuelSuccessRate" formControlName="aerialDuelSuccessRate" required class="input" min="1" max="99" step="0.1" (change)="aerialDuelSuccessRateChange($event)">
+            <div *ngIf="statisticsForm.get('aerialDuelSuccessRate')?.touched">
+                <div *ngIf="statisticsForm.get('aerialDuelSuccessRate')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="number" id="interceptions" name="interceptions" formControlName="interceptions" required class="input" min="0" max="1000" step="1">
+            <div *ngIf="statisticsForm.get('interceptions')?.touched">
+                <div *ngIf="statisticsForm.get('interceptions')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="number" id="offsides" name="offsides" formControlName="offsides" required class="input" min="0" max="99" step="1">
+            <div *ngIf="statisticsForm.get('offsides')?.touched">
+                <div *ngIf="statisticsForm.get('offsides')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="number" id="corners" name="corners" formControlName="corners" required class="input" min="0" max="99" step="1">
+            <div *ngIf="statisticsForm.get('corners')?.touched">
+                <div *ngIf="statisticsForm.get('corners')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="number" id="passes" name="passes" formControlName="passes" required class="input" min="0" max="10000" step="1">
+            <div *ngIf="statisticsForm.get('passes')?.touched">
+                <div *ngIf="statisticsForm.get('passes')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="number" id="goals" name="goals" formControlName="goals" required class="input" min="0" max="99" step="1" (change)="goalChange($event)">
+            <div *ngIf="statisticsForm.get('goals')?.touched">
+                <div *ngIf="statisticsForm.get('goals')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="number" id="shots" name="shots" formControlName="shots" required class="input" min="0" max="99" step="1">
+            <div *ngIf="statisticsForm.get('shots')?.touched">
+                <div *ngIf="statisticsForm.get('shots')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="number" id="shotsOnTarget" name="shotsOnTarget" formControlName="shotsOnTarget" required class="input" min="0" max="99" step="1">
+            <div *ngIf="statisticsForm.get('shotsOnTarget')?.touched">
+                <div *ngIf="statisticsForm.get('shotsOnTarget')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="number" id="blockedShots" name="blockedShots" formControlName="blockedShots" required class="input" min="0" max="99" step="1">
+            <div *ngIf="statisticsForm.get('blockedShots')?.touched">
+                <div *ngIf="statisticsForm.get('blockedShots')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="number" id="shotsOutsideTheBox" name="shotsOutsideTheBox" formControlName="shotsOutsideTheBox" required class="input" min="0" max="99" step="1">
+            <div *ngIf="statisticsForm.get('shotsOutsideTheBox')?.touched">
+                <div *ngIf="statisticsForm.get('shotsOutsideTheBox')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="number" id="shotsInsideTheBox" name="shotsInsideTheBox" formControlName="shotsInsideTheBox" required class="input" min="0" max="99" step="1">
+            <div *ngIf="statisticsForm.get('shotsInsideTheBox')?.touched">
+                <div *ngIf="statisticsForm.get('shotsInsideTheBox')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="number" id="shootingAccuracy" name="shootingAccuracy" formControlName="shootingAccuracy" required class="input" min="0" max="100" step="0.1">
+            <div *ngIf="statisticsForm.get('shootingAccuracy')?.touched">
+                <div *ngIf="statisticsForm.get('shootingAccuracy')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="number" id="longPasses" name="longPasses" formControlName="longPasses" required class="input" min="0" max="1000" step="1">
+            <div *ngIf="statisticsForm.get('longPasses')?.touched">
+                <div *ngIf="statisticsForm.get('longPasses')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="number" id="passingAccuracy" name="passingAccuracy" formControlName="passingAccuracy" required class="input" min="0" max="100" step="0.1">
+            <div *ngIf="statisticsForm.get('passingAccuracy')?.touched">
+                <div *ngIf="statisticsForm.get('passingAccuracy')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="number" id="passingAccuracyInOpponentsHalf" name="passingAccuracyInOpponentsHalf" formControlName="passingAccuracyInOpponentsHalf" required class="input" min="0" max="100" step="0.1">
+            <div *ngIf="statisticsForm.get('passingAccuracyInOpponentsHalf')?.touched">
+                <div *ngIf="statisticsForm.get('passingAccuracyInOpponentsHalf')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="number" id="crosses" name="crosses" formControlName="crosses" required class="input" min="0" max="99" step="1">
+            <div *ngIf="statisticsForm.get('crosses')?.touched">
+                <div *ngIf="statisticsForm.get('crosses')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="number" id="crossingAccuracy" name="crossingAccuracy" formControlName="crossingAccuracy" required class="input" min="0" max="100" step="0.1">
+            <div *ngIf="statisticsForm.get('crossingAccuracy')?.touched">
+                <div *ngIf="statisticsForm.get('crossingAccuracy')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="number" id="tackles" name="tackles" formControlName="tackles" required class="input" min="0" max="99" step="1">
+            <div *ngIf="statisticsForm.get('tackles')?.touched">
+                <div *ngIf="statisticsForm.get('tackles')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="number" id="tackleSuccessRate" name="tackleSuccessRate" formControlName="tackleSuccessRate" required class="input" min="0" max="100" step="0.1">
+            <div *ngIf="statisticsForm.get('tackleSuccessRate')?.touched">
+                <div *ngIf="statisticsForm.get('tackleSuccessRate')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="number" id="clearances" name="clearances" formControlName="clearances" required class="input" min="0" max="99" step="1">
+            <div *ngIf="statisticsForm.get('clearances')?.touched">
+                <div *ngIf="statisticsForm.get('clearances')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="number" id="yellowCards" name="yellowCards" formControlName="yellowCards" required class="input" min="0" max="99" step="1">
+            <div *ngIf="statisticsForm.get('yellowCards')?.touched">
+                <div *ngIf="statisticsForm.get('yellowCards')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="number" id="redCards" name="redCards" formControlName="redCards" required class="input" min="0" max="99" step="1">
+            <div *ngIf="statisticsForm.get('redCards')?.touched">
+                <div *ngIf="statisticsForm.get('redCards')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="number" id="fouls" name="fouls" formControlName="fouls" required class="input" min="0" max="99" step="1">
+            <div *ngIf="statisticsForm.get('fouls')?.touched">
+                <div *ngIf="statisticsForm.get('fouls')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+        </div>
+    </form>
+    </div>
+        
+    <div class="labels">
+        <div>
+            
+        </div>
+        <div>Possesion</div>
+        <div>Duel success rate</div>
+        <div>Aerial duel success rate</div>
+        <div>Interceptions</div>
+        <div>Offsides</div>
+        <div>Corners</div>
+        <div>Passes</div>
+        <div>Goals</div>
+        <div>Shots</div>
+        <div>Shots on target</div>
+        <div>Blocked shots</div>
+        <div>Shots outside the box</div>
+        <div>Shots inside the box</div>
+        <div>Shooting accuracy</div>
+        <div>Long passes</div>
+        <div>Passing accuracy</div>
+        <div>Passing accuracy in opponents half</div>
+        <div>Crosses</div>
+        <div>Crossing accuracy</div>
+        <div>Tackles</div>
+        <div>Tackle success rate</div>
+        <div>Clearances</div>
+        <div>Yellow cards</div>
+        <div>Red cards</div>
+        <div>Fouls</div>
+        <div class="form-group" style="margin-top: 20px; align-items: center;">
+            <button type="button" [disabled]="statisticsForm.invalid || opponentStatisticsForm.invalid" (click)="onSubmit()">Update stats</button>
+        </div>
+    </div>
+
+    <div class="form-opposition">
+        <div class="header-div">
+            Opponent
+        </div>
+    <form (ngSubmit)="onSubmit()" [formGroup]="opponentStatisticsForm" novalidate>
+        <div class="form-group">
+            <div *ngIf="opponentStatisticsForm.get('possession')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('possession')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentPossession" name="possession" formControlName="possession" required class="input" min="1" max="99" step="0.1" (change)="possessionChange($event)">
+        </div>
+        <div class="form-group">
+            <div *ngIf="opponentStatisticsForm.get('duelSuccessRate')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('duelSuccessRate')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentDuelSuccessRate" name="duelSuccessRate" formControlName="duelSuccessRate" required class="input" min="1" max="99" step="0.1" (change)="duelSuccessRateChange($event)">
+        </div>
+        <div class="form-group">
+            <div *ngIf="opponentStatisticsForm.get('aerialDuelSuccessRate')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('aerialDuelSuccessRate')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentAerialDuelSuccessRate" name="aerialDuelSuccessRate" formControlName="aerialDuelSuccessRate" required class="input" min="1" max="99" step="0.1" (change)="aerialDuelSuccessRateChange($event)">
+        </div>
+        <div class="form-group">
+            <div *ngIf="opponentStatisticsForm.get('interceptions')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('interceptions')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentInterceptions" name="interceptions" formControlName="interceptions" required class="input" min="0" max="1000" step="1">
+        </div>
+        <div class="form-group">
+            <div *ngIf="opponentStatisticsForm.get('offsides')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('offsides')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentOffsides" name="offsides" formControlName="offsides" required class="input" min="0" max="99" step="1">
+        </div>
+        <div class="form-group">
+            <div *ngIf="opponentStatisticsForm.get('corners')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('corners')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentCorners" name="corners" formControlName="corners" required class="input" min="0" max="99" step="1">
+        </div>
+        <div class="form-group">
+            <div *ngIf="opponentStatisticsForm.get('passes')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('passes')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentPasses" name="passes" formControlName="passes" required class="input" min="0" max="10000" step="1">
+        </div>
+        <div class="form-group">
+            <div *ngIf="opponentStatisticsForm.get('goals')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('goals')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentGoals" name="goals" formControlName="goals" required class="input" min="0" max="99" step="1">
+        </div>
+        <div class="form-group">
+            <div *ngIf="opponentStatisticsForm.get('shots')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('shots')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentShots" name="shots" formControlName="shots" required class="input" min="0" max="99" step="1">
+        </div>
+        <div class="form-group">
+            <div *ngIf="opponentStatisticsForm.get('shotsOnTarget')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('shotsOnTarget')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentShotsOnTarget" name="shotsOnTarget" formControlName="shotsOnTarget" required class="input" min="0" max="99" step="1">
+        </div>
+        <div class="form-group">
+            <div *ngIf="opponentStatisticsForm.get('blockedShots')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('blockedShots')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentBlockedShots" name="blockedShots" formControlName="blockedShots" required class="input" min="0" max="99" step="1">
+        </div>
+        <div class="form-group">
+            <div *ngIf="opponentStatisticsForm.get('shotsOutsideTheBox')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('shotsOutsideTheBox')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentShotsOutsideTheBox" name="shotsOutsideTheBox" formControlName="shotsOutsideTheBox" required class="input" min="0" max="99" step="1">
+        </div>
+        <div class="form-group">
+            <div *ngIf="opponentStatisticsForm.get('shotsInsideTheBox')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('shotsInsideTheBox')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentShotsInsideTheBox" name="shotsInsideTheBox" formControlName="shotsInsideTheBox" required class="input" min="0" max="99" step="1">
+        </div>
+        <div class="form-group">
+            <div *ngIf="opponentStatisticsForm.get('shootingAccuracy')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('shootingAccuracy')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentShootingAccuracy" name="shootingAccuracy" formControlName="shootingAccuracy" required class="input" min="0" max="100" step="0.1">
+        </div>
+        <div class="form-group">
+            <div *ngIf="opponentStatisticsForm.get('longPasses')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('longPasses')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentLongPasses" name="longPasses" formControlName="longPasses" required class="input" min="0" max="1000" step="1">
+        </div>
+        <div class="form-group">
+            <div *ngIf="opponentStatisticsForm.get('passingAccuracy')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('passingAccuracy')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentPassingAccuracy" name="passingAccuracy" formControlName="passingAccuracy" required class="input" min="0" max="100" step="0.1">
+        </div>
+        <div class="form-group">
+            <div *ngIf="opponentStatisticsForm.get('passingAccuracyInOpponentsHalf')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('passingAccuracyInOpponentsHalf')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentPassingAccuracyInOpponentsHalf" name="passingAccuracyInOpponentsHalf" formControlName="passingAccuracyInOpponentsHalf" required class="input" min="0" max="100" step="0.1">
+        </div>
+        <div class="form-group">
+            <div *ngIf="opponentStatisticsForm.get('crosses')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('crosses')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentCrosses" name="crosses" formControlName="crosses" required class="input" min="0" max="99" step="1">
+        </div>
+        <div class="form-group">
+            <div *ngIf="opponentStatisticsForm.get('crossingAccuracy')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('crossingAccuracy')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentCrossingAccuracy" name="crossingAccuracy" formControlName="crossingAccuracy" required class="input" min="0" max="100" step="0.1">
+        </div>
+
+        <div class="form-group">
+            <div *ngIf="opponentStatisticsForm.get('tackles')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('tackles')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentTackles" name="tackles" formControlName="tackles" required class="input" min="0" max="99" step="1">
+        </div>
+        <div class="form-group">
+            <div *ngIf="opponentStatisticsForm.get('tackleSuccessRate')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('tackleSuccessRate')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentTackleSuccessRate" name="tackleSuccessRate" formControlName="tackleSuccessRate" required class="input" min="0" max="100" step="0.1">
+        </div>
+        <div class="form-group">
+            <div *ngIf="opponentStatisticsForm.get('clearances')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('clearances')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentClearances" name="clearances" formControlName="clearances" required class="input" min="0" max="99" step="1">
+            
+        </div>
+        <div class="form-group">
+            <div *ngIf="opponentStatisticsForm.get('yellowCards')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('yellowCards')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentYellowCards" name="yellowCards" formControlName="yellowCards" required class="input" min="0" max="99" step="1">
+        </div>
+        <div class="form-group"> 
+            <div *ngIf="opponentStatisticsForm.get('redCards')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('redCards')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentRedCards" name="redCards" formControlName="redCards" required class="input" min="0" max="99" step="1">
+        </div>
+        <div class="form-group">
+            <div *ngIf="opponentStatisticsForm.get('fouls')?.touched">
+                <div *ngIf="opponentStatisticsForm.get('fouls')?.hasError('required')" class="error-message">
+                    Required
+                </div>
+            </div>
+            <input type="number" id="opponentFouls" name="fouls" formControlName="fouls" required class="input" min="0" max="99" step="1">    
+        </div>     
+    </form>
+    </div>
+</div>

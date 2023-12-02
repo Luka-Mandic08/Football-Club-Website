@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { PlayerService } from '../services/player-service.service';
 import { CreatePlayerDto } from '../model/player';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-create-player',
@@ -53,10 +54,34 @@ export class CreatePlayerComponent {
       let dto = this.createDto()
       this.playerService.createPlayer(dto).subscribe(
         (response) => {
-          console.log(response)
+          Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: response.message,
+            showConfirmButton: false,
+            position: 'bottom-right',
+            timer: 3000,
+            timerProgressBar: true,
+            backdrop: 'none',
+            width: 300,
+            background: 'rgb(45,45,148)',
+            color: 'white',
+          });
       },
       (error) => {
-        alert(error)
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: error.error.message,
+          showConfirmButton: false,
+          position: 'bottom-right',
+          timer: 3000,
+          timerProgressBar: true,
+          backdrop: 'none',
+          width: 300,
+          background: 'rgb(45,45,148)',
+          color: 'white',
+        });
       })
     }
     else{

@@ -18,7 +18,7 @@ IConfigurationRoot configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-var addScoped = new Helper(builder);
+Helper.AddScoped(builder);
 
 var app = builder.Build();
 
@@ -28,8 +28,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-//app.UseMiddleware<Middleware>();
 
 app.UseAuthorization();
 app.UseCors(x => x

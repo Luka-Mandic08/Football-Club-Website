@@ -1,0 +1,107 @@
+<div class="form">
+    <div class="header-div" id="login">
+        <p>Register</p>
+    </div>
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" novalidate>
+        <div class="form-floating mb-2">
+            <input type="text" id="name" placeholder="name" formControlName="name" class="form-control" [class.is-invalid]="form.get('name')?.invalid && form.get('name')?.touched">
+            <label for="name">First name</label>
+            <div *ngIf="form.get('name')?.touched">
+                <div *ngIf="form.get('name')?.hasError('required')" class="error-message">
+                    Name is required.
+                </div>
+                <div *ngIf="form.get('name')?.hasError('minlength')" class="error-message">
+                    Name length must be at least 2.
+                </div>
+                <div *ngIf="form.get('name')?.hasError('maxlength')" class="error-message">
+                    Name length must be at most 40.
+                </div>
+            </div>
+        </div>
+        <div class="form-floating mb-2">
+            <input type="text" id="surname" placeholder="surname" formControlName="surname" required class="form-control" [class.is-invalid]="form.get('surname')?.invalid && form.get('surname')?.touched">
+            <label for="surname">Last name</label>
+            <div *ngIf="form.get('surname')?.touched">
+                <div *ngIf="form.get('surname')?.hasError('required')" class="error-message">
+                    Surname is required.
+                </div>
+                <div *ngIf="form.get('surname')?.hasError('minlength')" class="error-message">
+                    Surname length must be at least 2.
+                </div>
+                <div *ngIf="form.get('surname')?.hasError('maxlength')" class="error-message">
+                    Surname length must be at most 40.
+                </div>
+            </div>
+        </div>
+        <div class="form-floating mb-2">
+            <input type="date" id="dateofbirth" placeholder="dateofbirth" formControlName="dateOfBirth" required class="form-control" [class.is-invalid]="form.get('dateOfBirth')?.invalid && form.get('dateOfBirth')?.touched">
+            <label for="dateofbirth">Date of birth</label>
+            <div *ngIf="form.get('dateOfBirth')?.touched">
+                <div *ngIf="form.get('dateOfBirth')?.hasError('required')" class="error-message">
+                    Date of birth is required.
+                </div>
+                <div *ngIf="form.get('dateOfBirth')?.hasError('futureDate')" class="error-message">
+                    Date of birth must be in the past.
+                </div>
+            </div>
+        </div>
+        <div class="form-floating mb-2">
+            <input type="text" id="country" placeholder="country" formControlName="country" required class="form-control" [class.is-invalid]="form.get('country')?.invalid && form.get('country')?.touched">
+            <label for="country">Country</label>
+            <div *ngIf="form.get('country')?.touched">
+                <div *ngIf="form.get('country')?.hasError('required')" class="error-message">
+                    Country is required.
+                </div>
+                <div *ngIf="form.get('country')?.hasError('minlength')" class="error-message">
+                    Country length must be at least 2.
+                </div>
+                <div *ngIf="form.get('country')?.hasError('maxlength')" class="error-message">
+                    Country length must be at most 40.
+                </div>
+            </div>
+        </div>
+        <div class="form-floating mb-2">
+            <select id="gender" formControlName="gender" required class="form-select" [class.is-invalid]="form.get('gender')?.invalid && form.get('gender')?.touched">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <label for="gender">Gender</label>
+            <div *ngIf="form.get('gender')?.touched">
+                <div *ngIf="form.get('gender')?.hasError('required')" class="error-message">
+                    Gender is required.
+                </div>
+            </div>
+        </div>
+        <div class="form-floating mb-2">
+            <input type="text" id="email" placeholder="email" formControlName="email" required class="form-control" [class.is-invalid]="form.get('email')?.invalid && form.get('email')?.touched">
+            <label for="email">Email</label>
+            <div *ngIf="form.get('email')?.touched">
+                <div *ngIf="form.get('email')?.hasError('required')" class="error-message">
+                    Email is required.
+                </div>
+                <div *ngIf="form.get('email')?.hasError('email')" class="error-message">
+                    Email must be in correct format.
+                </div>
+            </div>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" id="password" placeholder="password" formControlName="password" required class="form-control" [class.is-invalid]="form.get('password')?.invalid && form.get('password')?.touched">
+            <label for="password">Password</label>
+            <div *ngIf="form.get('password')?.touched">
+                <div *ngIf="form.get('password')?.hasError('required')" class="error-message">
+                    Password is required.
+                </div>
+                <div *ngIf="form.get('password')?.hasError('minlength')" class="error-message">
+                    Password length must be at least 6.
+                </div>
+                <div *ngIf="form.get('password')?.hasError('maxlength')" class="error-message">
+                    Password length must be at most 40.
+                </div>
+            </div>
+        </div>
+        <div class="form-group" style="margin-top: 20px; align-items: center;">
+            <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Register</button>
+        </div>
+    </form>
+</div>

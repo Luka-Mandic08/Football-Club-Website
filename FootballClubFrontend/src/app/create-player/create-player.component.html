@@ -1,8 +1,11 @@
 <div class="form">
+    <div class="header-div" id="login">
+        <p>Create player</p>
+    </div>
     <form (ngSubmit)="onSubmit()" [formGroup]="form" novalidate>
-        <div class="form-group">
-            <label for="name">First name:</label>
-            <input type="text" id="name" name="name" formControlName="name" required class="input">
+        <div class="form-floating mb-2">
+            <input type="text" id="name" placeholder="name" formControlName="name" required class="form-control" [class.is-invalid]="form.get('name')?.invalid && form.get('name')?.touched">
+            <label for="name">First name</label>
             <div *ngIf="form.get('name')?.touched">
                 <div *ngIf="form.get('name')?.hasError('required')" class="error-message">
                     Name is required.
@@ -15,9 +18,9 @@
                 </div>
             </div>
         </div>
-        <div class="form-group">
-            <label for="surname">Last name:</label>
-            <input type="text" id="surname" name="surname" formControlName="surname" required class="input">
+        <div class="form-floating mb-2">
+            <input type="text" id="surname" placeholder="surname" formControlName="surname" required class="form-control" [class.is-invalid]="form.get('surname')?.invalid && form.get('surname')?.touched">
+            <label for="surname">Last name</label>
             <div *ngIf="form.get('surname')?.touched">
                 <div *ngIf="form.get('surname')?.hasError('required')" class="error-message">
                     Surname is required.
@@ -30,9 +33,9 @@
                 </div>
             </div>
         </div>
-        <div class="form-group">
-            <label for="dateofbirth">Date of birth:</label>
-            <input type="date" id="dateofbirth" name="dateofbirth" formControlName="dateOfBirth" required class="input">
+        <div class="form-floating mb-2">
+            <input type="date" id="dateofbirth" placeholder="dateofbirth" formControlName="dateOfBirth" required class="form-control" [class.is-invalid]="form.get('dateOfBirth')?.invalid && form.get('dateOfBirth')?.touched">
+            <label for="dateofbirth">Date of birth</label>
             <div *ngIf="form.get('dateOfBirth')?.touched">
                 <div *ngIf="form.get('dateOfBirth')?.hasError('required')" class="error-message">
                     Date of birth is required.
@@ -42,9 +45,9 @@
                 </div>
             </div>
         </div>
-        <div class="form-group">
-            <label for="placeofbirth">Place of birth:</label>
-            <input type="text" id="placeofbirth" name="placeofbirth" formControlName="placeOfBirth" required class="input">
+        <div class="form-floating mb-2">
+            <input type="text" id="placeofbirth" placeholder="placeofbirth" formControlName="placeOfBirth" required class="form-control" [class.is-invalid]="form.get('placeOfBirth')?.invalid && form.get('placeOfBirth')?.touched">
+            <label for="placeofbirth">Place of birth</label>
             <div *ngIf="form.get('placeOfBirth')?.touched">
                 <div *ngIf="form.get('placeOfBirth')?.hasError('required')" class="error-message">
                     Place of birth is required.
@@ -57,32 +60,32 @@
                 </div>
             </div>
         </div>
-        <div class="form-group">
-            <label for="number">Squad number:</label>
-            <input type="number" id="number" name="number" formControlName="number" required class="input" min="1" max="99">
+        <div class="form-floating mb-2">
+            <input type="number" id="number" placeholder="number" formControlName="number" required class="form-control" min="1" max="99" [class.is-invalid]="form.get('number')?.invalid && form.get('number')?.touched">
+            <label for="number">Squad number</label>
             <div *ngIf="form.get('number')?.touched">
                 <div *ngIf="form.get('number')?.hasError('required')" class="error-message">
                     Squad number is required.
                 </div>
             </div>
         </div>
-        <div class="form-group">
-            <label for="position">Position:</label>
-            <select id="position" name="position" formControlName="position" required >
+        <div class="form-floating mb-2">
+            <select id="position" placeholder="position" formControlName="position" required class="form-select" [class.is-invalid]="form.get('position')?.invalid && form.get('position')?.touched">
                 <option value=0>Goalkeeper</option>
                 <option value=1>Defender</option>
                 <option value=2>Midfielder</option>
                 <option value=3>Attacker</option>
             </select>
+            <label for="position">Position</label>
             <div *ngIf="form.get('position')?.touched">
                 <div *ngIf="form.get('position')?.hasError('required')" class="error-message">
                     Position is required.
                 </div>
             </div>
         </div>
-        <div class="form-group">
-            <label for="image">Image:</label>
-            <input type="file" id="image" name="image" formControlName="image" required class="input">
+        <div class="form-floating mb-2">
+            <input type="file" id="image" placeholder="image" formControlName="image" required class="form-control" [class.is-invalid]="form.get('image')?.invalid && form.get('image')?.touched">
+            <label for="image">Image</label>
             <div *ngIf="form.get('image')?.touched">
                 <div *ngIf="form.get('image')?.hasError('required')" class="error-message">
                     Image is required.
@@ -93,7 +96,7 @@
             </div>
         </div>
         <div class="form-group" style="margin-top: 20px; align-items: center;">
-            <button type="submit" [disabled]="form.invalid">Schedule match</button>
+            <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Create player</button>
         </div>
     </form>
 </div>

@@ -1,0 +1,65 @@
+.main-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.form-opposition {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.form-opposition .form-group{
+    justify-content: flex-end;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 220px;
+}
+
+.error-message{
+    color: red;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.labels{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.labels div{
+    height:31.6px;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    text-align: bottom;
+    padding-top: 0,2px;
+    margin: 0;
+}
+
+input {
+    width: 60px;
+    margin-bottom: 2px;
+}
+
+.header-div {
+    margin-bottom: 13px;
+}
