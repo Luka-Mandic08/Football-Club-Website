@@ -1,6 +1,7 @@
 ﻿using FootballClubBackend.Model.DTO;
 using FootballClubBackend.Model.Statistics;
 using System.ComponentModel.DataAnnotations;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace FootballClubBackend.Model
 {
@@ -32,6 +33,9 @@ namespace FootballClubBackend.Model
         [MaxLength(40)]
         public string Competition { get; set; }
 
+        [Required]
+        public string Badge { get; set; }
+
         public int? Attendance {  get; set; }
 
         public ICollection<MatchEvent>? MatchEvents { get; set; }
@@ -56,6 +60,7 @@ namespace FootballClubBackend.Model
             Referee = dto.Referee;
             Opponent = dto.Opponent;
             Competition = dto.Competition;
+            Badge = "assets/Images/Badges/" + dto.Badge.Split('\\').Last();
         }
 
         

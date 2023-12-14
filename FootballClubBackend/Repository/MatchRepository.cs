@@ -17,28 +17,20 @@ namespace FootballClubBackend.Repository
             collection = database.GetCollection<Match>("Matches");
         }
 
-        public bool Create(Match match)
+        public void Create(Match match)
         {
             match.Id = Guid.NewGuid();
             collection.InsertOne(match);
-            var matchCollection = database.GetCollection<Team>("Teams");
-            var filter = Builders<Team>.Filter.Eq(t => t.Name, match.Opponent);
-            if (!matchCollection.Find(filter).Any())
-            {
-                matchCollection.InsertOne(new Team(match.Opponent));
-                return false;
-            }
-            return true;
         }
 
-        public IEnumerable<Match> GetFixtures()
+        public ICollection<Match> GetFixtures()
         {
             var filter = Builders<Match>.Filter.Gte(m => m.Start, DateTime.Now);
             var sortDefinition = Builders<Match>.Sort.Ascending(m => m.Start);
             return collection.Find(filter).Sort(sortDefinition).ToList();
         }
 
-        public IEnumerable<Match> GetResults()
+        public ICollection<Match> GetResults()
         {
             var filter = Builders<Match>.Filter.Lte(m => m.Start, DateTime.Now);
             var sortDefinition = Builders<Match>.Sort.Descending(m => m.Start);
@@ -48,7 +40,7 @@ namespace FootballClubBackend.Repository
         public Match GetById(Guid id)
         {
             var filter = Builders<Match>.Filter.Eq(m => m.Id, id);
-            return collection.Find(filter).First();
+            return collection.Find(filter).FirstOrDefault();
         }
 
         public Match? GetByDate(DateTime start)
@@ -58,7 +50,7 @@ namespace FootballClubBackend.Repository
             var matchFilter = Builders<Match>.Filter.And(Builders<Match>.Filter.Gte(m => m.Start, helperDateFrom),
                 Builders<Match>.Filter.Lte(m => m.Start, helperDateTo)
             );
-            return collection.Find(matchFilter).First();
+            return collection.Find(matchFilter).FirstOrDefault();
         }
 
         public Match UpdateMatchEvents(Guid id, ICollection<MatchEvent> events)

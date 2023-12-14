@@ -1,0 +1,228 @@
+<div class="main-div" >
+    <ul class="tabs">
+        <li (click)="selectTab('General')" [class.selected]="selectedTab === 'General'">General</li>
+        <li (click)="selectTab('Passing')" [class.selected]="selectedTab === 'Passing'">Passing</li>
+        <li (click)="selectTab('Goalkeeping')" [class.selected]="selectedTab === 'Goalkeeping'" *ngIf="selectedStats.goalkeepingStatistics">Goalkeeping</li>
+        <li (click)="selectTab('Attacking')" [class.selected]="selectedTab === 'Attacking'" *ngIf="selectedStats.attackingStatistics">Attacking</li>
+        <li (click)="selectTab('Defending')" [class.selected]="selectedTab === 'Defending'" *ngIf="selectedStats.defendingStatistics">Defending</li>
+    </ul>
+    <div>
+        <div *ngIf="selectedTab=='General'" class="statistics">
+            <div class="statistics-row">
+                <div class="stat">
+                    <div>
+                        {{selectedStats.generalStatistics.minutesPlayed}}
+                    </div>
+                    <label>Minutes played</label>
+                </div>
+                <div class="stat">
+                    <div>
+                        {{selectedStats.generalStatistics.foulsWon}}
+                    </div>
+                    <label>Fouls won</label>
+                </div>
+                <div class="stat">
+                    <div>
+                        {{selectedStats.generalStatistics.foulsConceded}}
+                    </div>
+                    <label>Fouls conceded</label>
+                </div>
+                <div class="stat">
+                    <div>
+                        {{selectedStats.generalStatistics.yellowCards}}
+                    </div>
+                    <label>Yellow cards</label>
+                </div>
+                <div class="stat">
+                    <div>
+                        {{selectedStats.generalStatistics.redCards}}
+                    </div>
+                    <label>Red cards</label>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="selectedTab=='Passing'" class="statistics">
+            <div class="statistics-column">
+                <div class="statistics-row">
+                    <div class="stat tooltip-container">
+                        <div>
+                            {{calculateStat("passes")}}%
+                        </div>
+                        <label>Passing success rate</label>
+                        <div class="tooltip-content">
+                            {{selectedStats.passingStatistics.completedPasses}}/{{selectedStats.passingStatistics.totalPasses}}
+                        </div>
+                    </div>
+                    <div class="stat tooltip-container">
+                        <div>
+                            {{calculateStat("longPasses")}}%
+                        </div>
+                        <label>Long passing success rate</label>
+                        <div class="tooltip-content">
+                            {{selectedStats.passingStatistics.completedLongPasses}}/{{selectedStats.passingStatistics.totalLongPasses}}
+                        </div>
+                    </div>
+                </div>
+                <div class="statistics-row">
+                    <div class="stat">
+                        <div>
+                            {{selectedStats.passingStatistics.completedCrosses}}
+                        </div>
+                        <label>Completed crosses</label>
+                    </div>
+                    <div class="stat">
+                        <div>
+                            {{selectedStats.passingStatistics.secondAssists}}
+                        </div>
+                        <label>Seconds assists</label>
+                    </div>
+                    <div class="stat">
+                        <div>
+                            {{selectedStats.passingStatistics.keyPasses}}
+                        </div>
+                        <label>Key passes</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="selectedTab=='Goalkeeping'" class="statistics">
+            <div class="statistics-row">
+                <div class="stat">
+                    <div>
+                        {{selectedStats.goalkeepingStatistics?.numberOfSaves}}
+                    </div>
+                    <label>Number of saves</label>
+                </div>
+                <div class="stat">
+                    <div>
+                        {{selectedStats.goalkeepingStatistics?.numberOfShotsFaced}}
+                    </div>
+                    <label>Number of shots faced</label>
+                </div>
+                <div class="stat">
+                    <div>
+                        {{selectedStats.goalkeepingStatistics?.catches}}
+                    </div>
+                    <label>Catches</label>
+                </div>
+                <div class="stat">
+                    <div>
+                        {{selectedStats.goalkeepingStatistics?.penaltiesSaved}}
+                    </div>
+                    <label>Penalties saved</label>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="selectedTab=='Attacking'" class="statistics">
+            <div class="statistics-row">
+                <div class="statistics-column">
+                    <div class="statistics-row">
+                        <div class="stat">
+                            <div>
+                                {{selectedStats.attackingStatistics?.totalGoals}}
+                            </div>
+                            <label>Goals</label>
+                        </div>
+                        <div class="stat">
+                            <div>
+                                {{selectedStats.attackingStatistics?.totalShots}}
+                            </div>
+                            <label>Shots</label>
+                        </div>
+                        <div class="stat">
+                            <div>
+                                {{selectedStats.attackingStatistics?.leftFootedGoals}}
+                            </div>
+                            <label>Left-footed goals</label>
+                        </div>
+                        <div class="stat">
+                            <div>
+                                {{selectedStats.attackingStatistics?.rightFootedGoals}}
+                            </div>
+                            <label>Right-footed goals</label>
+                        </div>
+                    </div>
+                    <div class="statistics-row">
+                        <div class="stat">
+                            <div>
+                                {{selectedStats.attackingStatistics?.shotsOnTarget}}
+                            </div>
+                            <label>Shots on target</label>
+                        </div>
+                        <div class="stat">
+                            <div>
+                                {{selectedStats.attackingStatistics?.assists}}
+                            </div>
+                            <label>Assists</label>
+                        </div>
+                        <div class="stat">
+                            <div>
+                                {{selectedStats.attackingStatistics?.headedGoals}}
+                            </div>
+                            <label>Headed goals</label>
+                        </div>
+                        <div class="stat">
+                            <div>
+                                {{selectedStats.attackingStatistics?.freekickGoals}}
+                            </div>
+                            <label>Freekick goals</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="selectedTab=='Defending'" class="statistics">
+            <div class="statistics-column">
+                <div class="statistics-row">
+                    <div class="stat tooltip-container">
+                        <div>
+                            {{calculateStat("tackles")}}%
+                        </div>
+                        <label>Tackle success rate</label>
+                        <div class="tooltip-content">
+                            {{selectedStats.defendingStatistics?.successfulTackles}}/{{selectedStats.defendingStatistics?.totalTackles}}
+                        </div>
+                    </div>
+                    <div class="stat tooltip-container">
+                        <div>
+                            {{calculateStat("aerialDuels")}}%
+                        </div>
+                        <label>Aerial duel success rate</label>
+                        <div class="tooltip-content">
+                            {{selectedStats.defendingStatistics?.successfulAerialDuels}}/{{selectedStats.defendingStatistics?.totalAerialDuels}}
+                        </div>
+                    </div>
+                    <div class="stat tooltip-container">
+                        <div>
+                            {{calculateStat("groundDuels")}}%
+                        </div>
+                        <label>Ground duel success rate</label>
+                        <div class="tooltip-content">
+                            {{selectedStats.defendingStatistics?.successfulGroundDuels}}/{{selectedStats.defendingStatistics?.totalGroundDuels}}
+                        </div>
+                    </div>
+                </div>
+                <div class="statistics-row">
+                    <div class="stat">
+                        <div>
+                            {{selectedStats.defendingStatistics?.clearances}}
+                        </div>
+                        <label>Clearances</label>
+                    </div>
+                    <div class="stat">
+                        <div>
+                            {{selectedStats.defendingStatistics?.blocks}}
+                        </div>
+                        <label>Blocks</label>
+                    </div>
+                    <div class="stat">
+                        <div>
+                            {{selectedStats.defendingStatistics?.interceptions}}
+                        </div>
+                        <label>Interceptions</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

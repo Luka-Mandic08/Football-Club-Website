@@ -11,8 +11,10 @@ import Swal from 'sweetalert2'
 })
 export class CreatePlayerComponent {
   form : FormGroup;
+  player : CreatePlayerDto
 
   constructor(private fb: FormBuilder,private playerService:PlayerService) {
+    this.player = new CreatePlayerDto()
     this.form = this.fb.group({
       name: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(40)]],
       surname: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(40)]],
@@ -22,6 +24,10 @@ export class CreatePlayerComponent {
       position: ['',[Validators.required]],
       image: [null,[Validators.required,this.validateImageType]],
     })
+
+    this.form.valueChanges.subscribe((formValues) => {
+      this.player = { ...this.player, ...formValues };
+    });
   }
 
   validateImageType(control: FormControl) {
@@ -51,8 +57,7 @@ export class CreatePlayerComponent {
 
   onSubmit() {
     if (this.form.valid) {
-      let dto = this.createDto()
-      this.playerService.createPlayer(dto).subscribe(
+      this.playerService.createPlayer(this.player).subscribe(
         (response) => {
           Swal.fire({
             icon: 'success',

@@ -19,7 +19,7 @@ namespace FootballClubBackend.Repository
         public User? GetByEmail(string email)
         {
             var filter = Builders<User>.Filter.Eq(u => u.Email, email);
-            return collection.Find(filter).Any()? collection.Find(filter).First():null;
+            return collection.Find(filter).FirstOrDefault(); 
         }
 
         public bool Create(User user)

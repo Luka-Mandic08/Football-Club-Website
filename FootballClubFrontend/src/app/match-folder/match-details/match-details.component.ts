@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatchService } from '../../services/match-service.service';
+import { MatchPreview } from 'src/app/model/match';
+import { PlayerStatistics } from 'src/app/model/player-statistics';
 
 @Component({
   selector: 'app-match-details',
@@ -8,8 +10,12 @@ import { MatchService } from '../../services/match-service.service';
   styleUrls: ['./match-details.component.css'],
 })
 export class MatchDetailsComponent {
-  match: any;
+  match!: MatchPreview;
   selectedTab: string = 'News';
+
+  statistics : PlayerStatistics[] = []
+  opponentStatistics : PlayerStatistics[] = []
+  selectedStats !: PlayerStatistics 
 
   constructor(
     private route: ActivatedRoute,
@@ -17,9 +23,16 @@ export class MatchDetailsComponent {
   ) {}
 
   ngOnInit(): void {
-    this.matchService
-      .getByDate(this.getDateFromPath())
-      .subscribe((response) => (this.match = response));
+    this.matchService.getByDate(this.getDateFromPath()).subscribe(
+      response => {
+        this.match = response
+        this.matchService.getPlayerStatistics(this.match.id).subscribe(
+          response => {
+            this.statistics = response.statistics
+            this.opponentStatistics = response.opponentStatistics
+            this.selectedStats = this.statistics[0] || this.opponentStatistics[0]
+          })
+    }); 
   }
 
   getDateFromPath(): string {
@@ -35,5 +48,23 @@ export class MatchDetailsComponent {
 
   updateMatch(match: any) {
     this.match = match
+  }
+
+  playerSelected(event:any){
+    let hasChanged = false
+    this.statistics.forEach(stat => {
+      if(stat.id===event.target.value){
+        this.selectedStats = stat
+        hasChanged = true
+      }
+    });
+    if(!hasChanged){
+      this.opponentStatistics.forEach(stat => {
+        if(stat.id===event.target.value){
+          this.selectedStats = stat
+          hasChanged = true
+        }
+      });
+    }
   }
 }

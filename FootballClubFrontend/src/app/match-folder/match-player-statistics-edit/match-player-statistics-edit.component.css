@@ -1,0 +1,51 @@
+.main-div {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.select-player-div {
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.forms-div {
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+form {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin : 20px
+}
+
+input {
+    width:250px
+}
+
+.error-message {
+    color:red
+}
+
+.custom-control-input{
+    width: auto;
+    margin-left: 10px;
+}
+
+.select {
+    height:30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-width: 0.9;
+    border-color:  rgb(222, 226, 230);
+    border-radius: 5px;
+}
+

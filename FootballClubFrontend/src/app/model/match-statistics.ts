@@ -18,8 +18,7 @@ export class GeneralMatchStatistics
      aerialDuelSuccessRate : number = 0
      interceptions : number = 0
      offsides : number = 0
-     corners : number = 0
-     passes : number = 0
+     corners : number = 0   
 }
 
 export class AttackingMatchStatistics
@@ -35,6 +34,7 @@ export class AttackingMatchStatistics
 
 export class PassingMatchStatistics
 {
+     passes : number = 0
      longPasses : number = 0
      passingAccuracy : number = 0
      passingAccuracyInOpponentsHalf : number = 0

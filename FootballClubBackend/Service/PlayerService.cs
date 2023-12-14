@@ -16,9 +16,10 @@ namespace FootballClubBackend.Service
             _playerStatisticRepository = playerStatisticRepository;
         }
 
-        public IEnumerable<Player> GetAll()
+        public AllPlayersDto GetAll()
         {
-            return _playerRepository.GetAll();
+
+            return new AllPlayersDto(_playerRepository.GetAllActive(), _playerRepository.GetAllLoaned());
         }
 
         public bool Create(Player player)
@@ -31,23 +32,16 @@ namespace FootballClubBackend.Service
             return true;
         }
 
-        /*public PlayerWithStatistics? GetById(String id)
+        public Player GetPlayerByNameOrId(string name, string id)
         {
-            try
+            if (id != null && !id.Equals(""))
             {
-                Guid guid = Guid.Parse(id);
-                Player player = _playerRepository.GetById(guid);
-                IEnumerable<PlayerStatistic> playerStatistics = _playerStatisticRepository.GetForPlayerAndYear(player, GetYearForCurrentSeason());
-                PlayerWithStatistics playerWithStatistics = new PlayerWithStatistics(player, playerStatistics);
-                return playerWithStatistics;
+                return _playerRepository.GetById(Guid.Parse(id));
             }
-
-            catch (Exception)
-            {
-                return null;
-            }
-
-        }*/
+            name = name.Replace("-", " ");
+            var names = name.Split(' ');
+            return _playerRepository.GetByName(names[0], names[1]);
+        }
 
         public int GetYearForCurrentSeason()
         {

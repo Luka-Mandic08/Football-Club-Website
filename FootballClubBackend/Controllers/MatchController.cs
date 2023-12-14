@@ -14,10 +14,12 @@ namespace FootballClubBackend.Controllers
     {
 
         private readonly MatchService _matchService;
+        private readonly PlayerStatisticService _playerStatisticsService;
 
-        public MatchController(MatchService matchService)
+        public MatchController(MatchService matchService, PlayerStatisticService playerStatisticsService)
         {
             _matchService = matchService;
+            _playerStatisticsService = playerStatisticsService;
         }
 
         [HttpPost]
@@ -26,7 +28,6 @@ namespace FootballClubBackend.Controllers
             switch (_matchService.Create(dto))
             {
                 case "Ok": return Ok(new { message = "Match created successfully" });
-                case "Add image": return Ok(new { message = "Image missing" });
                 case "Date taken": return BadRequest(new { message = "Date taken" });
                     default: return BadRequest(new { message = "Something went wrong" });
             }
@@ -38,7 +39,7 @@ namespace FootballClubBackend.Controllers
             var fixtures = new List<MatchPreview>();
             foreach (var fixture in _matchService.GetFixtures())
             {
-                fixtures.Add(new MatchPreview(fixture, false));
+                fixtures.Add(new MatchPreview(fixture));
             }
 
             return Ok(fixtures);
@@ -50,7 +51,7 @@ namespace FootballClubBackend.Controllers
             var results = new List<MatchPreview>();
             foreach (var result in _matchService.GetResults())
             {
-                results.Add(new MatchPreview(result, true));
+                results.Add(new MatchPreview(result));
             }
 
             return Ok(results);
@@ -126,6 +127,21 @@ namespace FootballClubBackend.Controllers
                 return Ok(statistics);
             }
             return BadRequest(new { message = "Unable to update match events" });
+        }
+
+        [HttpGet("playerstatistics/{id}")]
+        public ActionResult GetPlayerStatistics(string id)
+        {
+            //if (!Authorizer.CheckAuthorization(Request.Headers.Authorization, "any"))
+            //return BadRequest(new { message = "no token" });
+            var guid = Guid.Parse(id);
+            return Ok(_playerStatisticsService.GetAllForMatch(guid));
+        }
+
+        [HttpPut("update/playerstatistics")]
+        public ActionResult UpdatePlayerStatistics(PlayerStatistic statistics)
+        {     
+            return Ok(_playerStatisticsService.Create(statistics));
         }
 
     }

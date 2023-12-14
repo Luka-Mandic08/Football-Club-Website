@@ -13,12 +13,17 @@ import { MatchDetailsComponent } from './match-folder/match-details/match-detail
 import { MatchEventCardComponent } from './match-folder/match-event-card/match-event-card.component';
 import { MatchEventsComponent } from './match-folder/match-events/match-events.component';
 import { MatchSquadsComponent } from './match-folder/match-squads/match-squads.component';
-import { MatchStatisticsComponent } from './match-folder/match-statistics/match-statistics.component';
+import { MatchStatisticsEditComponent } from './match-folder/match-statistics-edit/match-statistics-edit.component';
 import { LoginComponent } from './user-folder/login/login.component';
 import { RegisterComponent } from './user-folder/register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDrop, DragDropModule } from '@angular/cdk/drag-drop';
+import { MatchPlayerStatisticsEditComponent } from './match-folder/match-player-statistics-edit/match-player-statistics-edit.component';
+import { MatchStatisticsComponent } from './match-folder/match-statistics/match-statistics.component';
+import { MatchPlayerStatisticsComponent } from './match-folder/match-player-statistics/match-player-statistics.component';
+import { AllPlayersComponent } from './player-folder/all-players/all-players.component';
+import { PlayerComponent } from './player-folder/player/player.component';
 
 @NgModule({
   declarations: [
@@ -31,10 +36,15 @@ import { DragDrop, DragDropModule } from '@angular/cdk/drag-drop';
     MatchEventCardComponent,
     MatchEventsComponent,
     MatchSquadsComponent,
-    MatchStatisticsComponent,
+    MatchStatisticsEditComponent,
     LoginComponent,
     RegisterComponent,
     NavbarComponent,
+    MatchPlayerStatisticsEditComponent,
+    MatchStatisticsComponent,
+    MatchPlayerStatisticsComponent,
+    AllPlayersComponent,
+    PlayerComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,8 +53,7 @@ import { DragDrop, DragDropModule } from '@angular/cdk/drag-drop';
     HttpClientModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    DragDropModule,
-    
+    DragDropModule,    
   ],
   providers: [],
   bootstrap: [AppComponent]

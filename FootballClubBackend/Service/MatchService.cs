@@ -19,19 +19,20 @@ namespace FootballClubBackend.Service
         public string Create(CreateMatch dto)
         {
             Match match = new Match(dto);
-            if (_matchRepository.GetByDate(match.Start) != null)
+            if (_matchRepository.GetByDate(match.Start) == null)
             {
-                return _matchRepository.Create(match)?"Ok":"Add image";
+                _matchRepository.Create(match);
+                return "Ok";
             }
             return "Date taken";
         }
 
-        public IEnumerable<Match> GetFixtures()
+        public ICollection<Match> GetFixtures()
         {
             return _matchRepository.GetFixtures();
         }
 
-        public IEnumerable<Match> GetResults()
+        public ICollection<Match> GetResults()
         {
             return _matchRepository.GetResults();
         }
@@ -41,9 +42,10 @@ namespace FootballClubBackend.Service
             return _matchRepository.GetById(id);
         }
         
-        public Match? GetByDate(DateTime start)
+        public MatchPreview GetByDate(DateTime start)
         {
-            return _matchRepository.GetByDate(start);
+            Match? match = _matchRepository.GetByDate(start);
+            return match!=null? new MatchPreview(match) : new MatchPreview();
         }
 
         public ICollection<MatchEvent>? GetMatchEvents(Guid id)
@@ -101,6 +103,20 @@ namespace FootballClubBackend.Service
 
         public Squads UpdateMatchSquads(Guid id,Squads squads)
         {
+            foreach(PlayerForSquad player in squads.OpponentSquad)
+            {
+                if (player.Id == "" || player.Id == null)
+                {
+                    player.Id = Guid.NewGuid().ToString();
+                }
+            }
+            foreach (PlayerForSquad player in squads.OpponentSubs)
+            {
+                if (player.Id == "" || player.Id == null)
+                {
+                    player.Id = Guid.NewGuid().ToString();
+                }
+            }
             Match updatedMatch = _matchRepository.UpdateMatchSquads(id, squads.Squad.Select(s => s.Id).ToList(), squads.Subs.Select(s => s.Id).ToList(), squads.OpponentSquad, squads.OpponentSubs);
             squads.UpdateEligiblePlayers(_playerRepository.GetEligibleForMatch(updatedMatch.SquadIds,updatedMatch.SubsIds));
             return squads;

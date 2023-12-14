@@ -1,0 +1,459 @@
+<div class="main-div">
+    <div class="select-player-div">
+        <select (change)="playerSelected($event)" class="select">
+            <option disabled selected value> -- select an option -- </option>
+            <optgroup label="FK FTN"></optgroup>
+            <option *ngFor="let player of completeSquad" value={{player.id}}>{{player.name}}&nbsp;{{player.surname}}</option>
+            <optgroup label="Opponent"></optgroup>
+            <option *ngFor="let player of oppositionCompleteSquad" value={{player.id}}>{{player.name}}&nbsp;{{player.surname}}</option>
+        </select>
+        <label>Goalkeeper?</label>
+        <input type="checkbox" (click)="boxChecked()" class="custom-control-input">
+    </div>
+    <div class="forms-div">
+        <form (ngSubmit)="onSubmit()" [formGroup]="generalForm" novalidate>
+            <div class="form-floating mb-2">
+                <input type="number" id="minutesPlayed" placeholder="minutesPlayed" formControlName="minutesPlayed" required class="form-control" [class.is-invalid]="generalForm.get('minutesPlayed')?.invalid && generalForm.get('minutesPlayed')?.touched" min="0" max="120">
+                <label for="minutesPlayed">Minutes played</label>
+                <div *ngIf="generalForm.get('minutesPlayed')?.touched">
+                    <div *ngIf="generalForm.get('minutesPlayed')?.hasError('required')" class="error-message">
+                        Minutes played is required.
+                    </div>
+                    <div *ngIf="generalForm.get('minutesPlayed')?.hasError('min')" class="error-message">
+                        Minutes played amount must be at least 0.
+                    </div>
+                    <div *ngIf="generalForm.get('minutesPlayed')?.hasError('max')" class="error-message">
+                        Minutes played amount must be at most 120.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="foulsWon" placeholder="foulsWon" formControlName="foulsWon" required class="form-control" [class.is-invalid]="generalForm.get('foulsWon')?.invalid && generalForm.get('foulsWon')?.touched" min="0">
+                <label for="foulsWon">Fouls won</label>
+                <div *ngIf="generalForm.get('foulsWon')?.touched">
+                    <div *ngIf="generalForm.get('foulsWon')?.hasError('required')" class="error-message">
+                        Fouls won is required.
+                    </div>
+                    <div *ngIf="generalForm.get('foulsWon')?.hasError('min')" class="error-message">
+                        Fouls won amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="foulsConceded" placeholder="foulsConceded" formControlName="foulsConceded" required class="form-control" [class.is-invalid]="generalForm.get('foulsConceded')?.invalid && generalForm.get('foulsConceded')?.touched" min="0">
+                <label for="foulsConceded">Fouls conceded</label>
+                <div *ngIf="generalForm.get('foulsConceded')?.touched">
+                    <div *ngIf="generalForm.get('foulsConceded')?.hasError('required')" class="error-message">
+                        Fouls conceded is required.
+                    </div>
+                    <div *ngIf="generalForm.get('foulsConceded')?.hasError('min')" class="error-message">
+                        Fouls conceded amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="yellowCards" placeholder="yellowCards" formControlName="yellowCards" required class="form-control" [class.is-invalid]="generalForm.get('yellowCards')?.invalid && generalForm.get('yellowCards')?.touched" min="0" max="2">
+                <label for="yellowCards">Yellow cards</label>
+                <div *ngIf="generalForm.get('yellowCards')?.touched">
+                    <div *ngIf="generalForm.get('yellowCards')?.hasError('required')" class="error-message">
+                        Yellow cards is required.
+                    </div>
+                    <div *ngIf="generalForm.get('yellowCards')?.hasError('min')" class="error-message">
+                        Yellow cards amount must be at least 0.
+                    </div>
+                    <div *ngIf="generalForm.get('yellowCards')?.hasError('max')" class="error-message">
+                        Yellow cards amount must be at most 2.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="redCards" placeholder="redCards" formControlName="redCards" required class="form-control" [class.is-invalid]="generalForm.get('redCards')?.invalid && generalForm.get('redCards')?.touched" min="0" max="1">
+                <label for="redCards">Red cards</label>
+                <div *ngIf="generalForm.get('redCards')?.touched">
+                    <div *ngIf="generalForm.get('redCards')?.hasError('required')" class="error-message">
+                        Red cards is required.
+                    </div>
+                    <div *ngIf="generalForm.get('redCards')?.hasError('min')" class="error-message">
+                        Red cards amount must be at least 0.
+                    </div>
+                    <div *ngIf="generalForm.get('redCards')?.hasError('max')" class="error-message">
+                        Red cards amount must be at most 1.
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+
+        <form (ngSubmit)="onSubmit()" [formGroup]="passingForm" novalidate>
+            <div class="form-floating mb-2">
+                <input type="number" id="totalPasses" placeholder="totalPasses" formControlName="totalPasses" required class="form-control" [class.is-invalid]="passingForm.get('totalPasses')?.invalid && passingForm.get('totalPasses')?.touched" min="0">
+                <label for="totalPasses">Total passes</label>
+                <div *ngIf="passingForm.get('totalPasses')?.touched">
+                    <div *ngIf="passingForm.get('totalPasses')?.hasError('required')" class="error-message">
+                        Total passes is required.
+                    </div>
+                    <div *ngIf="passingForm.get('totalPasses')?.hasError('min')" class="error-message">
+                        Total passes amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="completedPasses" placeholder="completedPasses" formControlName="completedPasses" required class="form-control" [class.is-invalid]="passingForm.get('completedPasses')?.invalid && passingForm.get('completedPasses')?.touched" min="0">
+                <label for="completedPasses">Completed passes</label>
+                <div *ngIf="passingForm.get('completedPasses')?.touched">
+                    <div *ngIf="passingForm.get('completedPasses')?.hasError('required')" class="error-message">
+                        Completed passes is required.
+                    </div>
+                    <div *ngIf="passingForm.get('completedPasses')?.hasError('min')" class="error-message">
+                        Completed passes amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="totalLongPasses" placeholder="totalLongPasses" formControlName="totalLongPasses" required class="form-control" [class.is-invalid]="passingForm.get('totalLongPasses')?.invalid && passingForm.get('totalLongPasses')?.touched" min="0">
+                <label for="totalLongPasses">Total long passes</label>
+                <div *ngIf="passingForm.get('totalLongPasses')?.touched">
+                    <div *ngIf="passingForm.get('totalLongPasses')?.hasError('required')" class="error-message">
+                        Total long passes is required.
+                    </div>
+                    <div *ngIf="passingForm.get('totalLongPasses')?.hasError('min')" class="error-message">
+                        Total long passes amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="completedLongPasses" placeholder="completedLongPasses" formControlName="completedLongPasses" required class="form-control" [class.is-invalid]="passingForm.get('completedLongPasses')?.invalid && passingForm.get('completedLongPasses')?.touched" min="0">
+                <label for="completedLongPasses">Completed long passes</label>
+                <div *ngIf="passingForm.get('completedLongPasses')?.touched">
+                    <div *ngIf="passingForm.get('completedLongPasses')?.hasError('required')" class="error-message">
+                        Completed long passes is required.
+                    </div>
+                    <div *ngIf="passingForm.get('completedLongPasses')?.hasError('min')" class="error-message">
+                        Completed long passes amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="completedCrosses" placeholder="completedCrosses" formControlName="completedCrosses" required class="form-control" [class.is-invalid]="passingForm.get('completedCrosses')?.invalid && passingForm.get('completedCrosses')?.touched" min="0">
+                <label for="completedCrosses">Completed crosses</label>
+                <div *ngIf="passingForm.get('completedCrosses')?.touched">
+                    <div *ngIf="passingForm.get('completedCrosses')?.hasError('required')" class="error-message">
+                        Completed crosses is required.
+                    </div>
+                    <div *ngIf="passingForm.get('completedCrosses')?.hasError('min')" class="error-message">
+                        Completed crosses amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="secondAssists" placeholder="secondAssists" formControlName="secondAssists" required class="form-control" [class.is-invalid]="passingForm.get('secondAssists')?.invalid && passingForm.get('secondAssists')?.touched" min="0">
+                <label for="secondAssists">Second assists</label>
+                <div *ngIf="passingForm.get('secondAssists')?.touched">
+                    <div *ngIf="passingForm.get('secondAssists')?.hasError('required')" class="error-message">
+                        Second assists is required.
+                    </div>
+                    <div *ngIf="passingForm.get('secondAssists')?.hasError('min')" class="error-message">
+                        Second assists amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="keyPasses" placeholder="keyPasses" formControlName="keyPasses" required class="form-control" [class.is-invalid]="passingForm.get('keyPasses')?.invalid && passingForm.get('keyPasses')?.touched" min="0">
+                <label for="keyPasses">Key passes</label>
+                <div *ngIf="passingForm.get('keyPasses')?.touched">
+                    <div *ngIf="passingForm.get('keyPasses')?.hasError('required')" class="error-message">
+                        Key passes is required.
+                    </div>
+                    <div *ngIf="passingForm.get('keyPasses')?.hasError('min')" class="error-message">
+                        Key passes amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+
+        <form (ngSubmit)="onSubmit()" [formGroup]="attackingForm" novalidate [hidden]="isSelectedPlayerGoalkeeper">
+            <div class="form-floating mb-2">
+                <input type="number" id="totalShots" placeholder="totalShots" formControlName="totalShots" required class="form-control" [class.is-invalid]="attackingForm.get('totalShots')?.invalid && attackingForm.get('totalShots')?.touched" min="0">
+                <label for="totalShots">Total shots</label>
+                <div *ngIf="attackingForm.get('totalShots')?.touched">
+                    <div *ngIf="attackingForm.get('totalShots')?.hasError('required')" class="error-message">
+                        Total shots is required.
+                    </div>
+                    <div *ngIf="attackingForm.get('totalShots')?.hasError('min')" class="error-message">
+                        Total shots amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="totalGoals" placeholder="totalGoals" formControlName="totalGoals" required class="form-control" [class.is-invalid]="attackingForm.get('totalGoals')?.invalid && attackingForm.get('totalGoals')?.touched" min="0">
+                <label for="totalGoals">Total goals</label>
+                <div *ngIf="attackingForm.get('totalGoals')?.touched">
+                    <div *ngIf="attackingForm.get('totalGoals')?.hasError('required')" class="error-message">
+                        Total goals is required.
+                    </div>
+                    <div *ngIf="attackingForm.get('totalGoals')?.hasError('min')" class="error-message">
+                        Total goals amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="shotsOnTarget" placeholder="shotsOnTarget" formControlName="shotsOnTarget" required class="form-control" [class.is-invalid]="attackingForm.get('shotsOnTarget')?.invalid && attackingForm.get('shotsOnTarget')?.touched" min="0">
+                <label for="shotsOnTarget">Shots on target</label>
+                <div *ngIf="attackingForm.get('shotsOnTarget')?.touched">
+                    <div *ngIf="attackingForm.get('shotsOnTarget')?.hasError('required')" class="error-message">
+                        Shots on target is required.
+                    </div>
+                    <div *ngIf="attackingForm.get('shotsOnTarget')?.hasError('min')" class="error-message">
+                        Shots on target amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="rightFootedGoals" placeholder="rightFootedGoals" formControlName="rightFootedGoals" required class="form-control" [class.is-invalid]="attackingForm.get('rightFootedGoals')?.invalid && attackingForm.get('rightFootedGoals')?.touched" min="0">
+                <label for="rightFootedGoals">Right footed goals</label>
+                <div *ngIf="attackingForm.get('rightFootedGoals')?.touched">
+                    <div *ngIf="attackingForm.get('rightFootedGoals')?.hasError('required')" class="error-message">
+                        Right footed goals is required.
+                    </div>
+                    <div *ngIf="attackingForm.get('rightFootedGoals')?.hasError('min')" class="error-message">
+                        Right footed goals amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="leftFootedGoals" placeholder="leftFootedGoals" formControlName="leftFootedGoals" required class="form-control" [class.is-invalid]="attackingForm.get('leftFootedGoals')?.invalid && attackingForm.get('leftFootedGoals')?.touched" min="0">
+                <label for="leftFootedGoals">Left footed goals</label>
+                <div *ngIf="attackingForm.get('leftFootedGoals')?.touched">
+                    <div *ngIf="attackingForm.get('leftFootedGoals')?.hasError('required')" class="error-message">
+                        Left footed goals is required.
+                    </div>
+                    <div *ngIf="attackingForm.get('leftFootedGoals')?.hasError('min')" class="error-message">
+                        Left footed goals amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="headedGoals" placeholder="headedGoals" formControlName="headedGoals" required class="form-control" [class.is-invalid]="attackingForm.get('headedGoals')?.invalid && attackingForm.get('headedGoals')?.touched" min="0">
+                <label for="headedGoals">Headed goals</label>
+                <div *ngIf="attackingForm.get('headedGoals')?.touched">
+                    <div *ngIf="attackingForm.get('headedGoals')?.hasError('required')" class="error-message">
+                        Headed goals is required.
+                    </div>
+                    <div *ngIf="attackingForm.get('headedGoals')?.hasError('min')" class="error-message">
+                        Headed goals amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="freekickGoals" placeholder="freekickGoals" formControlName="freekickGoals" required class="form-control" [class.is-invalid]="attackingForm.get('freekickGoals')?.invalid && attackingForm.get('freekickGoals')?.touched" min="0">
+                <label for="freekickGoals">Freekick goals</label>
+                <div *ngIf="attackingForm.get('freekickGoals')?.touched">
+                    <div *ngIf="attackingForm.get('freekickGoals')?.hasError('required')" class="error-message">
+                        Freekick goals is required.
+                    </div>
+                    <div *ngIf="attackingForm.get('freekickGoals')?.hasError('min')" class="error-message">
+                        Freekick goals amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="assists" placeholder="assists" formControlName="assists" required class="form-control" [class.is-invalid]="attackingForm.get('assists')?.invalid && attackingForm.get('assists')?.touched" min="0">
+                <label for="assists">Assists</label>
+                <div *ngIf="attackingForm.get('assists')?.touched">
+                    <div *ngIf="attackingForm.get('assists')?.hasError('required')" class="error-message">
+                        Assists is required.
+                    </div>
+                    <div *ngIf="attackingForm.get('assists')?.hasError('min')" class="error-message">
+                        Assists amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+        <form (ngSubmit)="onSubmit()" [formGroup]="defendingForm" novalidate [hidden]="isSelectedPlayerGoalkeeper">
+            <div class="form-floating mb-2">
+                <input type="number" id="clearances" placeholder="clearances" formControlName="clearances" required class="form-control" [class.is-invalid]="defendingForm.get('clearances')?.invalid && defendingForm.get('clearances')?.touched" min="0">
+                <label for="clearances">Clearances</label>
+                <div *ngIf="defendingForm.get('clearances')?.touched">
+                    <div *ngIf="defendingForm.get('clearances')?.hasError('required')" class="error-message">
+                        Clearances is required.
+                    </div>
+                    <div *ngIf="defendingForm.get('clearances')?.hasError('min')" class="error-message">
+                        Clearances amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="blocks" placeholder="blocks" formControlName="blocks" required class="form-control" [class.is-invalid]="defendingForm.get('blocks')?.invalid && defendingForm.get('blocks')?.touched" min="0">
+                <label for="blocks">Blocks</label>
+                <div *ngIf="defendingForm.get('blocks')?.touched">
+                    <div *ngIf="defendingForm.get('blocks')?.hasError('required')" class="error-message">
+                        Blocks is required.
+                    </div>
+                    <div *ngIf="defendingForm.get('blocks')?.hasError('min')" class="error-message">
+                        Blocks amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="interceptions" placeholder="interceptions" formControlName="interceptions" required class="form-control" [class.is-invalid]="defendingForm.get('interceptions')?.invalid && defendingForm.get('interceptions')?.touched" min="0">
+                <label for="interceptions">Interceptions</label>
+                <div *ngIf="defendingForm.get('interceptions')?.touched">
+                    <div *ngIf="defendingForm.get('interceptions')?.hasError('required')" class="error-message">
+                        Interceptions is required.
+                    </div>
+                    <div *ngIf="defendingForm.get('interceptions')?.hasError('min')" class="error-message">
+                        Interceptions amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="successfulTackles" placeholder="successfulTackles" formControlName="successfulTackles" required class="form-control" [class.is-invalid]="defendingForm.get('successfulTackles')?.invalid && defendingForm.get('successfulTackles')?.touched" min="0">
+                <label for="successfulTackles">Successful tackles</label>
+                <div *ngIf="defendingForm.get('successfulTackles')?.touched">
+                    <div *ngIf="defendingForm.get('successfulTackles')?.hasError('required')" class="error-message">
+                        Successful tackles is required.
+                    </div>
+                    <div *ngIf="defendingForm.get('successfulTackles')?.hasError('min')" class="error-message">
+                        Successful tackles amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="totalTackles" placeholder="totalTackles" formControlName="totalTackles" required class="form-control" [class.is-invalid]="defendingForm.get('totalTackles')?.invalid && defendingForm.get('totalTackles')?.touched" min="0">
+                <label for="totalTackles">Total tackles</label>
+                <div *ngIf="defendingForm.get('totalTackles')?.touched">
+                    <div *ngIf="defendingForm.get('totalTackles')?.hasError('required')" class="error-message">
+                        Total tackles is required.
+                    </div>
+                    <div *ngIf="defendingForm.get('totalTackles')?.hasError('min')" class="error-message">
+                        Total tackles amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="successfulAerialDuels" placeholder="successfulAerialDuels" formControlName="successfulAerialDuels" required class="form-control" [class.is-invalid]="defendingForm.get('successfulAerialDuels')?.invalid && defendingForm.get('successfulAerialDuels')?.touched" min="0">
+                <label for="successfulAerialDuels">Successful aerial duels</label>
+                <div *ngIf="defendingForm.get('successfulAerialDuels')?.touched">
+                    <div *ngIf="defendingForm.get('successfulAerialDuels')?.hasError('required')" class="error-message">
+                        Successful aerial duels is required.
+                    </div>
+                    <div *ngIf="defendingForm.get('successfulAerialDuels')?.hasError('min')" class="error-message">
+                        Successful aerial duels amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="totalAerialDuels" placeholder="totalAerialDuels" formControlName="totalAerialDuels" required class="form-control" [class.is-invalid]="defendingForm.get('totalAerialDuels')?.invalid && defendingForm.get('totalAerialDuels')?.touched" min="0">
+                <label for="totalAerialDuels">Total aerial duels</label>
+                <div *ngIf="defendingForm.get('totalAerialDuels')?.touched">
+                    <div *ngIf="defendingForm.get('totalAerialDuels')?.hasError('required')" class="error-message">
+                        Total aerial duels is required.
+                    </div>
+                    <div *ngIf="defendingForm.get('totalAerialDuels')?.hasError('min')" class="error-message">
+                        Total aerial duels amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="successfulGroundDuels" placeholder="successfulGroundDuels" formControlName="successfulGroundDuels" required class="form-control" [class.is-invalid]="defendingForm.get('successfulGroundDuels')?.invalid && defendingForm.get('successfulGroundDuels')?.touched" min="0">
+                <label for="successfulGroundDuels">Successful ground duels</label>
+                <div *ngIf="defendingForm.get('successfulGroundDuels')?.touched">
+                    <div *ngIf="defendingForm.get('successfulGroundDuels')?.hasError('required')" class="error-message">
+                        Successful ground duels is required.
+                    </div>
+                    <div *ngIf="defendingForm.get('successfulGroundDuels')?.hasError('min')" class="error-message">
+                        Successful ground duels amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="totalGroundDuels" placeholder="totalGroundDuels" formControlName="totalGroundDuels" required class="form-control" [class.is-invalid]="defendingForm.get('totalGroundDuels')?.invalid && defendingForm.get('totalGroundDuels')?.touched" min="0">
+                <label for="totalGroundDuels">Total ground duels</label>
+                <div *ngIf="defendingForm.get('totalGroundDuels')?.touched">
+                    <div *ngIf="defendingForm.get('totalGroundDuels')?.hasError('required')" class="error-message">
+                        Total ground duels is required.
+                    </div>
+                    <div *ngIf="defendingForm.get('totalGroundDuels')?.hasError('min')" class="error-message">
+                        Total ground duels amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+        <form (ngSubmit)="onSubmit()" [formGroup]="goalkeepingForm" novalidate [hidden]="!isSelectedPlayerGoalkeeper">
+            <div class="form-floating mb-2">
+                <input type="number" id="numberOfSaves" placeholder="numberOfSaves" formControlName="numberOfSaves" required class="form-control" [class.is-invalid]="goalkeepingForm.get('numberOfSaves')?.invalid && goalkeepingForm.get('numberOfSaves')?.touched" min="0">
+                <label for="numberOfSaves">Number of saves</label>
+                <div *ngIf="goalkeepingForm.get('numberOfSaves')?.touched">
+                    <div *ngIf="goalkeepingForm.get('numberOfSaves')?.hasError('required')" class="error-message">
+                        Number of saves is required.
+                    </div>
+                    <div *ngIf="goalkeepingForm.get('numberOfSaves')?.hasError('min')" class="error-message">
+                        Number of saves amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="numberOfShotsFaced" placeholder="numberOfShotsFaced" formControlName="numberOfShotsFaced" required class="form-control" [class.is-invalid]="goalkeepingForm.get('numberOfShotsFaced')?.invalid && goalkeepingForm.get('numberOfShotsFaced')?.touched" min="0">
+                <label for="numberOfShotsFaced">Number of shots faced</label>
+                <div *ngIf="goalkeepingForm.get('numberOfShotsFaced')?.touched">
+                    <div *ngIf="goalkeepingForm.get('numberOfShotsFaced')?.hasError('required')" class="error-message">
+                        Number of shots faced is required.
+                    </div>
+                    <div *ngIf="goalkeepingForm.get('numberOfShotsFaced')?.hasError('min')" class="error-message">
+                        Number of shots faced amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="cleanSheets" placeholder="cleanSheets" formControlName="cleanSheets" required class="form-control" [class.is-invalid]="goalkeepingForm.get('cleanSheets')?.invalid && goalkeepingForm.get('cleanSheets')?.touched" min="0" max="1">
+                <label for="cleanSheets">Clean sheets</label>
+                <div *ngIf="goalkeepingForm.get('cleanSheets')?.touched">
+                    <div *ngIf="goalkeepingForm.get('cleanSheets')?.hasError('required')" class="error-message">
+                        Clean sheets is required.
+                    </div>
+                    <div *ngIf="goalkeepingForm.get('cleanSheets')?.hasError('min')" class="error-message">
+                        Clean sheets amount must be at least 0.
+                    </div>
+                    <div *ngIf="goalkeepingForm.get('cleanSheets')?.hasError('max')" class="error-message">
+                        Clean sheets amount must be at most 1.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="penaltiesSaved" placeholder="penaltiesSaved" formControlName="penaltiesSaved" required class="form-control" [class.is-invalid]="goalkeepingForm.get('penaltiesSaved')?.invalid && goalkeepingForm.get('penaltiesSaved')?.touched" min="0">
+                <label for="penaltiesSaved">Penalties saved</label>
+                <div *ngIf="goalkeepingForm.get('penaltiesSaved')?.touched">
+                    <div *ngIf="goalkeepingForm.get('penaltiesSaved')?.hasError('required')" class="error-message">
+                        Penalties saved is required.
+                    </div>
+                    <div *ngIf="goalkeepingForm.get('penaltiesSaved')?.hasError('min')" class="error-message">
+                        Penalties saved amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" id="catches" placeholder="catches" formControlName="catches" required class="form-control" [class.is-invalid]="goalkeepingForm.get('catches')?.invalid && goalkeepingForm.get('catches')?.touched" min="0">
+                <label for="catches">Catches</label>
+                <div *ngIf="goalkeepingForm.get('catches')?.touched">
+                    <div *ngIf="goalkeepingForm.get('catches')?.hasError('required')" class="error-message">
+                        Catches saved is required.
+                    </div>
+                    <div *ngIf="goalkeepingForm.get('catches')?.hasError('min')" class="error-message">
+                        Catches saved amount must be at least 0.
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+    </div>
+    <button class="btn btn-primary" [disabled]="!areFormsValid()" (click)="onSubmit()">
+        Save
+    </button>
+</div>

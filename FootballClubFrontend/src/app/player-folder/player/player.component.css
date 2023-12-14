@@ -1,0 +1,58 @@
+.main-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.header {
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+.player-information {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 5px;
+    max-height: 280px;
+}
+
+.information-labels {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 20px;
+}
+
+.information-labels label {
+    margin-bottom: 10px;
+}
+
+.information{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.information label {
+    margin-bottom: 10px;
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 280px;
+}
+
+img {
+    height: 95%;
+    object-fit: fill;
+}
+
+

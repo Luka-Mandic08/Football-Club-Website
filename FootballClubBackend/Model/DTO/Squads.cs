@@ -82,6 +82,8 @@
             SquadNumber = player.SquadNumber;
         }
 
-        public PlayerForSquad() { }
+        public PlayerForSquad()
+        {
+        }
     }
 }

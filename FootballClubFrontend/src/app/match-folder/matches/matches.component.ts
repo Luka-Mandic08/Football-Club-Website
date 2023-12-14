@@ -10,7 +10,7 @@ import { MatchPreview } from '../../model/match';
 export class MatchesComponent {
   constructor(private matchService: MatchService) {}
 
-  matches!: MatchPreview[];
+  matches : MatchPreview[] = [];
   selectedTab: string = 'Fixtures';
 
   ngOnInit() {

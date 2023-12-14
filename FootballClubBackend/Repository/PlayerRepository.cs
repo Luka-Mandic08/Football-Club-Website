@@ -20,7 +20,7 @@ namespace FootballClubBackend.Repository
             collection = database.GetCollection<Player>("Players");
         }
 
-        public IEnumerable<Player> GetAll()
+        public ICollection<Player> GetAll()
         {
             var filter = Builders<Player>.Filter.Empty;
             return collection.Find(filter).ToList();
@@ -44,8 +44,16 @@ namespace FootballClubBackend.Repository
 
         public Player GetById(Guid id)
         {
-            var filter = Builders<Player>.Filter.Eq(p => p.Id, id);
-            return collection.Find(filter).First();
+            var filter = Builders<Player>.Filter.Eq(p => p.Id, id);        
+            return collection.Find(filter).FirstOrDefault();
+        }
+
+        public Player GetByName(string name,string surname)
+        {
+            var filter = Builders<Player>.Filter.And(
+                Builders<Player>.Filter.Eq(p => p.Name, name),
+                Builders<Player>.Filter.Eq(p => p.Surname, surname));
+            return collection.Find(filter).FirstOrDefault();
         }
 
         public ICollection<Player> GetEligibleForMatch(ICollection<Guid>? squadIds, ICollection<Guid>? subsIds)
@@ -79,7 +87,15 @@ namespace FootballClubBackend.Repository
         public ICollection<Player> GetAllActive()
         {
             var filter = Builders<Player>.Filter.Eq(p => p.Status, FirstTeamStatus.Active);
-            return collection.Find(filter).ToList();
+            var sortDefinition = Builders<Player>.Sort.Ascending(p => p.Position).Ascending(p => p.SquadNumber);
+            return collection.Find(filter).Sort(sortDefinition).ToList();
+        }
+
+        public ICollection<Player> GetAllLoaned()
+        {
+            var filter = Builders<Player>.Filter.Eq(p => p.Status, FirstTeamStatus.OnLoan);
+            var sortDefinition = Builders<Player>.Sort.Ascending(p => p.Position).Ascending(p => p.SquadNumber);
+            return collection.Find(filter).Sort(sortDefinition).ToList();
         }
     }
 }

@@ -1,21 +1,39 @@
-<app-match-card [match]="match"></app-match-card>
-<div style="justify-content: center;margin-left: 200px;margin-right: 200px;">
+<div class="main-div">
+    <app-match-card [match]="match"></app-match-card>
     <ul class="tabs">
         <li (click)="selectTab('News')" [class.selected]="selectedTab === 'News'">News</li>
         <li (click)="selectTab('As it happened')" [class.selected]="selectedTab === 'As it happened'">As it happened</li>
         <li (click)="selectTab('Teams')" [class.selected]="selectedTab === 'Teams'">Teams</li>
         <li (click)="selectTab('Stats')" [class.selected]="selectedTab === 'Stats'">Stats</li>
+        <li (click)="selectTab('Edit-Stats')" [class.selected]="selectedTab === 'Edit-Stats'">Edit stats</li>
+        <li (click)="selectTab('Edit-Player-Stats')" [class.selected]="selectedTab === 'Edit-Player-Stats'">Edit player stats</li>
     </ul>
-    <div *ngIf="selectedTab=='News'">
+    <div *ngIf="selectedTab=='News'" class="tab">
         News
     </div>
-    <div *ngIf="selectedTab=='As it happened'">
+    <div *ngIf="selectedTab=='As it happened'" class="tab">
         <app-match-events [matchId]="match.id" (updateEvent)="updateMatch($event)"></app-match-events>
     </div>
-    <div *ngIf="selectedTab=='Teams'">
+    <div *ngIf="selectedTab=='Teams'" class="tab">
         <app-match-squads [matchId]="match.id" [opponentName]="match.opponent"></app-match-squads>
     </div>
-    <div *ngIf="selectedTab=='Stats'">
-        <app-match-statistics [matchId]="match.id" ></app-match-statistics>
+    <div *ngIf="selectedTab=='Stats'" class="tab">
+        <app-match-statistics [matchId]="match.id" [opponentName]="match.opponent" [isHomeGame]="match.venue==='Stadion Novi Sad'"></app-match-statistics>
+        <div class="select-div">
+            <label>Individual stats</label>
+            <select (change)="playerSelected($event)" class="select">
+                <optgroup label="FK FTN"></optgroup>
+                <option *ngFor="let stat of statistics" value={{stat.id}}>{{stat.playerName}}</option>
+                <optgroup label={{match.opponent}}></optgroup>
+                <option *ngFor="let oppStat of opponentStatistics" value={{oppStat.id}}>{{oppStat.playerName}}</option>
+            </select>
+        </div>
+        <app-match-player-statistics [selectedStats]="selectedStats" [opponentName]="match.opponent"></app-match-player-statistics>
+    </div>
+    <div *ngIf="selectedTab=='Edit-Stats'" class="tab">
+        <app-match-statistics-edit [matchId]="match.id" ></app-match-statistics-edit>
+    </div>
+    <div *ngIf="selectedTab=='Edit-Player-Stats'" class="tab">
+        <app-match-player-statistics-edit [matchId]="match.id" [competition]="match.competition" [season]="match.season" [opponentName]="match.opponent"></app-match-player-statistics-edit>
     </div>
 </div>

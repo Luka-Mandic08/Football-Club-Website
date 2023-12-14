@@ -19,11 +19,12 @@ namespace FootballClubBackend.Model.Statistics
         public int Interceptions { get; set; }
         public int Offsides { get; set; }
         public int Corners { get; set; }
-        public int Passes { get; set; }
+        
     }
 
     public class AttackingMatchStatistics
     {
+
         public int Goals { get; set; }
         public int Shots { get; set; }
         public int ShotsOnTarget { get; set; }
@@ -35,6 +36,7 @@ namespace FootballClubBackend.Model.Statistics
 
     public class PassingMatchStatistics
     {
+        public int Passes { get; set; }
         public int LongPasses { get; set; }
         public float PassingAccuracy { get; set; }
         public float PassingAccuracyInOpponentsHalf { get; set; }

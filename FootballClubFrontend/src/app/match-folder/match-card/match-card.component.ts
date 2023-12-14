@@ -13,7 +13,7 @@ export class MatchCardComponent {
   formatedDateForUrl !: string;
   formatedOpponentName !:string;
 
-  ngOnInit(){
+  ngOnChanges(){
     this.formatedDate = this.formatDate(this.match.start)
     this.formatedDateForUrl = this.formatDateForUrl(this.match.start)
     this.formatedOpponentName = this.formatTeamName(this.match.opponent)

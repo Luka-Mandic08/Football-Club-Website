@@ -24,12 +24,12 @@
     "@ng-bootstrap/ng-bootstrap": "^15.1.2",
     "angular-jwt": "^0.1.11",
     "rxjs": "~7.8.0",
-    "sweetalert2": "^11.10.1",
+    "sweetalert2": "^11.6.13",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^16.2.4",
+    "@angular-devkit/build-angular": "^16.2.10",
     "@angular/cli": "^16.2.4",
     "@angular/compiler-cli": "^16.2.0",
     "@types/jasmine": "~4.3.0",

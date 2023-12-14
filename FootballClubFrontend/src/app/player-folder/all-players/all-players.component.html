@@ -1,0 +1,78 @@
+<div class="main-div">
+    <label class="header">Goalkeepers</label>
+    <div class="players-div">
+            <div *ngFor="let player of goalkeepers" class="player" (click)="route(player)">
+                <img src={{player.image}} alt={{player.name}}&nbsp;{{player.surname}}&nbsp;image>
+                <div class="info">
+                    <div class="player-name-surname-div">
+                        <div class="name">
+                            {{player.name}}
+                        </div>
+                        <div class="surname">
+                            {{player.surname}}
+                        </div>
+                    </div>
+                    <div class="squad-number">
+                        {{player.squadNumber}}
+                    </div>
+                </div>
+            </div>
+    </div>
+    <label class="header">Defenders</label>
+    <div class="players-div">
+        <div *ngFor="let player of defenders" class="player" (click)="route(player)">
+            <img src={{player.image}} alt={{player.name}}&nbsp;{{player.surname}}&nbsp;image>
+            <div class="info">
+                <div class="player-name-surname-div">
+                    <div class="name">
+                        {{player.name}}
+                    </div>
+                    <div class="surname">
+                        {{player.surname}}
+                    </div>
+                </div>
+                <div class="squad-number">
+                    {{player.squadNumber}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <label class="header">Midfielders</label>
+    <div class="players-div">
+        <div *ngFor="let player of midfielders" class="player" (click)="route(player)">
+            <img src={{player.image}} alt={{player.name}}&nbsp;{{player.surname}}&nbsp;image>
+            <div class="info">
+                <div class="player-name-surname-div">
+                    <div class="name">
+                        {{player.name}}
+                    </div>
+                    <div class="surname">
+                        {{player.surname}}
+                    </div>
+                </div>
+                <div class="squad-number">
+                    {{player.squadNumber}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <label class="header">Forwards</label>
+    <div class="players-div">
+        <div *ngFor="let player of attackers" class="player" (click)="route(player)">
+            <img src={{player.image}} alt={{player.name}}&nbsp;{{player.surname}}&nbsp;image>
+            <div class="info">
+                <div class="player-name-surname-div">
+                    <div class="name">
+                        {{player.name}}
+                    </div>
+                    <div class="surname">
+                        {{player.surname}}
+                    </div>
+                </div>
+                <div class="squad-number">
+                    {{player.squadNumber}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

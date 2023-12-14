@@ -46,5 +46,22 @@ namespace FootballClubBackend.Model.Statistics
         [Range(0, int.MaxValue)]
         public int Assists { get; set; }
 
+        public AttackingStatistics() { }
+
+        public AttackingStatistics(IEnumerable<AttackingStatistics?> statistics)
+        {
+            if (statistics != null)
+            {
+                TotalShots = statistics.Sum(x => x.TotalShots);
+                ShotsOnTarget = statistics.Sum(x => x.ShotsOnTarget);
+                TotalGoals = statistics.Sum(x => x.TotalGoals);
+                RightFootedGoals = statistics.Sum(x => x.RightFootedGoals);
+                LeftFootedGoals = statistics.Sum(x => x.LeftFootedGoals);
+                HeadedGoals = statistics.Sum(x => x.HeadedGoals);
+                FreekickGoals = statistics.Sum(x => x.FreekickGoals);
+                Assists = statistics.Sum(x => x.Assists);
+            }
+        }
+
     }
 }

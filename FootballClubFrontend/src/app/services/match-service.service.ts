@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { MatchEvent, MatchPreview } from '../model/match';
+import { CreateMatch, MatchEvent, MatchPreview } from '../model/match';
 import { Squads } from '../model/players-for-squad';
 import { MatchStatistics, MatchStatisticsDto } from '../model/match-statistics';
+import { PlayerStatistics, PlayerStatisticsDto } from '../model/player-statistics';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class MatchService {
 
   constructor(private http: HttpClient) { }
 
-  createMatch(match:any): Observable<any> {
+  createMatch(match:CreateMatch): Observable<any> {
     return this.http.post<any>(this.route,match,{headers: this.headers});
   }
 
@@ -33,8 +34,8 @@ export class MatchService {
     return this.http.get<MatchPreview[]>(this.route+'results',{headers:this.headers});
   }
 
-  getByDate(date:string): Observable<any> {
-    return this.http.get<any>(this.route+'getByDate/'+date,{headers:this.headers});
+  getByDate(date:string): Observable<MatchPreview> {
+    return this.http.get<MatchPreview>(this.route+'getByDate/'+date,{headers:this.headers});
   }
 
   getMatchEvents(id:string): Observable<MatchEvent[]> {
@@ -59,5 +60,13 @@ export class MatchService {
 
   updateMatchStatistics(id:string,dto: MatchStatisticsDto): Observable<MatchStatisticsDto> {
     return this.http.put<MatchStatisticsDto>(this.route+'update/statistics/'+id,dto,{headers:this.headers});
+  }
+
+  getPlayerStatistics(id:string) : Observable<PlayerStatisticsDto> {
+    return this.http.get<PlayerStatisticsDto>(this.route+'playerstatistics/'+id,{headers:this.headers});
+  }
+
+  updatePlayerStatistics(statistics:PlayerStatistics) : Observable<PlayerStatisticsDto> {
+    return this.http.put<PlayerStatisticsDto>(this.route+'update/playerstatistics',statistics,{headers:this.headers});
   }
 }

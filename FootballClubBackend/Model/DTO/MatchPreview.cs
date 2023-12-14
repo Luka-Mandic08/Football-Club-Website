@@ -12,8 +12,9 @@ namespace FootballClubBackend.Model.DTO
         public DateTime Start { get; set; }
         public int? Goals { get; set; }
         public int? OpponentGoals { get; set; }
+        public int Season {  get; set; }
 
-        public MatchPreview(Match match,bool isResult)
+        public MatchPreview(Match match)
         {
             Id = match.Id.ToString();
             Opponent = match.Opponent;
@@ -21,11 +22,18 @@ namespace FootballClubBackend.Model.DTO
             Referee = match.Referee;
             Competition = match.Competition;
             Start = match.Start;
-            if (isResult)
+            if (Start < DateTime.Now)
             {
                 Goals = match.Statistics != null ? match.Statistics.AttackingMatchStatistics.Goals : -1;
                 OpponentGoals = match.Statistics != null ? match.OpponentStatistics.AttackingMatchStatistics.Goals : -1; 
             }
+            Season = Start.Year;
+            if (Start.Month <= 6)
+            {
+                --Season;
+            }
         }
+
+        public MatchPreview() { }
     }
 }

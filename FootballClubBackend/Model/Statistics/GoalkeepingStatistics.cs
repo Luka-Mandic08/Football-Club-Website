@@ -12,8 +12,8 @@ namespace FootballClubBackend.Model.Statistics
 
         [Required]
         [DefaultValue(0)]
-        [Range(0, 100)]
-        public float SavePercentage { get; set; }
+        [Range(0, int.MaxValue)]
+        public int NumberOfShotsFaced { get; set; }
 
         [Required]
         [DefaultValue(0)]
@@ -24,5 +24,24 @@ namespace FootballClubBackend.Model.Statistics
         [DefaultValue(0)]
         [Range(0, int.MaxValue)]
         public int PenaltiesSaved { get; set; }
+
+        [Required]
+        [DefaultValue(0)]
+        [Range(0, int.MaxValue)]
+        public int Catches { get; set; }
+
+        public GoalkeepingStatistics() { }
+
+        public GoalkeepingStatistics(IEnumerable<GoalkeepingStatistics?> statistics)
+        {
+            if (statistics != null)
+            {
+                NumberOfSaves = statistics.Sum(x => x.NumberOfSaves);
+                NumberOfShotsFaced = statistics.Sum(x => x.NumberOfShotsFaced);
+                CleanSheets = statistics.Sum(x => x.CleanSheets);
+                PenaltiesSaved = statistics.Sum(x => x.PenaltiesSaved);
+                Catches = statistics.Sum(x => x.Catches);
+            }
+        }
     }
 }

@@ -22,5 +22,7 @@ namespace FootballClubBackend.Model.DTO
         public string Competition { get; set; }
         [Required]
         public DateTime Start { get; set; }
+        [Required]
+        public string Badge {  get; set; }
     }
 }

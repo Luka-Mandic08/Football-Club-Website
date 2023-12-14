@@ -8,15 +8,20 @@ namespace FootballClubBackend.Model.Statistics
     public class PlayerStatistic
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
 
         [Required]
         public Guid MatchId { get; set; }
 
-        [ForeignKey("PlayerId")]
         public Guid PlayerId { get; set; }
 
         public string? PlayerName { get; set; }
+
+        public int Season { get; set; }
+
+        public string Competition {  get; set; }
+
+        public string Team { get; set; }
 
         [Required]
         public GeneralStatistics GeneralStatistics { get; set; }
@@ -30,23 +35,28 @@ namespace FootballClubBackend.Model.Statistics
 
         public AttackingStatistics? AttackingStatistics { get; set; }
 
-        public PlayerStatistic(int year, string competition,Guid playerId,bool isGoalkeeper)
+        public PlayerStatistic() { }
+
+        public PlayerStatistic(ICollection<PlayerStatistic> statistics, bool isGoalkeeper)
         {
-            PlayerId = playerId;
-            GeneralStatistics = new GeneralStatistics();
-            PassingStatistics = new PassingStatistics();
+            GeneralStatistics = new GeneralStatistics(statistics.Select(s => s.GeneralStatistics));
+            PassingStatistics = new PassingStatistics(statistics.Select(s => s.PassingStatistics));
             if (isGoalkeeper)
             {
-                GoalkeepingStatistics = new GoalkeepingStatistics();
+                GoalkeepingStatistics = new GoalkeepingStatistics(statistics.Select(s => s.GoalkeepingStatistics));
             }
             else
             {
-                DefendingStatistics = new DefendingStatistics();
-                AttackingStatistics = new AttackingStatistics();
+                DefendingStatistics = new DefendingStatistics(statistics.Select(s => s.DefendingStatistics));
+                AttackingStatistics = new AttackingStatistics(statistics.Select(s => s.AttackingStatistics));
             }
-        }
 
-        public PlayerStatistic() { }
+            PlayerId = statistics.Select(s => s.PlayerId).First();
+            PlayerName = statistics.Select(s => s.PlayerName).First();
+            Season = statistics.Select(s => s.Season).First();
+            Competition = statistics.Select(s => s.Competition).First();
+            Team = statistics.Select(s => s.Team).First();
+        }
 
     }
 }

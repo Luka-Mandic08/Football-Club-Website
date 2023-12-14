@@ -12,10 +12,12 @@ namespace FootballClubBackend.Controllers
     public class PlayerController : ControllerBase
     {
         private readonly PlayerService _playerService;
+        private readonly PlayerStatisticService _playerStatisticService;
 
-        public PlayerController(PlayerService playerService)
+        public PlayerController(PlayerService playerService, PlayerStatisticService playerStatisticService)
         {
             _playerService = playerService;
+            _playerStatisticService = playerStatisticService;
         }
 
         [HttpGet()]
@@ -28,6 +30,19 @@ namespace FootballClubBackend.Controllers
         public ActionResult Create(CreatePlayer dto)
         {
             return _playerService.Create(new Player(dto)) ? Ok(new { message = "Player created successfully" }) : BadRequest(new { message = "Error occurred" });
+        }
+
+        [HttpGet("getByName/{name}")]
+        [HttpGet("getById/{id}")]
+        public ActionResult GetPlayer(string? name, string? id)
+        {
+            return Ok(_playerService.GetPlayerByNameOrId(name,id));
+        }
+
+        [HttpPut("getStatistics")]
+        public ActionResult GetStatisticsForPlayer(GetStatisticsForPlayerDto dto)
+        {    
+            return Ok(_playerStatisticService.GetAllForPlayerBySeasonAndCompetition(dto));
         }
 
     }

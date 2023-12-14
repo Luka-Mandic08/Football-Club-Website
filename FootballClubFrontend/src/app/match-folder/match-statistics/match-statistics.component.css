@@ -1,65 +1,58 @@
-.main-div{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-.form {
+.main-div {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+    justify-content: flex-start;    
 }
 
-.form-opposition {
+.statistics {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.form-opposition .form-group{
-    justify-content: flex-end;
-}
-
-.form-group{
-    display: flex;
-    flex-direction: row;
     justify-content: flex-start;
-    align-items: flex-start;
-    width: 220px;
+    align-items: center;
+    
 }
 
-.error-message{
-    color: red;
-    margin-right: 10px;
-    margin-left: 10px;
-}
-
-.labels{
+.stat {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-top: 10px;
+    width: 100%;
+    background-color: white;
+    padding: 8px;
 }
 
-.labels div{
-    height:31.6px;
+.stat div{
+    width: 10%;
     display: flex;
     justify-content: center;
-    justify-items: center;
-    text-align: bottom;
-    padding-top: 0,2px;
-    margin: 0;
 }
 
-input {
-    width: 60px;
-    margin-bottom: 2px;
+li.selected{
+    color: rgb(255, 255, 255);
+    text-decoration: underline;
+    text-decoration-thickness: 3px ;
+    
 }
 
-.header-div {
-    margin-bottom: 13px;
+.tabs{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: flex-end;
+    background-color: rgb(45, 45, 148);
+}
+
+ul, ol {
+    list-style: none;
+}
+
+li {
+    padding: 20px;
+    color: rgb(196, 196, 196);
+    transition: all 0.5s;
+}
+
+li:hover {
+    cursor:  pointer;
 }
