@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
-import { PlayerService } from '../services/player-service.service';
-import { CreatePlayerDto } from '../model/player';
+import { PlayerService } from '../../services/player-service.service';
+import { CreatePlayerDto } from '../../model/player';
 import Swal from 'sweetalert2'
 
 @Component({

@@ -43,6 +43,17 @@ namespace FootballClubBackend.Repository
             return collection.Find(filter).FirstOrDefault();
         }
 
+        public IEnumerable<Match> GetForNewArticle()
+        {
+            IEnumerable<Match> matches;
+            var filter = Builders<Match>.Filter.Lte(m => m.Start, DateTime.Now);
+            var sortDefinition = Builders<Match>.Sort.Descending(m => m.Start);
+            matches = collection.Find(filter).Sort(sortDefinition).Limit(3).ToList();
+            filter = Builders<Match>.Filter.Gte(m => m.Start, DateTime.Now);
+            sortDefinition = Builders<Match>.Sort.Ascending(m => m.Start);
+            return matches.Concat(collection.Find(filter).Sort(sortDefinition).Limit(7).ToList());
+        }
+
         public Match? GetByDate(DateTime start)
         {
             var helperDateFrom = start.Date;

@@ -1,0 +1,38 @@
+<div class="main-div">
+    <div class="header">
+        <div class="header-selection">
+            <p *ngIf="tables.length==1">{{tables[0].competition}}</p>
+            <select id="selectTableElement" *ngIf="tables.length>1" (change)="competitionSelected($event)">
+                <option *ngFor="let table of tables" value={{table.id}}>{{table.competition}}</option>
+            </select>
+            <select (change)="seasonSelected($event)">
+                <option [ngValue]=2023>2023/24</option>
+                <option [ngValue]=2022>2022/23</option>
+                <option [ngValue]=2021>2021/22</option>
+            </select>
+        </div>
+        <div class="header-add-new">
+            <input type="text" placeholder="Competition" [(ngModel)]="inputCompetition">
+            <input type="number" placeholder="Season" [(ngModel)]="inputSeason">
+            <button (click)="addNewTable()">Add table</button>
+        </div>
+    </div> 
+    <div *ngIf="tables.length==0">No tables available</div>  
+    <div *ngIf="tables.length>0" cdkDropList (cdkDropListDropped)="drop($event)" class="table">
+        <div class="table-header">
+            <div style="width: 10%;">#</div>
+            <div style="width: 20%;">Team</div>
+            <div style="width: 10%;">Wins</div>
+            <div style="width: 10%;">Draws</div>
+            <div style="width: 10%;">Losses</div>
+            <div style="width: 20%;">Goal difference</div>
+            <div style="width: 10%;">Points</div>
+            <button (click)="updateTable()" style="width: 10%;">Save</button>
+        </div>
+        <app-table-row-edit *ngFor="let row of selectedTable.rows" [row]="row" (updateEvent)="updateRow($event)" (deleteEvent)="deleteRow($event)" cdkDrag cdkDragLockAxis="y">
+                
+        </app-table-row-edit>
+        <button (click)="addNewRow()" style="width: 10%;">Add team</button>
+    </div>
+</div>
+

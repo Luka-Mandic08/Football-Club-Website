@@ -2,6 +2,7 @@
 using FootballClubBackend.Model.DTO;
 using FootballClubBackend.Repository;
 using FootballClubBackend.Service;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,12 +21,19 @@ namespace FootballClubBackend.Controllers
             _playerStatisticService = playerStatisticService;
         }
 
-        [HttpGet()]
+        [HttpGet("getAll")]
         public ActionResult GetAll()
         {
             return Ok(_playerService.GetAll());
         }
 
+        [HttpGet("getActiveAndLoaned")]
+        public ActionResult GetActiveAndLoaned()
+        {
+            return Ok(_playerService.GetActiveAndLoaned());
+        }
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
         [HttpPost]
         public ActionResult Create(CreatePlayer dto)
         {

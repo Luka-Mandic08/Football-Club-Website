@@ -12,10 +12,8 @@ import { PlayerStatistics, PlayerStatisticsDto } from '../model/player-statistic
 export class MatchService {
 
   headers = new HttpHeaders({
-    //'Authorization': 'Bearer your-token',
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin':'true',
-    'Authorization': ''
   });
 
   route = 'http://localhost:5238/matches/'
@@ -32,6 +30,10 @@ export class MatchService {
 
   getResults(): Observable<MatchPreview[]> {
     return this.http.get<MatchPreview[]>(this.route+'results',{headers:this.headers});
+  }
+
+  getForNewArticle(): Observable<MatchPreview[]> {
+    return this.http.get<MatchPreview[]>(this.route+'getForNewArticle',{headers:this.headers});
   }
 
   getByDate(date:string): Observable<MatchPreview> {

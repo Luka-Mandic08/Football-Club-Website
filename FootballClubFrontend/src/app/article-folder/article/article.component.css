@@ -1,0 +1,22 @@
+.main-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    display: block;
+}
+
+.date {
+    display: block;
+}
+
+.image-container {
+    width: 100%;
+}
+
+img {
+    max-width: 100%;
+    min-width: 50%;
+    object-fit: cover;
+}

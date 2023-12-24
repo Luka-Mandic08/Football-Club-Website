@@ -84,6 +84,6 @@ export class PlayerComponent {
   }
 
   selectYer(event:any){
-    this.selectedYear = event.target.value
+    this.selectedYear  = event.target.value
   }
 }

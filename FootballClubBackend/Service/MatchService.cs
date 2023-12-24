@@ -37,9 +37,9 @@ namespace FootballClubBackend.Service
             return _matchRepository.GetResults();
         }
 
-        public Match GetById(Guid id)
+        public ICollection<Match> GetForNewArticle()
         {
-            return _matchRepository.GetById(id);
+            return _matchRepository.GetForNewArticle().ToList();
         }
         
         public MatchPreview GetByDate(DateTime start)

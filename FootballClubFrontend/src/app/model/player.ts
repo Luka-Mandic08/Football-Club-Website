@@ -35,7 +35,7 @@ export class GetStatisticsForPlayerDto {
   }
 }
 
-export class AllPlayersDto {
+export class ActiveAndLoanedPlayersDto {
   activePlayers : PlayerDto[] = []
   loanedPlayers : PlayerDto[] = []
 }

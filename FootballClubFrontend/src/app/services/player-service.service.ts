@@ -1,8 +1,9 @@
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AllPlayersDto, CreatePlayerDto, GetStatisticsForPlayerDto, PlayerDto } from '../model/player';
+import { ActiveAndLoanedPlayersDto, CreatePlayerDto, GetStatisticsForPlayerDto, PlayerDto } from '../model/player';
 import { PlayerStatistics } from '../model/player-statistics';
+import { PlayerForSquad } from '../model/players-for-squad';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +11,8 @@ import { PlayerStatistics } from '../model/player-statistics';
 export class PlayerService {
 
   headers = new HttpHeaders({
-    //'Authorization': 'Bearer your-token',
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin':'true',
-    'Authorization': ''
   });
 
   route = 'http://localhost:5238/players/'
@@ -24,8 +23,12 @@ export class PlayerService {
     return this.http.post<any>(this.route, player, {headers: this.headers});
   }
 
-  getAllPlayers(): Observable<AllPlayersDto> {
-    return this.http.get<AllPlayersDto>(this.route, {headers: this.headers});
+  getAll(): Observable<PlayerForSquad[]> {
+    return this.http.get<PlayerForSquad[]>(this.route+"getAll", {headers: this.headers});
+  }
+
+  getActiveAndLoaned(): Observable<ActiveAndLoanedPlayersDto> {
+    return this.http.get<ActiveAndLoanedPlayersDto>(this.route+"getActiveAndLoaned", {headers: this.headers});
   }
 
   getPlayerById(id:string): Observable<PlayerDto> {

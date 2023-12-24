@@ -1,0 +1,46 @@
+.main-div{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 15px;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.header-selection {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.header-selection p{
+    margin: 0
+}
+
+.header-add-new {
+    display: flex;
+    flex-direction: row;
+}
+
+.table{
+    display: flex;
+    flex-direction: column;
+}
+
+.table-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.table-header div{
+    display: flex;
+    justify-content: center;
+}

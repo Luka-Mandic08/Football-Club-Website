@@ -3,12 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { CreateMatchComponent } from './create-match/create-match.component';
+import { CreateMatchComponent } from './match-folder/create-match/create-match.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatchCardComponent } from './match-folder/match-card/match-card.component';
 import { MatchesComponent } from './match-folder/matches/matches.component';
-import { CreatePlayerComponent } from './create-player/create-player.component';
+import { CreatePlayerComponent } from './player-folder/create-player/create-player.component';
 import { MatchDetailsComponent } from './match-folder/match-details/match-details.component';
 import { MatchEventCardComponent } from './match-folder/match-event-card/match-event-card.component';
 import { MatchEventsComponent } from './match-folder/match-events/match-events.component';
@@ -18,12 +18,20 @@ import { LoginComponent } from './user-folder/login/login.component';
 import { RegisterComponent } from './user-folder/register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DragDrop, DragDropModule } from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatchPlayerStatisticsEditComponent } from './match-folder/match-player-statistics-edit/match-player-statistics-edit.component';
 import { MatchStatisticsComponent } from './match-folder/match-statistics/match-statistics.component';
 import { MatchPlayerStatisticsComponent } from './match-folder/match-player-statistics/match-player-statistics.component';
 import { AllPlayersComponent } from './player-folder/all-players/all-players.component';
 import { PlayerComponent } from './player-folder/player/player.component';
+import { FormsModule } from '@angular/forms';
+import { TablesComponent } from './table-folder/tables/tables.component';
+import { TablesEditComponent } from './table-folder/tables-edit/tables-edit.component';
+import { TableRowEditComponent } from './table-folder/table-row-edit/table-row-edit.component';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { ArticleComponent } from './article-folder/article/article.component';
+import { CreateArticleComponent } from './article-folder/create-article/create-article.component';
+import { ArticleCardComponent } from './article-folder/article-card/article-card.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +53,12 @@ import { PlayerComponent } from './player-folder/player/player.component';
     MatchPlayerStatisticsComponent,
     AllPlayersComponent,
     PlayerComponent,
+    CreateArticleComponent,
+    TablesComponent,
+    TablesEditComponent,
+    TableRowEditComponent,
+    ArticleComponent,
+    ArticleCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,9 +67,17 @@ import { PlayerComponent } from './player-folder/player/player.component';
     HttpClientModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    DragDropModule,    
+    DragDropModule,
+    FormsModule,    
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+    // Other providers...
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -19,7 +19,7 @@ export class AllPlayersComponent {
   constructor(private router: Router,public playerService: PlayerService) { }
 
   ngOnInit(){
-    this.playerService.getAllPlayers().subscribe(
+    this.playerService.getActiveAndLoaned().subscribe(
       response => {
         this.loanedPlayers = response.loanedPlayers
         response.activePlayers.forEach(player => {

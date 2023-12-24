@@ -75,4 +75,23 @@
             </div>
         </div>
     </div>
+    <label class="header">On Loan</label>
+    <div class="players-div">
+        <div *ngFor="let player of loanedPlayers" class="player" (click)="route(player)">
+            <img src={{player.image}} alt={{player.name}}&nbsp;{{player.surname}}&nbsp;image>
+            <div class="info">
+                <div class="player-name-surname-div">
+                    <div class="name">
+                        {{player.name}}
+                    </div>
+                    <div class="surname">
+                        {{player.surname}}
+                    </div>
+                </div>
+                <div class="squad-number">
+                    {{player.squadNumber}}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

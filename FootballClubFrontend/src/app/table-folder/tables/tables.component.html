@@ -1,0 +1,49 @@
+<div class="main-div">
+    <div class="header">
+        <div class="header-select">
+            <div *ngIf="tables.length==1">
+                <p>{{tables[0].competition}}</p>
+            </div>
+            <select *ngIf="tables.length>1" (change)="competitionSelected($event)">
+                <option *ngFor="let table of tables" value={{table.id}}>{{table.competition}}</option>
+            </select>
+            <select (change)="seasonSelected($event)">
+                <option [ngValue]=2023>2023/24</option>
+                <option [ngValue]=2022>2022/23</option>
+                <option [ngValue]=2021>2021/22</option>
+            </select>
+        </div>
+        <div class="header-buttons">
+            <button (click)="routeToEdit()">Edit tables</button>
+            <button (click)="deleteTable()">Delete current table</button>
+        </div>
+    </div> 
+    <div *ngIf="tables.length==0">No tables available</div>  
+    <div *ngIf="tables.length>0" class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th style="width: 200px;">Team</th>
+                    <th>Wins</th>
+                    <th>Draws</th>
+                    <th>Losses</th>
+                    <th style="width: 200px;">Goal difference</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of selectedTable.rows">
+                    <td>{{row.position}}</td>
+                    <td style="width: 200px;">{{row.team}}</td>
+                    <td>{{row.wins}}</td>
+                    <td>{{row.draws}}</td>
+                    <td>{{row.losses}}</td>
+                    <td style="width: 200px;">{{row.goalDifference}}</td>
+                    <td>{{row.points}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</div>

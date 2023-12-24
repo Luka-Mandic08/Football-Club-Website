@@ -1,9 +1,11 @@
-﻿using FootballClubBackend.Repository;
+﻿using FootballClubBackend.Model;
+using FootballClubBackend.Repository;
 using FootballClubBackend.Service;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text;
 
 namespace FootballClubBackend.Helper
 {
@@ -22,6 +24,12 @@ namespace FootballClubBackend.Helper
 
             builder.Services.AddScoped<UserService>();
             builder.Services.AddScoped<UserRepository>();
+
+            builder.Services.AddScoped<ArticleService>();
+            builder.Services.AddScoped<ArticleRepository>();
+
+            builder.Services.AddScoped<TableService>();
+            builder.Services.AddScoped<TableRepository>();
         }
     }
 
@@ -31,7 +39,33 @@ namespace FootballClubBackend.Helper
         private static readonly SymmetricSecurityKey SigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(SecretKey));
         public Authorizer() { }
 
-        public static string GenerateToken(string username,string role)
+
+        public static string GenerateToken(string username, string role)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes("your-secret-key-here-asdd1i920389jffh289fh98fh9hjoij");
+
+            var claims = new[]
+            {
+            new Claim(ClaimTypes.Name, username),
+            new Claim(ClaimTypes.Role, role),
+            // Add additional claims as needed
+        };
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.UtcNow.AddHours(1), // Token expiration time
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
+                Issuer = "Issuer",
+                Audience = "Audience"
+            };
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+        }
+        /*
+        public static string GenerateTokenBackup(string username,string role)
         {
             var claims = new[]
             {
@@ -105,7 +139,7 @@ namespace FootballClubBackend.Helper
             if (ValidateToken(token) && ReadRoleFromToken(token).Equals(role))
                 return true;
             return false;
-        }
+        }*/
     }
 
     public class PasswordHasher

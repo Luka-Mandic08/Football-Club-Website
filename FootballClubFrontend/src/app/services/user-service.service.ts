@@ -10,9 +10,8 @@ import { catchError, map, throwError } from 'rxjs';
 export class UserService {
 
   headers = new HttpHeaders({
-    //'Authorization': 'Bearer your-token',
+    'Content-Type': 'application/json',
     'Access-Control-Allow-Origin':'true',
-    'Authorization': localStorage.getItem('jwt')||'',
   });
 
   route = 'http://localhost:5238/users/'

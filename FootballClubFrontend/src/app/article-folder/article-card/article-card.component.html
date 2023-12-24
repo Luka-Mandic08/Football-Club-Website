@@ -1,0 +1,9 @@
+<div class="main-div">
+    <div class="image-containter">
+        <img src={{firstPicture}} *ngIf="firstPicture!==''">
+        <img src="assets/Images/Articles/Default.webp" *ngIf="firstPicture===''">
+    </div>
+    <h3>
+        {{article.title}}
+    </h3>
+</div>

@@ -1,0 +1,92 @@
+<div class="main-div">
+    <div class="form">
+        <div class="header-div">
+            <p>Create article</p>
+        </div>
+        <form (ngSubmit)="onSubmit()" [formGroup]="form" novalidate>
+            <div class="form-floating mb-2">
+                <input type="text" id="title" placeholder="title" formControlName="title" required class="form-control" [class.is-invalid]="form.get('title')?.invalid && form.get('title')?.touched">
+                <label for="title">Title</label>
+                <div *ngIf="form.get('title')?.touched">
+                    <div *ngIf="form.get('title')?.hasError('required')" class="error-message">
+                        Title is required.
+                    </div>
+                    <div *ngIf="form.get('title')?.hasError('minlength')" class="error-message">
+                        Title length must be at least 5.
+                    </div>
+                    <div *ngIf="form.get('title')?.hasError('maxlength')" class="error-message">
+                        Title length must be at most 100.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="uploadDate" id="uploadDate" placeholder="uploadDate" formControlName="uploadDate" required class="form-control" [class.is-invalid]="form.get('uploadDate')?.invalid && form.get('uploadDate')?.touched">
+                <label for="uploadDate">Upload date</label>
+                <div *ngIf="form.get('uploadDate')?.touched">
+                    <div *ngIf="form.get('uploadDate')?.hasError('required')" class="error-message">
+                        Upload date is required.
+                    </div>
+                    <div *ngIf="form.get('uploadDate')?.hasError('pastDate')" class="error-message">
+                        Upload date must be in the future.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <select id="articleType" placeholder="articleType" formControlName="articleType" required class="form-select" [class.is-invalid]="form.get('articleType')?.invalid && form.get('articleType')?.touched">
+                    <option [ngValue]=0>News</option>
+                    <option [ngValue]=1>History</option>
+                    <option [ngValue]=2>Information</option>
+                </select>
+                <label for="articleType">Article type</label>
+                <div *ngIf="form.get('articleType')?.touched">
+                    <div *ngIf="form.get('articleType')?.hasError('required')" class="error-message">
+                        Article type is required.
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-2">
+                <select id="match" placeholder="match" formControlName="articleType" required class="form-select">
+                    <option *ngFor="let match of matches" value={{match.id}}>{{match.opponent}}&nbsp;{{match.start}}</option>
+                </select>
+                <label for="articleType">Related match</label>
+            </div>
+            <div class="form-floating mb-2">
+                <select id="players" placeholder="players" [(ngModel)]="selectedPlayers" class="form-select" multiple>
+                    <option *ngFor="let player of players" value={{player.id}}>{{player.name}}&nbsp;{{player.surname}}</option>
+                </select>
+                <label for="articleType">Related players</label>
+            </div>
+            <div class="form-group" style="margin-top: 20px; align-items: center;">
+                <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Create article</button>
+            </div>
+        </form>
+    </div>
+    <div class="form">
+        <div class="header-div">
+            <p>New paragraph</p>
+        </div>
+        <textarea [(ngModel)]="paragraphText" class="form-control"></textarea>
+        <div>
+            <button (click)="addParagraph(0)" class="btn btn-primary">+ Header</button>
+            <button (click)="addParagraph(1)" class="btn btn-primary">+ Subheader</button>
+            <button (click)="addParagraph(2)" class="btn btn-primary">+ Paragraph</button>
+        </div>
+        <input type="file" id="image" (change)="selectImage($event)" >
+    </div>
+
+    <div class="paragraphs">
+        <div *ngFor="let paragraph of paragraphs">
+            <div *ngIf="paragraph.sectionType<3">
+                <div class="text-paragraph">
+                    <p>{{paragraph.content}}</p>                  
+                </div>
+            </div>
+            <div *ngIf="paragraph.sectionType===3">
+                <div class="image-container">
+                    <img src={{paragraph.content}} alt="Paragraph Image">
+                    <div class="hover-button" (click)="removeParagraph(paragraph)">X</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
 using FootballClubBackend.Model.Statistics;
 using FootballClubBackend.Helper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace FootballClubBackend.Controllers
 {
@@ -22,6 +24,7 @@ namespace FootballClubBackend.Controllers
             _playerStatisticsService = playerStatisticsService;
         }
 
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
         [HttpPost]
         public ActionResult Create(CreateMatch dto)
         {
@@ -57,11 +60,11 @@ namespace FootballClubBackend.Controllers
             return Ok(results);
         }
 
-        [HttpGet("{id}")]
-        public ActionResult GetMatch(string id)
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
+        [HttpGet("getForNewArticle")]
+        public ActionResult GetMatch()
         {
-            var guid = Guid.Parse(id);
-            return Ok(_matchService.GetById(guid));
+            return Ok(_matchService.GetForNewArticle());
         }
         
         [HttpGet("getByDate/{date:datetime}")]
@@ -77,6 +80,7 @@ namespace FootballClubBackend.Controllers
             return Ok(_matchService.GetMatchEvents(guid));
         }
 
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
         [HttpPut("update/matchevents/{id}")]
         public ActionResult UpdateMatchEvents(string id,ICollection<MatchEvent> events)
         {
@@ -96,6 +100,7 @@ namespace FootballClubBackend.Controllers
             return Ok(_matchService.GetMatchSquads(guid));
         }
 
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
         [HttpPut("update/squads/{id}")]
         public ActionResult UpdateSquads(string id, Squads squads)
         {
@@ -111,12 +116,11 @@ namespace FootballClubBackend.Controllers
         [HttpGet("statistics/{id}")]
         public ActionResult GetStatistics(string id)
         {
-            //if (!Authorizer.CheckAuthorization(Request.Headers.Authorization, "any"))
-                //return BadRequest(new { message = "no token" });
             var guid = Guid.Parse(id);
             return Ok(_matchService.GetMatchStatistics(guid));
         }
 
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
         [HttpPut("update/statistics/{id}")]
         public ActionResult UpdateStatistics(string id, MatchStatisticsDto statistics)
         {
@@ -132,12 +136,11 @@ namespace FootballClubBackend.Controllers
         [HttpGet("playerstatistics/{id}")]
         public ActionResult GetPlayerStatistics(string id)
         {
-            //if (!Authorizer.CheckAuthorization(Request.Headers.Authorization, "any"))
-            //return BadRequest(new { message = "no token" });
             var guid = Guid.Parse(id);
             return Ok(_playerStatisticsService.GetAllForMatch(guid));
         }
 
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
         [HttpPut("update/playerstatistics")]
         public ActionResult UpdatePlayerStatistics(PlayerStatistic statistics)
         {     

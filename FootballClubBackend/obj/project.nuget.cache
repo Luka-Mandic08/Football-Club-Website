@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "AKVoPo5T4g61GGoPnrCN5ibJdG9zS/ix4qIrgx+5SoDVSMNljUoxcgWNpvQ8ps8OLOvTQ+FVU6Yv26Tu+PXEQA==",
+  "dgSpecHash": "OjL23xc3CHTmEfaYeF2c18v1w32YqcfJEpVMfCJkyxu6cri4/imyKRcivY9pjUnF+90YLqOlFc/GxT0NGc8kTg==",
   "success": true,
   "projectFilePath": "E:\\Faks\\Diplomski\\FootballClubBackend\\FootballClubBackend.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\Lule\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Lule\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\Lule\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\Lule\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.0\\microsoft.aspnetcore.authentication.jwtbearer.6.0.0.nupkg.sha512",
     "C:\\Users\\Lule\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Lule\\.nuget\\packages\\microsoft.data.sqlclient\\5.0.2\\microsoft.data.sqlclient.5.0.2.nupkg.sha512",
     "C:\\Users\\Lule\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\5.0.1\\microsoft.data.sqlclient.sni.runtime.5.0.1.nupkg.sha512",

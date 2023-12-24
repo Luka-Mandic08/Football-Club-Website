@@ -1,0 +1,110 @@
+<form [formGroup]="form" novalidate>
+    <div>
+        {{row.position}}
+    </div>
+    <div style="width: 20%;">
+        <input type="text" id="team" placeholder="Team" formControlName="team" required class="form-control" [class.is-invalid]="form.get('team')?.invalid && form.get('team')?.touched" (focusout)="lostFocus()">
+        <span
+            *ngIf="form.get('team')?.touched && form.get('team')?.hasError('required')"
+            class="error-icon-hover-area"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Name is required"
+        ></span>
+        <span
+            *ngIf="form.get('team')?.touched && form.get('team')?.hasError('minlength')"
+            class="error-icon-hover-area"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Name length must be at least 2"
+        ></span>
+        <span
+            *ngIf="form.get('team')?.touched && form.get('team')?.hasError('maxlength')"
+            class="error-icon-hover-area"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Name length must be at most 40"
+        ></span>
+    </div>
+    <div>
+        <input type="number" id="wins" formControlName="wins" required class="form-control" min="0" [class.is-invalid]="form.get('wins')?.invalid && form.get('wins')?.touched" (focusout)="lostFocus()">
+        <span
+            *ngIf="form.get('wins')?.touched && form.get('wins')?.hasError('required')"
+            class="error-icon-hover-area"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Wins are required"
+        ></span>
+        <span
+            *ngIf="form.get('wins')?.touched && form.get('wins')?.hasError('min')"
+            class="error-icon-hover-area"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Wins must be at least 0"
+        ></span>
+    </div>
+    <div>
+        <input type="number" id="draws" formControlName="draws" required class="form-control" min="0" [class.is-invalid]="form.get('draws')?.invalid && form.get('draws')?.touched" (focusout)="lostFocus()">
+        <span
+            *ngIf="form.get('draws')?.touched && form.get('draws')?.hasError('required')"
+            class="error-icon-hover-area"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Draws are required"
+        ></span>
+        <span
+            *ngIf="form.get('draws')?.touched && form.get('draws')?.hasError('min')"
+            class="error-icon-hover-area"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Draws must be at least 0"
+        ></span>
+    </div>
+    <div>
+        <input type="number" id="losses" formControlName="losses" required class="form-control" min="0" [class.is-invalid]="form.get('losses')?.invalid && form.get('losses')?.touched" (focusout)="lostFocus()">
+        <span
+            *ngIf="form.get('losses')?.touched && form.get('losses')?.hasError('required')"
+            class="error-icon-hover-area"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Losses are required"
+        ></span>
+        <span
+            *ngIf="form.get('losses')?.touched && form.get('losses')?.hasError('min')"
+            class="error-icon-hover-area"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Losses must be at least 0"
+        ></span>
+    </div>
+    <div style="width: 20%;">
+        <input type="number" id="goalDifference" formControlName="goalDifference" required class="form-control" [class.is-invalid]="form.get('goalDifference')?.invalid && form.get('goalDifference')?.touched" (focusout)="lostFocus()">
+        <span
+            *ngIf="form.get('goalDifference')?.touched && form.get('goalDifference')?.hasError('required')"
+            class="error-icon-hover-area"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Goal difference are required"
+        ></span>
+    </div>
+    <div>
+        <input type="number" id="points" formControlName="points" required class="form-control" min="0" [class.is-invalid]="form.get('points')?.invalid && form.get('points')?.touched" (focusout)="lostFocus()">
+        <span
+            *ngIf="form.get('points')?.touched && form.get('points')?.hasError('required')"
+            class="error-icon-hover-area"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Points are required"
+        ></span>
+        <span
+            *ngIf="form.get('points')?.touched && form.get('points')?.hasError('min')"
+            class="error-icon-hover-area"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Points must be at least 0"
+        ></span>
+    </div>
+    <div>
+        <button (click)="deleteRow()" style="width: 80%;">Delete</button>
+    </div>
+</form>

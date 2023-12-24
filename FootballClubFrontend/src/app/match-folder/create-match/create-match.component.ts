@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatchService} from '../services/match-service.service';
-import { CreateMatch, MatchPreview } from '../model/match';
+import { MatchService} from '../../services/match-service.service';
+import { CreateMatch, MatchPreview } from '../../model/match';
 import Swal from 'sweetalert2';
 
 @Component({
