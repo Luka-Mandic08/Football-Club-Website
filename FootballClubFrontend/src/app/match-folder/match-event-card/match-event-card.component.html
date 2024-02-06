@@ -25,7 +25,7 @@
     <div>
         {{event.text}}
     </div>
-        <button type="button" class="delete-button" (click)="deleteEvent(event)">
-            <img src="assets//Images/Static/remove_event.png">
-        </button>
+    <button type="button" class="delete-button" (click)="deleteEvent(event)" *ngIf="isAdmin">
+        <img src="assets//Images/Static/remove_event.png">
+    </button>
 </div>

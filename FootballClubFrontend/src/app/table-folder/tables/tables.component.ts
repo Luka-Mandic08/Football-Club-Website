@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Table } from 'src/app/model/table';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { TableService } from 'src/app/services/table-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-tables',
@@ -12,9 +14,10 @@ export class TablesComponent {
 
   tables : Table[] = []
   selectedTable !: Table
+  isAdmin : boolean
 
-  constructor(public tableService:TableService,private router:Router){
-
+  constructor(public tableService:TableService,private router:Router,private auth:AuthGuardService){
+    this.isAdmin = this.auth.isAdmin()
   }
 
   ngOnInit(){
@@ -57,7 +60,18 @@ export class TablesComponent {
   }
 
   deleteTable(){
-    this.tableService.delete(this.selectedTable.id)
+    Swal.fire({
+      title: 'Are you sure you want to \ndelete the current table?',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      confirmButtonColor: `rgb(45, 45, 148)`,
+      width: 400,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.tableService.delete(this.selectedTable.id)
+      } 
+    })
+    
   }
 
 }

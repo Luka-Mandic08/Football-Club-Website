@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../user-folder/login/login.component';
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
+import { AuthGuardService } from '../services/auth-guard.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,14 +17,12 @@ import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 export class NavbarComponent {
   
   selectedTab : string = 'matches'
-  userIsLoggedIn !: boolean 
-  constructor(private dialog: MatDialog, private jwtHelper:JwtHelperService) {
-    let token = localStorage.getItem('jwt')
-    if(token!=null){
-      let decodedToken = this.jwtHelper.decodeToken(token)
-      console.log(decodedToken)
-      this.userIsLoggedIn = true
-    }
+  userIsLoggedIn : boolean 
+  isAdmin : boolean
+
+  constructor(private dialog: MatDialog, private auth:AuthGuardService,private router:Router) {
+    this.userIsLoggedIn = this.auth.isLoggedIn()
+    this.isAdmin = this.auth.isAdmin()
   }
 
   selectTab(newTab:string){
@@ -42,8 +42,14 @@ export class NavbarComponent {
     dialogRef.afterClosed().subscribe((result:Boolean) => {
       if(result)
         this.userIsLoggedIn = true
+        this.isAdmin = this.auth.isAdmin()
     })
   }
 
-
+  logOut(){
+    localStorage.clear()
+    this.userIsLoggedIn = false
+    this.isAdmin = false
+    this.router.navigateByUrl('')
+  }
 }

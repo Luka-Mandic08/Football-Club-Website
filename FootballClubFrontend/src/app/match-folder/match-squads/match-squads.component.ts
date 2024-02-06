@@ -4,6 +4,7 @@ import { PlayerForSquad, Squads } from 'src/app/model/players-for-squad';
 import { MatchService } from 'src/app/services/match-service.service';
 import Swal from 'sweetalert2';
 import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 
 @Component({
   selector: 'app-match-squads',
@@ -13,7 +14,8 @@ import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray, transferArrayItem} f
 export class MatchSquadsComponent {
   @Input() matchId : string = ''
   @Input() opponentName : string = ''
-  form : FormGroup;
+  form : FormGroup
+  isAdmin : boolean
 
   squad : PlayerForSquad[] = []
   subs : PlayerForSquad[] = []
@@ -24,7 +26,8 @@ export class MatchSquadsComponent {
 
   selectedPlayers : PlayerForSquad[] = []
 
-  constructor(public matchService:MatchService,private fb: FormBuilder){
+  constructor(public matchService:MatchService,private fb: FormBuilder,private auth: AuthGuardService){
+    this.isAdmin = this.auth.isAdmin()
     this.form = this.fb.group({
       name: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(40)]],
       surname: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(40)]],
@@ -169,6 +172,20 @@ export class MatchSquadsComponent {
   }
 
   drop(event:any) {
+    if (event.previousContainer === event.container) {
+      if(event.previousContainer.id === "squad")
+        moveItemInArray(this.squad, event.previousIndex, event.currentIndex);
+      else
+        moveItemInArray(this.subs, event.previousIndex, event.currentIndex);
+    } else {
+      if(event.previousContainer.id === "squad")
+        transferArrayItem(this.squad, this.subs, event.previousIndex, event.currentIndex);
+      else
+        transferArrayItem(this.subs, this.squad, event.previousIndex, event.currentIndex);
+    }
+  }
+
+  dropOpponent(event:any) {
     if (event.previousContainer === event.container) {
       if(event.previousContainer.id === "opponentSquad")
         moveItemInArray(this.opponentSquad, event.previousIndex, event.currentIndex);

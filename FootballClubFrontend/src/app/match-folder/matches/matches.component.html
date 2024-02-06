@@ -1,15 +1,31 @@
-<div>
+<div class="main-div">
     <ul class="tabs">
         <li (click)="selectTab('Fixtures')" [class.selected]="selectedTab === 'Fixtures'">Fixtures</li>
         <li (click)="selectTab('Results')" [class.selected]="selectedTab === 'Results'">Results</li>
-        <li (click)="selectTab('Table')" [class.selected]="selectedTab === 'Table'">Table</li>
+        <li (click)="selectTab('Tables')" [class.selected]="selectedTab === 'Tables'">Tables</li>
+        <div class="add-match" *ngIf="isAdmin">
+            <li (click)="newMatch()">Add match</li>
+        </div>
     </ul>
+    <div class="selects">
+        <select *ngIf="selectedTab!='Tables'" (change)="competitionSelected($event)" class="form-select" style="width: 250px;margin-right: 10px;">
+            <option value="any" selected>-- any --</option>
+            <option value="Premier League">Premier League</option>
+            <option value="FA Cup">FA Cup</option>
+            <option value="Champions League">Champions League</option>
+        </select>
+        <select *ngIf="selectedTab=='Results'" (change)="seasonSelected($event)" class="form-select" style="width: 130px;" >
+            <option [ngValue]=2023>2023/24</option>
+            <option [ngValue]=2022>2022/23</option>
+            <option [ngValue]=2021>2021/22</option>
+        </select>
+    </div>
     <div *ngIf="selectedTab=='Fixtures' || selectedTab=='Results'">
         <div *ngFor="let match of matches">
             <app-match-card [match]="match"></app-match-card>
         </div>
     </div>
-    <div *ngIf="selectedTab=='Table'">
+    <div *ngIf="selectedTab=='Tables'">
         <app-tables></app-tables>
     </div>  
 </div>

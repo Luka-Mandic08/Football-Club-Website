@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Article } from 'src/app/model/article';
 import { GetStatisticsForPlayerDto, PlayerDto } from 'src/app/model/player';
 import { PlayerStatistics } from 'src/app/model/player-statistics';
+import { ArticleService } from 'src/app/services/article-service.service';
 import { PlayerService } from 'src/app/services/player-service.service';
 
 @Component({
@@ -15,10 +17,11 @@ export class PlayerComponent {
   name : string = ''
   id !: string|null
   selectedYear : number = 2023
-  selectedCompetition : string = 'Premier league'
+  selectedCompetition : string = 'Premier League'
   playerStats !: PlayerStatistics 
+  articles : Article[] = []
 
-  constructor(private router: Router, private route: ActivatedRoute, public playerService : PlayerService) {
+  constructor(private router: Router, private route: ActivatedRoute, public playerService : PlayerService, public articleService : ArticleService) {
     const state = this.router.getCurrentNavigation()?.extras.state as {
       id: string,
     };
@@ -35,6 +38,11 @@ export class PlayerComponent {
       this.playerService.getPlayerById(this.id).subscribe(
         response => {
           this.player = response
+          this.articleService.getForPlayer(this.player.id).subscribe(
+            response => {
+              this.articles = response
+            }
+          )
         }
       )
     }
@@ -42,6 +50,11 @@ export class PlayerComponent {
       this.playerService.getPlayerByName(this.name).subscribe(
         response => {
           this.player = response
+          this.articleService.getForPlayer(this.player.id).subscribe(
+            response => {
+              this.articles = response
+            }
+          )
         }
       )
     }
@@ -51,6 +64,8 @@ export class PlayerComponent {
         this.playerStats = response
       }
     )
+
+    
   }
 
   formatDate(date:Date) : string{
@@ -81,9 +96,19 @@ export class PlayerComponent {
 
   selectCompetition(event:any){
     this.selectedCompetition = event.target.value
+    this.playerService.getStatisticsForPlayer(new GetStatisticsForPlayerDto(this.id,this.name,this.selectedCompetition,this.selectedYear)).subscribe(
+      response => {
+        this.playerStats = response
+      }
+    )
   }
 
-  selectYer(event:any){
+  selectYear(event:any){
     this.selectedYear  = event.target.value
+    this.playerService.getStatisticsForPlayer(new GetStatisticsForPlayerDto(this.id,this.name,this.selectedCompetition,this.selectedYear)).subscribe(
+      response => {
+        this.playerStats = response
+      }
+    )
   }
 }

@@ -1,16 +1,19 @@
 <div class="main-div">
     <h1 class="title">{{article.title}}</h1>
     <p class="date">{{formatDate(article.uploadDate)}}</p>
+    <div *ngIf="firstPicture!=null" class="image-container">
+        <img src={{firstPicture}}>
+    </div>
     <div *ngFor="let paragraph of article.paragraphs">
         <div *ngIf="paragraph.sectionType==0">
+            <h1>
+                {{paragraph.content}}
+            </h1>
+        </div>
+        <div *ngIf="paragraph.sectionType==1">
             <h2>
                 {{paragraph.content}}
             </h2>
-        </div>
-        <div *ngIf="paragraph.sectionType==1">
-            <h3>
-                {{paragraph.content}}
-            </h3>
         </div>
         <div *ngIf="paragraph.sectionType==2">
             <p>

@@ -1,38 +1,54 @@
-<div class="row">
+<div class="row" *ngIf="isAdmin">
     <form (ngSubmit)="onSubmit()" [formGroup]="form" novalidate>
-        <div class="form-group">
+        <div class="form-floating mb-2">
+            <input type="text" id="minute" placeholder="minute" formControlName="minute" required class="form-control" [class.is-invalid]="form.get('minute')?.invalid && form.get('minute')?.touched">
             <label for="minute">Minute:</label>
-            <input type="text" id="minute" name="minute" formControlName="minute" required class="input">
-            <div *ngIf="form.get('minute')?.touched">
-                <div *ngIf="form.get('minute')?.hasError('required')" class="error-message">
-                    Minute is required.
-                </div>
-                <div *ngIf="form.get('minute')?.hasError('maxlength')" class="error-message">
-                    Minute length must be at most 6.
-                </div>
-            </div>
+            <span
+                *ngIf="form.get('minute')?.touched && form.get('minute')?.hasError('required')"
+                class="error-icon-hover-area"
+                data-toggle="tooltip"
+                data-placement="right"
+                title="Minute is required"
+            ></span>
+            <span
+                *ngIf="form.get('minute')?.touched && form.get('minute')?.hasError('maxlength')"
+                class="error-icon-hover-area"
+                data-toggle="tooltip"
+                data-placement="right"
+                title="Minute length must be at most 6"
+            ></span>
         </div>
-        <div class="form-group">
+        <div class="form-floating mb-2">
+            <input type="text" id="text" placeholder="text" formControlName="text" required class="form-control" [class.is-invalid]="form.get('text')?.invalid && form.get('text')?.touched">
             <label for="text">Event text:</label>
-            <input type="text" id="text" name="text" formControlName="text" required class="input">
-            <div *ngIf="form.get('text')?.touched">
-                <div *ngIf="form.get('text')?.hasError('required')" class="error-message">
-                    Text is required.
-                </div>
-                <div *ngIf="form.get('text')?.hasError('minlength')" class="error-message">
-                    Text length must be at least 5.
-                </div>
-                <div *ngIf="form.get('text')?.hasError('maxlength')" class="error-message">
-                    Text length must be at most 100.
-                </div>
-            </div>
+                <span
+                    *ngIf="form.get('text')?.touched && form.get('text')?.hasError('required')"
+                    class="error-icon-hover-area"
+                    data-toggle="tooltip"
+                    data-placement="right"
+                    title="Text is required"
+                ></span>
+                <span
+                    *ngIf="form.get('text')?.touched && form.get('minlength')?.hasError('required')"
+                    class="error-icon-hover-area"
+                    data-toggle="tooltip"
+                    data-placement="right"
+                    title="Text lengt must be at least 5"
+                ></span>
+                <span
+                    *ngIf="form.get('text')?.touched && form.get('maxlength')?.hasError('required')"
+                    class="error-icon-hover-area"
+                    data-toggle="tooltip"
+                    data-placement="right"
+                    title="Text lengt must be at most 100"
+                ></span>
         </div>
         <div>
-            <button type="submit" [disabled]="form.invalid">Add event</button>
+            <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Add event</button>
         </div>
     </form>
     <div>
-        <button type="button" (click)="saveChanges()">Save changes</button>
+        <button type="button" (click)="saveChanges()" class="btn btn-primary">Save changes</button>
     </div>
 </div>
 <div *ngFor="let event of events">

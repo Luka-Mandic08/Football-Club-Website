@@ -1,3 +1,9 @@
+.main-div {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 50px;
+}
+
 li.selected{
     color: rgb(255, 255, 255);
     text-decoration: underline;
@@ -8,7 +14,7 @@ li.selected{
 .tabs{
     display: flex;
     flex-direction: row;
-    justify-content: left;
+    justify-content: flex-start;
     align-items: flex-end;
     background-color: rgb(45, 45, 148);
 }
@@ -25,4 +31,18 @@ li {
 
 li:hover {
     cursor:  pointer;
+}
+
+.add-match {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.selects {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 10px;
 }

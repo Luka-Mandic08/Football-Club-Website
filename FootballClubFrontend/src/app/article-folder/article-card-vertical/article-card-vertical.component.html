@@ -1,0 +1,12 @@
+<div class="main-div" (click)="route(article)">
+    <div class="image-container">
+        <img src={{firstPicture}} *ngIf="firstPicture!==''">
+        <img src="assets/Images/Articles/Default.png" *ngIf="firstPicture===''">
+        <div class="overlay"></div>
+    </div>
+    <div class="title-div">
+        <h2>
+            {{article.title}}
+        </h2>
+    </div>
+</div>

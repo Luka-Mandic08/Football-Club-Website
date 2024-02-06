@@ -1,0 +1,79 @@
+.main-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.article-grid{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.featured-article {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 30px;
+    background-color: white;
+    border-top: 3px solid rgb(45, 45, 148);
+    transition: all 0.3;
+}
+
+.featured-article:hover {
+    cursor: pointer;
+    color: rgb(45, 45, 148);
+}
+
+.featured-article:hover .overlay{
+    opacity: 1;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgba(0, 0, 255, 0.4);
+}
+
+.image-container {
+    position: relative;
+    width: 75%;
+}
+
+img {
+    width: 100%;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+h1 {
+    font-size: 35px;
+    padding-top: 20px;
+}
+
+h2 {
+    font-size: 25px;
+    padding: 10px;
+    padding-top: 20px;
+}
+
+h3 {
+    padding: 10px;
+}

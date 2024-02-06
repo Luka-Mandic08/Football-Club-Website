@@ -43,7 +43,9 @@ namespace FootballClubBackend.Service
                 var split = name.Split(' ');
                 isGoalkeeper = _playerRepository.GetByName(split[0], split[1]).Position == Position.Goalkeeper;
             }
-            return new PlayerStatistic(statistics,isGoalkeeper);
+            if(statistics.Count > 0) 
+                return new PlayerStatistic(statistics,isGoalkeeper);
+            return new PlayerStatistic();
         }
 
         public PlayerStatisticsDto Create(PlayerStatistic playerStatistic)

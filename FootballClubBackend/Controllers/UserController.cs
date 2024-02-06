@@ -34,7 +34,7 @@ namespace FootballClubBackend.Controllers
         [HttpPost("register/user")]
         public ActionResult RegisterUser(Register dto)
         {
-            if (_userService.Register(dto, "user"))
+            if (_userService.Register(dto, "User"))
             {
                 return Ok(new { message = "Success" });
             }
@@ -44,7 +44,7 @@ namespace FootballClubBackend.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
         [HttpPost("register/admin")]
         public ActionResult RegisterAdmin(Register dto) {
-            if (_userService.Register(dto, "admin"))
+            if (_userService.Register(dto, "Admin"))
             {
                 return Ok(new { message = "Success" });
             }

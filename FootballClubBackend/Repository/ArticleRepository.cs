@@ -28,12 +28,13 @@ namespace FootballClubBackend.Repository
             return collection.Find(filter).FirstOrDefault();
         }
 
-        public ICollection<Article> GetAllByType(ArticleType type)
+        public ICollection<Article> GetByType(ArticleType type,int page)
         {
             var filter = Builders<Article>.Filter.And(
                 Builders<Article>.Filter.Lte(a => a.UploadDate, DateTime.Now),
                 Builders<Article>.Filter.Eq(a => a.ArticleType, type));
-            return collection.Find(filter).ToList();
+            var sortDefinition = Builders<Article>.Sort.Descending(a => a.UploadDate);
+            return collection.Find(filter).Sort(sortDefinition).Skip(10*(page-1)).Limit(10).ToList();
         }
 
         public ICollection<Article> GetAllForMatch(string matchId)
@@ -41,15 +42,30 @@ namespace FootballClubBackend.Repository
             var filter = Builders<Article>.Filter.And(
                 Builders<Article>.Filter.Lte(a => a.UploadDate, DateTime.Now),
                 Builders<Article>.Filter.Eq(a => a.MatchId, matchId));
-            return collection.Find(filter).ToList();
+            var sortDefinition = Builders<Article>.Sort.Descending(a => a.UploadDate);
+            return collection.Find(filter).Sort(sortDefinition).ToList();
         }
 
         public ICollection<Article> GetAllForPlayer(string playerId)
         {
             var filter = Builders<Article>.Filter.And(
                 Builders<Article>.Filter.Lte(a => a.UploadDate, DateTime.Now),
-                Builders<Article>.Filter.ElemMatch(a => a.PlayerIds, Builders<string>.Filter.Eq(s => s, playerId)));
-            return collection.Find(filter).ToList();
+                Builders<Article>.Filter.AnyEq(a => a.PlayerIds, playerId));
+
+            var sortDefinition = Builders<Article>.Sort.Descending(a => a.UploadDate);
+
+            return collection.Find(filter).Sort(sortDefinition).Limit(5).ToList();
+        }
+
+
+
+        public ICollection<Article> GetForHomePage()
+        {
+            var filter = Builders<Article>.Filter.And(
+                Builders<Article>.Filter.Lte(a => a.UploadDate, DateTime.Now),
+                Builders<Article>.Filter.Eq(a => a.ArticleType, ArticleType.News));
+            var sortDefinition = Builders<Article>.Sort.Descending(a => a.UploadDate);
+            return collection.Find(filter).Sort(sortDefinition).Limit(7).ToList();
         }
     }
 }

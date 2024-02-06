@@ -29,7 +29,6 @@ export class TableRowEditComponent {
 
     this.form.valueChanges.subscribe((formValues) => {
       this.row = { ...this.row, ...formValues };
-      
     });
   }
 

@@ -7,7 +7,8 @@
 .squad-edit {
     display:flex;
     flex-direction: row;
-    align-items: flex-start;  
+    align-items: flex-start; 
+    justify-content: center; 
 }
 
 .squad-players {
@@ -27,6 +28,7 @@
     margin-left: 10px;
     padding-left: 5px;
     background-color: white;
+    cursor: pointer;
 }
 
 .player-div.selected {
@@ -87,6 +89,11 @@ img {
     padding: 10px;
     border-radius: 5px;
     margin-right: 50px;
+    cursor: default;
+}
+
+.complete-squad .player-div {
+    cursor: default;
 }
 
 .opponent-edit {

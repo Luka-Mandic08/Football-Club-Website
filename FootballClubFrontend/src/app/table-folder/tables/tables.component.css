@@ -1,18 +1,33 @@
 .main-div{
     display: flex;
     flex-direction: column;
-    margin-left: 20%;
-    margin-right: 20%;
+    
 }
 
 .header{
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.header-buttons button {
+   margin-right: 10px;
 }
 
 .table{
     display: flex;
     flex-direction: column;
+    margin-bottom: 0;
+    
+    
+}
+
+.table-responsive {
+    border: 2px solid rgb(45,45,148);
+    border-radius: 10px;
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
 th,td {
@@ -21,7 +36,12 @@ th,td {
     flex-direction: row;
     justify-content: center;
 }
+
 tr{
     display: flex;
     flex-direction: row;
+}
+
+.form-select {
+    margin-right: 10px;
 }

@@ -24,12 +24,12 @@ export class MatchService {
     return this.http.post<any>(this.route,match,{headers: this.headers});
   }
 
-  getFixtures(): Observable<MatchPreview[]> {
-    return this.http.get<MatchPreview[]>(this.route+'fixtures',{headers:this.headers});
+  getFixtures(competition:string): Observable<MatchPreview[]> {
+    return this.http.get<MatchPreview[]>(this.route+'fixtures/'+competition,{headers:this.headers});
   }
 
-  getResults(): Observable<MatchPreview[]> {
-    return this.http.get<MatchPreview[]>(this.route+'results',{headers:this.headers});
+  getResults(competition:string,year:number): Observable<MatchPreview[]> {
+    return this.http.get<MatchPreview[]>(this.route+'results/'+competition+'/'+year,{headers:this.headers});
   }
 
   getForNewArticle(): Observable<MatchPreview[]> {

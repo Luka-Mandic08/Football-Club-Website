@@ -27,7 +27,7 @@ namespace FootballClubBackend.Model
             UploadDate = dto.UploadDate;
             ArticleType = dto.ArticleType;
             MatchId = dto.MatchId;
-            PlayerIds = dto.PlayerIds == null ? dto.PlayerIds : new List<string>();
+            PlayerIds = dto.PlayerIds != null ? dto.PlayerIds : new List<string>();
         }
     }
 

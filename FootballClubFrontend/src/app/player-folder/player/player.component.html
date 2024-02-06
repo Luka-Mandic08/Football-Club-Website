@@ -23,15 +23,17 @@
     </div>
     <div class="player-stats-header">
         <label class="header">Player Stats</label>
-        <select onchange="selectYear($event)">
+        <select (change)="selectCompetition($event)" class="form-select" style="width: 250px;margin-left: 10px;">
+            <option value="Premier League">Premier League</option>
+            <option value="FA Cup">FA Cup</option>
+        </select>
+        <select (change)="selectYear($event)" class="form-select" style="width: 130px;margin-left: 10px;">
             <option value="2023">2023/24</option>
             <option value="2022">2022/23</option>
             <option value="2021">2021/22</option>
         </select>
-        <select onchange="selectCompetition($event)">
-            <option value="Premier league">Premier league</option>
-            <option value="FA Cup">FA Cup</option>
-        </select>
     </div>
-    <app-match-player-statistics [selectedStats]="playerStats"></app-match-player-statistics>
+    <app-match-player-statistics [selectedStats]="playerStats" *ngIf="playerStats.generalStatistics"></app-match-player-statistics>
+    <label class="header">Related articles</label>
+    <app-article-card *ngFor="let article of articles" [article]="article"></app-article-card>
 </div>

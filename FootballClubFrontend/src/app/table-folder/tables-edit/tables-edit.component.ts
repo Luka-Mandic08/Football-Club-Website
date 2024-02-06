@@ -1,5 +1,5 @@
 import { moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ViewChildren } from '@angular/core';
 import { Subject } from 'rxjs';
 import { CreateTableDto, Table, TableRow } from 'src/app/model/table';
 import { TableService } from 'src/app/services/table-service.service';
@@ -11,6 +11,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./tables-edit.component.css']
 })
 export class TablesEditComponent {
+
+  @ViewChildren('selectTableElement') mySelect: any;
+
   tables : Table[] = []
   selectedTable !: Table 
 
@@ -80,7 +83,7 @@ export class TablesEditComponent {
     let tableRow = new TableRow()
     tableRow.position = this.selectedTable.rows.length+1
     this.selectedTable.rows.push(tableRow)
-    this.updateTable()
+    //this.updateTable()
   }
 
   drop(event:any) {
@@ -107,7 +110,7 @@ export class TablesEditComponent {
       Swal.fire({
         icon: 'warning',
         title: 'Unable to update table',
-        text: "Points and positions are not aligned",
+        text: "Points and positions may not be aligned",
         showConfirmButton: false,
         position: 'bottom-right',
         timer: 5000,
@@ -121,18 +124,29 @@ export class TablesEditComponent {
       this.emitEventToChild()
       this.tableService.update(this.selectedTable).subscribe(
         response => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Table successfully updated',
+            showConfirmButton: false,
+            position: 'bottom-right',
+            timer: 5000,
+            timerProgressBar: true,
+            backdrop: 'none',
+            width: 300,
+            background: 'rgb(45,45,148)',
+            color: 'white',
+          });
           let previousIndex = this.mySelect.nativeElement.selectedIndex
           this.tables = response
           this.mySelect.nativeElement.selectedIndex = previousIndex
+          
         }
       )
     }
   }
 
-  @ViewChild('selectTableElement') mySelect: any; // ViewChild to get a reference to the select element
-
-  setSelectedOptionByIndex(index: number) {
-    
+  isRowDataComplete(row: TableRow) {
+    return row.team !== '' && row.draws != null && row.goalDifference != null && row.wins != null && row.losses != null && row.points != null 
   }
 
   updateRowOrder() : Boolean{
@@ -141,7 +155,7 @@ export class TablesEditComponent {
     let previosGoalDifference = this.selectedTable.rows[0].goalDifference
     this.selectedTable.rows.forEach((row,index) => {
       row.position = index + 1
-      if(row.points>previosPoints || (row.points==previosPoints && row.goalDifference>previosGoalDifference))
+      if(row.points>previosPoints || (row.points==previosPoints && row.goalDifference>previosGoalDifference) || !this.isRowDataComplete(row))
         isCorrect = false
       else{
         previosPoints = row.points

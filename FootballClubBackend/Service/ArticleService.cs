@@ -23,9 +23,9 @@ namespace FootballClubBackend.Service
             return _articleRepository.GetById(Guid.Parse(id));
         }
 
-        public ICollection<Article> GetAllByType(int type)
+        public ICollection<Article> GetByType(int type, int page)
         {
-            return _articleRepository.GetAllByType((ArticleType)type);
+            return _articleRepository.GetByType((ArticleType)type,page);
         }
 
         public ICollection<Article> GetAllForMatch(string matchId)
@@ -36,6 +36,11 @@ namespace FootballClubBackend.Service
         public ICollection<Article> GetAllForPlayer(string playerId)
         {
             return _articleRepository.GetAllForPlayer(playerId);
+        }
+
+        public ICollection<Article> GetForHomePage()
+        {
+            return _articleRepository.GetForHomePage();
         }
     }
 }

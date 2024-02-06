@@ -2,20 +2,46 @@
     <div class="match-card">
       <div class="match-info">
         <div>{{formatedDate}}&nbsp;|&nbsp;{{match.venue}} </div>
-        <div>{{match.competition}}</div>
+        <h2>{{match.competition}}</h2>
       </div>
       <div *ngIf="match.venue=='Stadion Novi Sad'" class="match-teams">
-        <div>FK FTN</div>
-        <div *ngIf="match.goals!==-1">{{match.goals}} - {{match.opponentGoals}}</div>
-        <div *ngIf="match.goals===-1">V</div>
-        <div>{{match.opponent}}</div>
+        <div class="team">
+          <div class="image-container">
+            <img src="assets//Images//Badges//FTN.png">
+          </div>
+          <h1>FK FTN</h1>
+        </div>
+        <div class="result">
+          <h1 *ngIf="match.goals!==-1">{{match.goals}} - {{match.opponentGoals}}</h1>
+          <h1 *ngIf="match.goals===-1">V</h1>         
+        </div>
+        <div class="team">
+          <h1>{{match.opponent}}</h1>
+          <div class="image-container">
+            <img src={{match.badge}} *ngIf="match.badge">
+            <img src="assets//Images//Badges//Default.png" *ngIf="!match.badge">
+          </div>
+        </div>
       </div>
       <div *ngIf="match.venue!='Stadion Novi Sad'" class="match-teams">
-        <div>{{match.opponent}}</div>
-        <div *ngIf="match.goals!==-1">{{match.opponentGoals}} - {{match.goals}}</div>
-        <div *ngIf="match.goals===-1">V</div>    
-        <div>FK FTN</div>
+        <div class="team">
+          <div class="image-container">
+            <img src={{match.badge}} *ngIf="match.badge">
+            <img src="assets//Images//Badges//Default.png" *ngIf="!match.badge">
+          </div>
+          <h1>{{match.opponent}}</h1>
+        </div>
+        <div class="result">
+          <h1 *ngIf="match.goals!==-1">{{match.opponentGoals}} - {{match.goals}}</h1>
+          <h1 *ngIf="match.goals===-1">V</h1>   
+        </div> 
+        <div class="team">
+          <h1>FK FTN</h1>
+          <div class="image-container">
+            <img src="assets//Images//Badges//FTN.png">
+          </div>
+        </div>
       </div>
-      <div>Referee: {{match.referee}}</div>
+      <div class="referee">Referee: {{match.referee}}</div>
     </div>
   </a>

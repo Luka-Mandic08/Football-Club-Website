@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatchEvent, MatchPreview } from '../../model/match';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatchService } from '../../services/match-service.service';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 
 @Component({
   selector: 'app-match-events',
@@ -10,7 +11,7 @@ import { MatchService } from '../../services/match-service.service';
 })
 export class MatchEventsComponent {
   @Input() matchId: string = ''
-  @Output() updateEvent = new EventEmitter<MatchEvent>();
+  @Output() updateEvent = new EventEmitter<MatchEvent>()
 
   events : MatchEvent[] = []
 
@@ -18,9 +19,11 @@ export class MatchEventsComponent {
     this.updateEvent.emit(value);
   }
 
-  form : FormGroup;
+  form : FormGroup
+  isAdmin : boolean
 
-  constructor(private fb: FormBuilder,public matchService:MatchService) {
+  constructor(private fb: FormBuilder,public matchService:MatchService,private auth:AuthGuardService) {
+    this.isAdmin = this.auth.isAdmin()
     this.form = this.fb.group({
       minute: ['',[Validators.required,Validators.maxLength(6)]],
       text: ['',[Validators.required,Validators.minLength(5),Validators.maxLength(100)]],
@@ -29,7 +32,10 @@ export class MatchEventsComponent {
 
   ngOnInit(){
     this.matchService.getMatchEvents(this.matchId).subscribe(
-      response => this.events = response
+      response =>{
+        if(response)
+          this.events = response
+      }
     )
   }
 

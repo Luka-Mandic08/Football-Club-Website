@@ -1,21 +1,19 @@
 <div class="main-div">
-    <div class="header">
-        <div class="header-select">
-            <div *ngIf="tables.length==1">
-                <p>{{tables[0].competition}}</p>
-            </div>
-            <select *ngIf="tables.length>1" (change)="competitionSelected($event)">
-                <option *ngFor="let table of tables" value={{table.id}}>{{table.competition}}</option>
-            </select>
-            <select (change)="seasonSelected($event)">
-                <option [ngValue]=2023>2023/24</option>
-                <option [ngValue]=2022>2022/23</option>
-                <option [ngValue]=2021>2021/22</option>
-            </select>
+    <div class="header">   
+        <div *ngIf="tables.length==1">
+            <p>{{tables[0].competition}}</p>
         </div>
+        <select *ngIf="tables.length>1" (change)="competitionSelected($event)" class="form-select" style="width: 250px;">
+            <option *ngFor="let table of tables" value={{table.id}}>{{table.competition}}</option>
+        </select>
+        <select (change)="seasonSelected($event)" class="form-select" style="width: 130px;">
+            <option [ngValue]=2023>2023/24</option>
+            <option [ngValue]=2022>2022/23</option>
+            <option [ngValue]=2021>2021/22</option>
+        </select>
         <div class="header-buttons">
-            <button (click)="routeToEdit()">Edit tables</button>
-            <button (click)="deleteTable()">Delete current table</button>
+            <button (click)="routeToEdit()" *ngIf="isAdmin" class="btn btn-primary">Edit tables</button>
+            <button (click)="deleteTable()" *ngIf="isAdmin" class="btn btn-primary">Delete current table</button>
         </div>
     </div> 
     <div *ngIf="tables.length==0">No tables available</div>  
@@ -45,5 +43,4 @@
             </tbody>
         </table>
     </div>
-    
 </div>

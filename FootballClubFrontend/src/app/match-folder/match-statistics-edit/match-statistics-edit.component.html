@@ -1,8 +1,8 @@
 <div class="main-div">
     <div class="form">
-        <div class="header-div">
+        <h1 class="header-div">
             FK FTN
-        </div>
+        </h1>
     <form (ngSubmit)="onSubmit()" [formGroup]="statisticsForm" novalidate>
         <div class="form-group">
             <input type="number" id="possession" name="possession" formControlName="possession" required class="input" min="1" max="99" step="0.1" (change)="possessionChange($event)">
@@ -238,14 +238,14 @@
         <div>Red cards</div>
         <div>Fouls</div>
         <div class="form-group" style="margin-top: 20px; align-items: center;">
-            <button type="button" [disabled]="statisticsForm.invalid || opponentStatisticsForm.invalid" (click)="onSubmit()">Update stats</button>
+            <button type="button" [disabled]="statisticsForm.invalid || opponentStatisticsForm.invalid" (click)="onSubmit()" class="btn btn-primary">Update stats</button>
         </div>
     </div>
 
     <div class="form-opposition">
-        <div class="header-div">
-            Opponent
-        </div>
+        <h1 class="header-div">
+            {{opponentName}}
+        </h1>
     <form (ngSubmit)="onSubmit()" [formGroup]="opponentStatisticsForm" novalidate>
         <div class="form-group">
             <div *ngIf="opponentStatisticsForm.get('possession')?.touched">

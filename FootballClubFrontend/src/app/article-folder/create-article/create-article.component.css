@@ -1,8 +1,8 @@
 .main-div {
     display: flex;
     flex-direction: row;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .form{
@@ -10,6 +10,7 @@
     flex-direction: column;
     align-items: center;
     margin: 10px;
+    max-width: 30%;
 }
 
 form{
@@ -46,6 +47,10 @@ form{
     font-size: 14px;
 }
 
+.player-select {
+    height: 100px;
+}
+
 .new-paragraph {
     display: flex;
     flex-direction: column;
@@ -54,16 +59,21 @@ form{
 }
 
 textarea {
-    resize: horizontal;
+    resize: both;
     width: 320px;
+    height: 200px;
     max-width: 100%;
-    max-height: 100%;
+    max-height: 385px;
+}
+
+.paragraph {
+    position: relative;
 }
 
 .image-container {
     position: relative;
     display: block;
-    max-width: 150px;
+    max-width: 250px;
 }
 
 img {
@@ -80,6 +90,21 @@ img {
     display: none;
 }
 
-.image-container:hover .hover-button {
+.image-container:hover .hover-button, .paragraph:hover .hover-button {
     display: block;
+}
+
+.buttons {
+    width: 100%;
+    min-width: 325px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.paragraphs {
+    margin-top: 40px;
+    margin-left: 20px;
 }

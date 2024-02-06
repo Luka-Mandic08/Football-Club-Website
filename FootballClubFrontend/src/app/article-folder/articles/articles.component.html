@@ -1,0 +1,7 @@
+<div class="main-div">
+    <h1>{{title}}</h1>
+    <button class="btn btn-primary" *ngIf="isAdmin" (click)="newArticle()">New article</button>
+    <app-article-card *ngFor="let article of articles" [article]="article"></app-article-card>
+    <button class="btn btn-primary" *ngIf="page>1" (click)="changePage(false)">Previous</button>
+    <button class="btn btn-primary" *ngIf="isMoreContent" (click)="changePage(false)">Next</button>
+</div>

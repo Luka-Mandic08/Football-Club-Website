@@ -27,14 +27,18 @@ namespace FootballClubBackend.Service
             return "Date taken";
         }
 
-        public ICollection<Match> GetFixtures()
+        public ICollection<Match> GetFixtures(string competition)
         {
-            return _matchRepository.GetFixtures();
+            return _matchRepository.GetFixtures(competition);
         }
 
-        public ICollection<Match> GetResults()
+        public ICollection<Match> GetResults(string competition,int year)
         {
-            return _matchRepository.GetResults();
+            if(isCurrentSeason(year))
+            {
+                return _matchRepository.GetResults(competition, new DateTime(year,7,1), DateTime.Now);
+            }         
+            return _matchRepository.GetResults(competition, new DateTime(year, 7, 1), new DateTime(year+1, 6, 30));
         }
 
         public ICollection<Match> GetForNewArticle()
@@ -138,6 +142,9 @@ namespace FootballClubBackend.Service
             return _matchRepository.UpdateMatchStatistics(id,statistics,opponentStatistics);           
         }
 
-
+        private bool isCurrentSeason(int year)
+        {
+            return DateTime.Now > new DateTime(year, 7, 1) && DateTime.Now < new DateTime(year + 1, 6, 30);
+        }
     }
 }

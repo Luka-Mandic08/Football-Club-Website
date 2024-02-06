@@ -21,20 +21,24 @@ export class ArticleService {
     return this.http.post<any>(this.route,article,{headers: this.headers});
   }
 
-  getAllByType(type:number): Observable<Article[]> {
-    return this.http.get<Article[]>(this.route+"getByType/"+type,{headers: this.headers});
+  getByType(type:number,page:number): Observable<Article[]> {
+    return this.http.get<Article[]>(this.route+"getByType/"+type+'/'+page,{headers: this.headers});
   }
 
   getForMatch(matchId:string): Observable<Article[]> {
     return this.http.get<Article[]>(this.route+"getForMatch/"+matchId,{headers: this.headers});
   }
 
-  getForPlayer(playerId:number): Observable<Article[]> {
+  getForPlayer(playerId:string): Observable<Article[]> {
     return this.http.get<Article[]>(this.route+"getForPlayer/"+playerId,{headers: this.headers});
   }
 
   getById(id:string): Observable<Article> {
     return this.http.get<Article>(this.route+"getById/"+id,{headers: this.headers});
+  }
+
+  getForHomePage(): Observable<Article[]> {
+    return this.http.get<Article[]>(this.route+"getForHomePage",{headers: this.headers});
   }
   
 }

@@ -23,16 +23,31 @@ namespace FootballClubBackend.Repository
             collection.InsertOne(match);
         }
 
-        public ICollection<Match> GetFixtures()
+        public ICollection<Match> GetFixtures(string competition)
         {
-            var filter = Builders<Match>.Filter.Gte(m => m.Start, DateTime.Now);
             var sortDefinition = Builders<Match>.Sort.Ascending(m => m.Start);
+            if (!competition.Equals("any"))
+            {
+                var filters = Builders<Match>.Filter.And(
+                    Builders<Match>.Filter.Gte(m => m.Start, DateTime.Now),
+                    Builders<Match>.Filter.Eq(m => m.Competition, competition));
+                return collection.Find(filters).Sort(sortDefinition).ToList();
+            }
+            var filter = Builders<Match>.Filter.Gte(m => m.Start, DateTime.Now);
             return collection.Find(filter).Sort(sortDefinition).ToList();
+
         }
 
-        public ICollection<Match> GetResults()
+        public ICollection<Match> GetResults(string competition, DateTime startDate, DateTime endDate)
         {
-            var filter = Builders<Match>.Filter.Lte(m => m.Start, DateTime.Now);
+            var filters = new List<FilterDefinition<Match>>();
+            filters.Add(Builders<Match>.Filter.Gte(m => m.Start, startDate));
+            filters.Add(Builders<Match>.Filter.Lte(m => m.Start, endDate));
+            if (!competition.Equals("any"))
+            {
+                filters.Add(Builders<Match>.Filter.Eq(m => m.Competition, competition));
+            }
+            var filter = Builders<Match>.Filter.And(filters);
             var sortDefinition = Builders<Match>.Sort.Descending(m => m.Start);
             return collection.Find(filter).Sort(sortDefinition).ToList();
         }

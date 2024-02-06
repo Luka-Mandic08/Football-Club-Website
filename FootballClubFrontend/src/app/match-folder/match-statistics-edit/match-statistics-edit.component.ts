@@ -11,6 +11,7 @@ import { MatchService } from 'src/app/services/match-service.service';
 export class MatchStatisticsEditComponent {
 
     @Input() matchId: string = ''
+    @Input() opponentName: string = ''
 
     statistics !: MatchStatistics
     opponentStatistics !: MatchStatistics

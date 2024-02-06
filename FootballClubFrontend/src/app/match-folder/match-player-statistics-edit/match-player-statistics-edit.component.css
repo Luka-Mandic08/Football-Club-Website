@@ -1,8 +1,9 @@
 .main-div {
     display:flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 50px;
 }
 
 .select-player-div {
@@ -15,8 +16,9 @@
 .forms-div {
     display:flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: flex-start;
+    max-width: 100%;
 }
 
 form {
@@ -47,5 +49,13 @@ input {
     border-width: 0.9;
     border-color:  rgb(222, 226, 230);
     border-radius: 5px;
+}
+
+.form-floating label{
+    font-size: 14px;
+}
+
+.form-floating input {
+    width:200px
 }
 

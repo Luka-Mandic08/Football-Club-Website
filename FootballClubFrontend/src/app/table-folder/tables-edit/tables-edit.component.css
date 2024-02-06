@@ -9,7 +9,7 @@
 .header{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin-bottom: 15px;
 }
 
@@ -27,6 +27,8 @@
 .header-add-new {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    
 }
 
 .table{
@@ -43,4 +45,5 @@
 .table-header div{
     display: flex;
     justify-content: center;
+    align-items: center;
 }

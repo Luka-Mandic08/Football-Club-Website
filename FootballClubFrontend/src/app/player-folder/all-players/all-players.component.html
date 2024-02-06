@@ -1,4 +1,5 @@
 <div class="main-div">
+    <button class="btn btn-primary" *ngIf="isAdmin" style="width: 20%;" (click)="newPlayer()">Add new player</button>
     <label class="header">Goalkeepers</label>
     <div class="players-div">
             <div *ngFor="let player of goalkeepers" class="player" (click)="route(player)">

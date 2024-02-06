@@ -56,7 +56,7 @@ namespace FootballClubBackend.Model
         public Match(CreateMatch dto)
         {
             Venue = dto.Venue;
-            Start = dto.Start.AddHours(1);
+            Start = dto.Start;
             Referee = dto.Referee;
             Opponent = dto.Opponent;
             Competition = dto.Competition;

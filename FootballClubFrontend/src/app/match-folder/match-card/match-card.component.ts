@@ -22,7 +22,7 @@ export class MatchCardComponent {
   formatDate(date:Date): string{
     date = new Date(date)
     let formatedDate = '';
-    formatedDate += this.getDayOfWeek(date.getDay()) + ' ' + date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear()
+    formatedDate += this.getDayOfWeek(date.getDay()) + ' ' + date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear()
     formatedDate += ' ' + date.getHours() + ':' + date.getMinutes() + (date.getMinutes()===0?'0':'')
     return formatedDate
   }

@@ -2,7 +2,7 @@
     <div class="header-div" id="login">
         <p>Register</p>
     </div>
-    <form (ngSubmit)="onSubmit()" [formGroup]="form" novalidate>
+    <form [formGroup]="form" novalidate>
         <div class="form-floating mb-2">
             <input type="text" id="name" placeholder="name" formControlName="name" class="form-control" [class.is-invalid]="form.get('name')?.invalid && form.get('name')?.touched">
             <label for="name">First name</label>
@@ -101,7 +101,8 @@
             </div>
         </div>
         <div class="form-group" style="margin-top: 20px; align-items: center;">
-            <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Register</button>
+            <button (click)="onSubmit()" class="btn btn-primary" [disabled]="form.invalid" *ngIf="!isAdmin">Register</button>
+            <button (click)="registerAdmin()" class="btn btn-primary" [disabled]="form.invalid" *ngIf="isAdmin">Register admin</button>
         </div>
     </form>
 </div>

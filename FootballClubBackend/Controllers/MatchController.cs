@@ -36,11 +36,11 @@ namespace FootballClubBackend.Controllers
             }
         }
 
-        [HttpGet("fixtures")]
-        public ActionResult GetFixtures()
+        [HttpGet("fixtures/{competition}")]
+        public ActionResult GetFixtures(string competition,int year)
         {
             var fixtures = new List<MatchPreview>();
-            foreach (var fixture in _matchService.GetFixtures())
+            foreach (var fixture in _matchService.GetFixtures(competition))
             {
                 fixtures.Add(new MatchPreview(fixture));
             }
@@ -48,11 +48,11 @@ namespace FootballClubBackend.Controllers
             return Ok(fixtures);
         }
 
-        [HttpGet("results")]
-        public ActionResult GetResults()
+        [HttpGet("results/{competition}/{year}")]
+        public ActionResult GetResults(string competition, int year)
         {
             var results = new List<MatchPreview>();
-            foreach (var result in _matchService.GetResults())
+            foreach (var result in _matchService.GetResults(competition, year))
             {
                 results.Add(new MatchPreview(result));
             }

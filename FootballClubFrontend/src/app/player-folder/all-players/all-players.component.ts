@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { PlayerDto } from 'src/app/model/player';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { PlayerService } from 'src/app/services/player-service.service';
 
 @Component({
@@ -16,7 +17,11 @@ export class AllPlayersComponent {
   attackers : PlayerDto[] = []
   loanedPlayers : PlayerDto[] = []
 
-  constructor(private router: Router,public playerService: PlayerService) { }
+  isAdmin : boolean
+
+  constructor(private router: Router,public playerService: PlayerService,private auth:AuthGuardService) {
+    this.isAdmin = this.auth.isAdmin()
+   }
 
   ngOnInit(){
     this.playerService.getActiveAndLoaned().subscribe(
@@ -41,5 +46,9 @@ export class AllPlayersComponent {
       },
     };
     this.router.navigate(['players/' + player.name + '-' + player.surname],navigationExtras)
+  }
+
+  newPlayer(){
+    this.router.navigateByUrl('players/create')
   }
 }

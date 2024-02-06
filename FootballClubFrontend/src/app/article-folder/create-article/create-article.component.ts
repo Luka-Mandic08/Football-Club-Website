@@ -33,7 +33,7 @@ export class CreateArticleComponent {
       title: ['',[Validators.required,Validators.minLength(5),Validators.maxLength(100)]],
       uploadDate: [null,[Validators.required,this.validateDate]],
       articleType: [0,[Validators.required]],
-      matchId: [''],
+      matchId: [' '],
     })
 
     this.form.valueChanges.subscribe((formValues) => {
@@ -48,6 +48,11 @@ export class CreateArticleComponent {
     return null;
   }
 
+  formatDate(d:Date){
+    let date = new Date(d)
+    return date.getDate() + '.' + (date.getMonth()+1) + '.' + date.getFullYear() + '.'
+  }
+
   ngOnInit(){
     this.matchService.getForNewArticle().subscribe(
       response => {
@@ -57,6 +62,10 @@ export class CreateArticleComponent {
     this.playerService.getAll().subscribe(
       response => this.players = response
     )
+  }
+
+  onSelectionChange(event:Event){
+    this.selectedPlayers = Array.from((event.target as HTMLSelectElement).selectedOptions).map(option => option.value);
   }
 
   selectImage(event:any){

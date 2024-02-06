@@ -35,148 +35,150 @@
             </div>
         </div>
     </div>
-    <div class="squad-edit">
-        <div class="squad-players">
-            <div class="header"><b>Eliglible players</b></div>
-            <div *ngFor="let player of eligiblePlayers" class="player-div" style="cursor: pointer;" [class.selected]="isPlayerSelected(player)" (click)="selectPlayer(player)">
-                <p class="squad-number">{{player.squadNumber}}</p>
-                <p>{{player.name}}</p>
-                <p>{{player.surname}}</p>
-            </div>
-            <div class="buttons">
-                <button class="btn btn-primary" (click)="addToSquad()" [disabled]="selectedPlayers.length===0 || selectedPlayers.length+squad.length>11">Add to squad</button>
-                <button class="btn btn-primary" (click)="addToSubs()" [disabled]="selectedPlayers.length===0">Add to subs</button>
-            </div>            
-        </div>
-
-        <div class="squad-players">
-            <div class="header"><b>Squad</b></div>
-            <div *ngFor="let player of squad" class="player-div">
-                <p class="squad-number">{{player.squadNumber}}</p>
-                <p>{{player.name}}</p>
-                <p>{{player.surname}}</p>
-                <button type="button" class="delete-button" (click)="removePlayer(player,false)">
-                    <img src="assets//Images/Static/remove_event.png">
-                </button>
-            </div>          
-        </div>
-
-        <div class="squad-players">
-            <div class="header"><b>Substitutions</b></div>
-            <div *ngFor="let player of subs" class="player-div">
-                <p class="squad-number">{{player.squadNumber}}</p>
-                <p>{{player.name}}</p>
-                <p>{{player.surname}}</p>
-                <button type="button" class="delete-button" (click)="removePlayer(player,true)">
-                    <img src="assets//Images/Static/remove_event.png">
-                </button>
-            </div>          
-        </div>
-    </div>
-    <button class="btn btn-primary" (click)="saveChanges()" style="margin-top: 20px;">Save</button>
-    <div class="opponent-edit">
-        <form [formGroup]="form" novalidate>
-            <div class="form-floating mb-2">
-                <input type="text" id="name" placeholder="name" formControlName="name" required class="form-control" [class.is-invalid]="form.get('name')?.invalid && form.get('name')?.touched">
-                <label for="name">First name</label>
-                <span
-                    *ngIf="form.get('name')?.touched && form.get('name')?.hasError('required')"
-                    class="error-icon-hover-area"
-                    data-toggle="tooltip"
-                    data-placement="right"
-                    title="Name is required"
-                ></span>
-                <span
-                    *ngIf="form.get('name')?.touched && form.get('name')?.hasError('minlength')"
-                    class="error-icon-hover-area"
-                    data-toggle="tooltip"
-                    data-placement="right"
-                    title="Name length must be at least 2"
-                ></span>
-                <span
-                    *ngIf="form.get('name')?.touched && form.get('name')?.hasError('maxlength')"
-                    class="error-icon-hover-area"
-                    data-toggle="tooltip"
-                    data-placement="right"
-                    title="Name length must be at most 40"
-                ></span>
-            </div>
-            <div class="form-floating mb-2">
-                <input type="text" id="surname" placeholder="surname" formControlName="surname" required class="form-control" [class.is-invalid]="form.get('surname')?.invalid && form.get('surname')?.touched">
-                <label for="surname">Last name</label>
-                <span
-                    *ngIf="form.get('surname')?.touched && form.get('surname')?.hasError('required')"
-                    class="error-icon-hover-area"
-                    data-toggle="tooltip"
-                    data-placement="right"
-                    title="Surname is required"
-                ></span>
-                <span
-                    *ngIf="form.get('surname')?.touched && form.get('surname')?.hasError('minlength')"
-                    class="error-icon-hover-area"
-                    data-toggle="tooltip"
-                    data-placement="right"
-                    title="Surname length must be at least 2"
-                ></span>
-                <span
-                    *ngIf="form.get('surname')?.touched && form.get('surname')?.hasError('maxlength')"
-                    class="error-icon-hover-area"
-                    data-toggle="tooltip"
-                    data-placement="right"
-                    title="Surname length must be at most 40"
-                ></span>
-            </div>
-            <div class="form-floating mb-2">
-                <input type="number" id="number" placeholder="number" formControlName="number" required class="form-control" min="1" max="99" [class.is-invalid]="form.get('number')?.invalid && form.get('number')?.touched">
-                <label for="number">Squad number</label>
-                <span
-                    *ngIf="form.get('number')?.touched && form.get('number')?.hasError('required')"
-                    class="error-icon-hover-area"
-                    data-toggle="tooltip"
-                    data-placement="right"
-                    title="Number is required"
-                ></span>
-                <span
-                    *ngIf="form.get('number')?.touched && (form.get('number')?.hasError('min')|| form.get('number')?.hasError('max'))"
-                    class="error-icon-hover-area"
-                    data-toggle="tooltip"
-                    data-placement="right"
-                    title="Number must be between 0 and 100"
-                ></span>
-                <span
-                    *ngIf="form.get('number')?.touched && form.get('number')?.hasError('numberTaken')"
-                    class="error-icon-hover-area"
-                    data-toggle="tooltip"
-                    data-placement="right"
-                    title="This number is taken"
-                ></span>
-            </div>
-            <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="addOpponent(false)">Add to squad</button>
-            <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="addOpponent(true)">Add to subs</button>
-        </form>
+    <div *ngIf="isAdmin" class="main-div">
         <div class="squad-edit">
-            <div class="squad-players" cdkDropList (cdkDropListDropped)="drop($event)" #squadList="cdkDropList" [cdkDropListConnectedTo]="[subsList]" id="opponentSquad">
-                <div class="header"><b>Squad</b></div>
-                <div *ngFor="let player of opponentSquad" class="player-div" cdkDrag>
+            <div class="squad-players">
+                <div class="header"><b>Eliglible players</b></div>
+                <div *ngFor="let player of eligiblePlayers" class="player-div" [class.selected]="isPlayerSelected(player)" (click)="selectPlayer(player)">
                     <p class="squad-number">{{player.squadNumber}}</p>
                     <p>{{player.name}}</p>
                     <p>{{player.surname}}</p>
-                    <button type="button" class="delete-button" (click)="removeOppositionPlayer(player,false)">
+                </div>
+                <div class="buttons">
+                    <button class="btn btn-primary" (click)="addToSquad()" [disabled]="selectedPlayers.length===0 || selectedPlayers.length+squad.length>11">Add to squad</button>
+                    <button class="btn btn-primary" (click)="addToSubs()" [disabled]="selectedPlayers.length===0">Add to subs</button>
+                </div>            
+            </div>
+
+            <div class="squad-players" cdkDropList (cdkDropListDropped)="drop($event)" #squadList="cdkDropList" [cdkDropListConnectedTo]="[subsList]" id="squad">
+                <div class="header"><b>Squad</b></div>
+                <div *ngFor="let player of squad" class="player-div" cdkDrag>
+                    <p class="squad-number">{{player.squadNumber}}</p>
+                    <p>{{player.name}}</p>
+                    <p>{{player.surname}}</p>
+                    <button type="button" class="delete-button" (click)="removePlayer(player,false)">
                         <img src="assets//Images/Static/remove_event.png">
                     </button>
                 </div>          
             </div>
 
-            <div class="squad-players" cdkDropList (cdkDropListDropped)="drop($event)" #subsList="cdkDropList" [cdkDropListConnectedTo]="[squadList]" id="opponentSubs">
+            <div class="squad-players" cdkDropList (cdkDropListDropped)="drop($event)" #subsList="cdkDropList" [cdkDropListConnectedTo]="[squadList]" id="subs">
                 <div class="header"><b>Substitutions</b></div>
-                <div *ngFor="let player of opponentSubs" class="player-div" cdkDrag>
+                <div *ngFor="let player of subs" class="player-div" cdkDrag>
                     <p class="squad-number">{{player.squadNumber}}</p>
                     <p>{{player.name}}</p>
                     <p>{{player.surname}}</p>
-                    <button type="button" class="delete-button" (click)="removeOppositionPlayer(player,true)">
+                    <button type="button" class="delete-button" (click)="removePlayer(player,true)">
                         <img src="assets//Images/Static/remove_event.png">
                     </button>
                 </div>          
+            </div>
+        </div>
+        <button class="btn btn-primary" (click)="saveChanges()" style="margin-top: 20px;">Save all changes</button>
+        <div class="opponent-edit">
+            <form [formGroup]="form" novalidate>
+                <div class="form-floating mb-2">
+                    <input type="text" id="name" placeholder="name" formControlName="name" required class="form-control" [class.is-invalid]="form.get('name')?.invalid && form.get('name')?.touched">
+                    <label for="name">First name</label>
+                    <span
+                        *ngIf="form.get('name')?.touched && form.get('name')?.hasError('required')"
+                        class="error-icon-hover-area"
+                        data-toggle="tooltip"
+                        data-placement="right"
+                        title="Name is required"
+                    ></span>
+                    <span
+                        *ngIf="form.get('name')?.touched && form.get('name')?.hasError('minlength')"
+                        class="error-icon-hover-area"
+                        data-toggle="tooltip"
+                        data-placement="right"
+                        title="Name length must be at least 2"
+                    ></span>
+                    <span
+                        *ngIf="form.get('name')?.touched && form.get('name')?.hasError('maxlength')"
+                        class="error-icon-hover-area"
+                        data-toggle="tooltip"
+                        data-placement="right"
+                        title="Name length must be at most 40"
+                    ></span>
+                </div>
+                <div class="form-floating mb-2">
+                    <input type="text" id="surname" placeholder="surname" formControlName="surname" required class="form-control" [class.is-invalid]="form.get('surname')?.invalid && form.get('surname')?.touched">
+                    <label for="surname">Last name</label>
+                    <span
+                        *ngIf="form.get('surname')?.touched && form.get('surname')?.hasError('required')"
+                        class="error-icon-hover-area"
+                        data-toggle="tooltip"
+                        data-placement="right"
+                        title="Surname is required"
+                    ></span>
+                    <span
+                        *ngIf="form.get('surname')?.touched && form.get('surname')?.hasError('minlength')"
+                        class="error-icon-hover-area"
+                        data-toggle="tooltip"
+                        data-placement="right"
+                        title="Surname length must be at least 2"
+                    ></span>
+                    <span
+                        *ngIf="form.get('surname')?.touched && form.get('surname')?.hasError('maxlength')"
+                        class="error-icon-hover-area"
+                        data-toggle="tooltip"
+                        data-placement="right"
+                        title="Surname length must be at most 40"
+                    ></span>
+                </div>
+                <div class="form-floating mb-2">
+                    <input type="number" id="number" placeholder="number" formControlName="number" required class="form-control" min="1" max="99" [class.is-invalid]="form.get('number')?.invalid && form.get('number')?.touched">
+                    <label for="number">Squad number</label>
+                    <span
+                        *ngIf="form.get('number')?.touched && form.get('number')?.hasError('required')"
+                        class="error-icon-hover-area"
+                        data-toggle="tooltip"
+                        data-placement="right"
+                        title="Number is required"
+                    ></span>
+                    <span
+                        *ngIf="form.get('number')?.touched && (form.get('number')?.hasError('min')|| form.get('number')?.hasError('max'))"
+                        class="error-icon-hover-area"
+                        data-toggle="tooltip"
+                        data-placement="right"
+                        title="Number must be between 0 and 100"
+                    ></span>
+                    <span
+                        *ngIf="form.get('number')?.touched && form.get('number')?.hasError('numberTaken')"
+                        class="error-icon-hover-area"
+                        data-toggle="tooltip"
+                        data-placement="right"
+                        title="This number is taken"
+                    ></span>
+                </div>
+                <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="addOpponent(false)">Add to squad</button>
+                <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="addOpponent(true)">Add to subs</button>
+            </form>
+            <div class="squad-edit">
+                <div class="squad-players" cdkDropList (cdkDropListDropped)="dropOpponent($event)" #opponentSquadList="cdkDropList" [cdkDropListConnectedTo]="[opponentSubsList]" id="opponentSquad">
+                    <div class="header"><b>{{opponentName}} Squad</b></div>
+                    <div *ngFor="let player of opponentSquad" class="player-div" cdkDrag>
+                        <p class="squad-number">{{player.squadNumber}}</p>
+                        <p>{{player.name}}</p>
+                        <p>{{player.surname}}</p>
+                        <button type="button" class="delete-button" (click)="removeOppositionPlayer(player,false)">
+                            <img src="assets//Images/Static/remove_event.png">
+                        </button>
+                    </div>          
+                </div>
+
+                <div class="squad-players" cdkDropList (cdkDropListDropped)="dropOpponent($event)" #opponentSubsList="cdkDropList" [cdkDropListConnectedTo]="[opponentSquadList]" id="opponentSubs">
+                    <div class="header"><b>{{opponentName}} Substitutions</b></div>
+                    <div *ngFor="let player of opponentSubs" class="player-div" cdkDrag>
+                        <p class="squad-number">{{player.squadNumber}}</p>
+                        <p>{{player.name}}</p>
+                        <p>{{player.surname}}</p>
+                        <button type="button" class="delete-button" (click)="removeOppositionPlayer(player,true)">
+                            <img src="assets//Images/Static/remove_event.png">
+                        </button>
+                    </div>          
+                </div>
             </div>
         </div>
     </div>

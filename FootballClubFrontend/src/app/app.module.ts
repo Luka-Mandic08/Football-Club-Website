@@ -32,6 +32,10 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { ArticleComponent } from './article-folder/article/article.component';
 import { CreateArticleComponent } from './article-folder/create-article/create-article.component';
 import { ArticleCardComponent } from './article-folder/article-card/article-card.component';
+import { HomeComponent } from './home/home.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { ArticlesComponent } from './article-folder/articles/articles.component';
+import { ArticleCardVerticalComponent } from './article-folder/article-card-vertical/article-card-vertical.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +63,9 @@ import { ArticleCardComponent } from './article-folder/article-card/article-card
     TableRowEditComponent,
     ArticleComponent,
     ArticleCardComponent,
+    HomeComponent,
+    ArticlesComponent,
+    ArticleCardVerticalComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +76,12 @@ import { ArticleCardComponent } from './article-folder/article-card/article-card
     MatDialogModule,
     DragDropModule,
     FormsModule,    
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem('jwt'),
+        // other configuration options if needed
+      },
+    }),
   ],
   providers: [
     {

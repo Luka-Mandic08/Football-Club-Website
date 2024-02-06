@@ -33,10 +33,10 @@ namespace FootballClubBackend.Controllers
             return Ok(_articleService.GetById(id));
         }
 
-        [HttpGet("getByType/{type}")]
-        public ActionResult GetAllByType(int type)
+        [HttpGet("getByType/{type}/{page}")]
+        public ActionResult GetAllByType(int type,int page)
         {
-            return Ok(_articleService.GetAllByType(type));
+            return Ok(_articleService.GetByType(type, page));
         }
 
         [HttpGet("getForMatch/{matchId}")]
@@ -50,5 +50,12 @@ namespace FootballClubBackend.Controllers
         {
             return Ok(_articleService.GetAllForPlayer(playerId));
         }
+
+        [HttpGet("getForHomePage")]
+        public ActionResult GetForHomePage()
+        {
+            return Ok(_articleService.GetForHomePage());
+        }
+        
     }
 }

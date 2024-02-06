@@ -1,0 +1,16 @@
+<div class="main-div">
+    <h1 class="title">Latest news</h1>
+    <div class="featured-article" (click)="route(featuredArticle)">
+        <div class="image-container">
+            <img src={{featuredArticlePhoto}} style="width: 100%;">
+            <div class="overlay"></div>
+        </div>
+        <div class="text">
+            <h2>{{featuredArticle.title}}</h2>
+            <h3>{{featuredArticleHeader}}</h3>
+        </div>
+    </div>
+    <div class="article-grid">
+        <app-article-card-vertical *ngFor="let article of articles" [article]=article></app-article-card-vertical>
+    </div>
+</div>

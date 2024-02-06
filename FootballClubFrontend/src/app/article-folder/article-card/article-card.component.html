@@ -1,9 +1,13 @@
-<div class="main-div">
-    <div class="image-containter">
+<div class="main-div" (click)="route(article)">
+    <div class="image-container">
         <img src={{firstPicture}} *ngIf="firstPicture!==''">
-        <img src="assets/Images/Articles/Default.webp" *ngIf="firstPicture===''">
+        <img src="assets/Images/Articles/Default.png" *ngIf="firstPicture===''">
     </div>
-    <h3>
-        {{article.title}}
-    </h3>
+    <div>
+        <h2>
+            {{article.title}}
+        </h2>
+        <p>{{formatDate(article.uploadDate)}}</p>
+    </div>
+    <div class="overlay"></div>
 </div>

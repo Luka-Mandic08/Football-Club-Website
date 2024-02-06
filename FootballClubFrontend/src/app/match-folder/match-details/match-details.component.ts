@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { MatchService } from '../../services/match-service.service';
 import { MatchPreview } from 'src/app/model/match';
 import { PlayerStatistics } from 'src/app/model/player-statistics';
+import { ArticleService } from 'src/app/services/article-service.service';
+import { Article } from 'src/app/model/article';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 
 @Component({
   selector: 'app-match-details',
@@ -12,17 +15,22 @@ import { PlayerStatistics } from 'src/app/model/player-statistics';
 export class MatchDetailsComponent {
   match!: MatchPreview;
   selectedTab: string = 'News';
+  isAdmin !: boolean
 
   statistics : PlayerStatistics[] = []
   opponentStatistics : PlayerStatistics[] = []
   selectedStats !: PlayerStatistics 
+  articles : Article[] = []
 
   constructor(
     private route: ActivatedRoute,
-    public matchService: MatchService
+    private auth: AuthGuardService,
+    public matchService: MatchService,
+    public articleService: ArticleService
   ) {}
 
   ngOnInit(): void {
+    this.isAdmin = this.auth.isAdmin()
     this.matchService.getByDate(this.getDateFromPath()).subscribe(
       response => {
         this.match = response
@@ -32,6 +40,11 @@ export class MatchDetailsComponent {
             this.opponentStatistics = response.opponentStatistics
             this.selectedStats = this.statistics[0] || this.opponentStatistics[0]
           })
+        this.articleService.getForMatch(this.match.id).subscribe(
+          response => {
+            this.articles = response
+          }
+        )
     }); 
   }
 

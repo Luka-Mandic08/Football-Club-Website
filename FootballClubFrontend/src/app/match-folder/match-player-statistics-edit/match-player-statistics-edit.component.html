@@ -1,13 +1,13 @@
 <div class="main-div">
     <div class="select-player-div">
-        <select (change)="playerSelected($event)" class="select">
+        <select (change)="playerSelected($event)" class="form-select" style="width: 300px;">
             <option disabled selected value> -- select an option -- </option>
             <optgroup label="FK FTN"></optgroup>
             <option *ngFor="let player of completeSquad" value={{player.id}}>{{player.name}}&nbsp;{{player.surname}}</option>
             <optgroup label="Opponent"></optgroup>
             <option *ngFor="let player of oppositionCompleteSquad" value={{player.id}}>{{player.name}}&nbsp;{{player.surname}}</option>
         </select>
-        <label>Goalkeeper?</label>
+        <label style="margin-left: 20px;">Goalkeeper?</label>
         <input type="checkbox" (click)="boxChecked()" class="custom-control-input">
     </div>
     <div class="forms-div">
