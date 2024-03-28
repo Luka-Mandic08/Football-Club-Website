@@ -6,8 +6,8 @@ namespace FootballClubBackend.Model.Statistics
     public class MatchStatistics
     {
         public GeneralMatchStatistics GeneralMatchStatistics { get; set; }
-        public AttackingMatchStatistics AttackingMatchStatistics { get; set; }
         public PassingMatchStatistics PassingMatchStatistics { get; set; }
+        public AttackingMatchStatistics AttackingMatchStatistics { get; set; }
         public DefendingMatchStatistics DefendingMatchStatistics { get; set; }
     }
 

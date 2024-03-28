@@ -24,7 +24,6 @@ E:\Faks\Diplomski\FootballClubBackend\obj\Debug\net6.0\staticwebassets.pack.json
 E:\Faks\Diplomski\FootballClubBackend\obj\Debug\net6.0\staticwebassets.build.json
 E:\Faks\Diplomski\FootballClubBackend\obj\Debug\net6.0\staticwebassets.development.json
 E:\Faks\Diplomski\FootballClubBackend\obj\Debug\net6.0\scopedcss\bundle\FootballClubBackend.styles.css
-E:\Faks\Diplomski\FootballClubBackend\obj\Debug\net6.0\FootballClubBackend.csproj.CopyComplete
 E:\Faks\Diplomski\FootballClubBackend\obj\Debug\net6.0\FootballClubBackend.dll
 E:\Faks\Diplomski\FootballClubBackend\obj\Debug\net6.0\refint\FootballClubBackend.dll
 E:\Faks\Diplomski\FootballClubBackend\obj\Debug\net6.0\FootballClubBackend.pdb
@@ -100,3 +99,5 @@ E:\Faks\Diplomski\FootballClubBackend\bin\Debug\net6.0\runtimes\osx\native\libmo
 E:\Faks\Diplomski\FootballClubBackend\bin\Debug\net6.0\runtimes\win\native\mongocrypt.dll
 E:\Faks\Diplomski\FootballClubBackend\bin\Debug\net6.0\BCrypt.Net-Next.dll
 E:\Faks\Diplomski\FootballClubBackend\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\Faks\Diplomski\FootballClubBackend\obj\Debug\net6.0\FootballClubBackend.sourcelink.json
+E:\Faks\Diplomski\FootballClubBackend\obj\Debug\net6.0\Football.DD4CF3A5.Up2Date

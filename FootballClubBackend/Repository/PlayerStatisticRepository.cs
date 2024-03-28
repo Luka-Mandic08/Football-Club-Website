@@ -36,19 +36,27 @@ namespace FootballClubBackend.Repository
 
         public ICollection<PlayerStatistic> GetAllForPlayerBySeasonAndCompetitionById(Guid playerId,int season,string competition)
         {
-            var filter = Builders<PlayerStatistic>.Filter.And(
-                Builders<PlayerStatistic>.Filter.Eq(s => s.PlayerId, playerId),
-                Builders<PlayerStatistic>.Filter.Eq(s => s.Season, season),
-                Builders<PlayerStatistic>.Filter.Eq(s => s.Competition, competition));
+            var filters = new List<FilterDefinition<PlayerStatistic>>();
+            filters.Add(Builders<PlayerStatistic>.Filter.Eq(s => s.PlayerId, playerId));
+            filters.Add(Builders<PlayerStatistic>.Filter.Eq(s => s.Season, season));
+            if (!competition.Equals("any"))
+            {
+                filters.Add(Builders<PlayerStatistic>.Filter.Eq(s => s.Competition, competition));
+            }
+            var filter = Builders<PlayerStatistic>.Filter.And(filters);
             return collection.Find(filter).ToList();
         }
 
         public ICollection<PlayerStatistic> GetAllForPlayerBySeasonAndCompetitionByName(string name, int season, string competition)
         {
-            var filter = Builders<PlayerStatistic>.Filter.And(
-                Builders<PlayerStatistic>.Filter.Eq(s => s.PlayerName, name),
-                Builders<PlayerStatistic>.Filter.Eq(s => s.Season, season),
-                Builders<PlayerStatistic>.Filter.Eq(s => s.Competition, competition));
+            var filters = new List<FilterDefinition<PlayerStatistic>>();
+            filters.Add(Builders<PlayerStatistic>.Filter.Eq(s => s.PlayerName, name));
+            filters.Add(Builders<PlayerStatistic>.Filter.Eq(s => s.Season, season));
+            if (!competition.Equals("any"))
+            {
+                filters.Add(Builders<PlayerStatistic>.Filter.Eq(s => s.Competition, competition));
+            }
+            var filter = Builders<PlayerStatistic>.Filter.And(filters);
             return collection.Find(filter).ToList();
         }
 

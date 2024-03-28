@@ -1,0 +1,291 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\Faks\\Diplomski\\FootballClubBackend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|e:\\faks\\diplomski\\footballclubbackend\\classdiagram.cd||{59B0B277-7DDF-4E36-A3ED-02DAC5B9E2FA}|",
+      "RelativeMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|solutionrelative:classdiagram.cd||{59B0B277-7DDF-4E36-A3ED-02DAC5B9E2FA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|e:\\faks\\diplomski\\footballclubbackend\\model\\article.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|solutionrelative:model\\article.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|e:\\faks\\diplomski\\footballclubbackend\\model\\match.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|solutionrelative:model\\match.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|e:\\faks\\diplomski\\footballclubbackend\\service\\matchservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|solutionrelative:service\\matchservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|e:\\faks\\diplomski\\footballclubbackend\\controllers\\matchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|solutionrelative:controllers\\matchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|e:\\faks\\diplomski\\footballclubbackend\\model\\dto\\squads.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|solutionrelative:model\\dto\\squads.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|e:\\faks\\diplomski\\footballclubbackend\\model\\dto\\createplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|solutionrelative:model\\dto\\createplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|e:\\faks\\diplomski\\footballclubbackend\\repository\\tablerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|solutionrelative:repository\\tablerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|e:\\faks\\diplomski\\footballclubbackend\\model\\dto\\matchpreview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|solutionrelative:model\\dto\\matchpreview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|e:\\faks\\diplomski\\footballclubbackend\\repository\\articlerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|solutionrelative:repository\\articlerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|e:\\faks\\diplomski\\footballclubbackend\\service\\articleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|solutionrelative:service\\articleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|e:\\faks\\diplomski\\footballclubbackend\\controllers\\articlecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|solutionrelative:controllers\\articlecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|e:\\faks\\diplomski\\footballclubbackend\\model\\enums\\articletype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|solutionrelative:model\\enums\\articletype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|e:\\faks\\diplomski\\footballclubbackend\\model\\table.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|solutionrelative:model\\table.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|e:\\faks\\diplomski\\footballclubbackend\\controllers\\tablecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|solutionrelative:controllers\\tablecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|e:\\faks\\diplomski\\footballclubbackend\\model\\enums\\sectiontype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C71E379B-3E41-4EB0-A5B6-EEE7F9DFF0DB}|FootballClubBackend.csproj|solutionrelative:model\\enums\\sectiontype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Article.cs",
+              "DocumentMoniker": "E:\\Faks\\Diplomski\\FootballClubBackend\\Model\\Article.cs",
+              "RelativeDocumentMoniker": "Model\\Article.cs",
+              "ToolTip": "E:\\Faks\\Diplomski\\FootballClubBackend\\Model\\Article.cs",
+              "RelativeToolTip": "Model\\Article.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-27T21:37:30.31Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ClassDiagram.cd",
+              "DocumentMoniker": "E:\\Faks\\Diplomski\\FootballClubBackend\\ClassDiagram.cd",
+              "RelativeDocumentMoniker": "ClassDiagram.cd",
+              "ToolTip": "E:\\Faks\\Diplomski\\FootballClubBackend\\ClassDiagram.cd",
+              "RelativeToolTip": "ClassDiagram.cd",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000463|",
+              "WhenOpened": "2024-03-27T17:25:57.958Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MatchPreview.cs",
+              "DocumentMoniker": "E:\\Faks\\Diplomski\\FootballClubBackend\\Model\\DTO\\MatchPreview.cs",
+              "RelativeDocumentMoniker": "Model\\DTO\\MatchPreview.cs",
+              "ToolTip": "E:\\Faks\\Diplomski\\FootballClubBackend\\Model\\DTO\\MatchPreview.cs",
+              "RelativeToolTip": "Model\\DTO\\MatchPreview.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAA0wBkAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-01-31T17:07:28.153Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MatchController.cs",
+              "DocumentMoniker": "E:\\Faks\\Diplomski\\FootballClubBackend\\Controllers\\MatchController.cs",
+              "RelativeDocumentMoniker": "Controllers\\MatchController.cs",
+              "ToolTip": "E:\\Faks\\Diplomski\\FootballClubBackend\\Controllers\\MatchController.cs",
+              "RelativeToolTip": "Controllers\\MatchController.cs",
+              "ViewState": "AQIAAGMAAAAAAAAAAAAQwHcAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-01-27T16:34:14.943Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MatchService.cs",
+              "DocumentMoniker": "E:\\Faks\\Diplomski\\FootballClubBackend\\Service\\MatchService.cs",
+              "RelativeDocumentMoniker": "Service\\MatchService.cs",
+              "ToolTip": "E:\\Faks\\Diplomski\\FootballClubBackend\\Service\\MatchService.cs",
+              "RelativeToolTip": "Service\\MatchService.cs",
+              "ViewState": "AQIAAHAAAAAAAAAAAAAswIQAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-01-31T14:15:27.112Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CreatePlayer.cs",
+              "DocumentMoniker": "E:\\Faks\\Diplomski\\FootballClubBackend\\Model\\DTO\\CreatePlayer.cs",
+              "RelativeDocumentMoniker": "Model\\DTO\\CreatePlayer.cs",
+              "ToolTip": "E:\\Faks\\Diplomski\\FootballClubBackend\\Model\\DTO\\CreatePlayer.cs",
+              "RelativeToolTip": "Model\\DTO\\CreatePlayer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-27T14:40:26.055Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Match.cs",
+              "DocumentMoniker": "E:\\Faks\\Diplomski\\FootballClubBackend\\Model\\Match.cs",
+              "RelativeDocumentMoniker": "Model\\Match.cs",
+              "ToolTip": "E:\\Faks\\Diplomski\\FootballClubBackend\\Model\\Match.cs",
+              "RelativeToolTip": "Model\\Match.cs",
+              "ViewState": "AQIAAB8AAAAAAAAAAAAwwDEAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-01-31T17:04:26.412Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "TableRepository.cs",
+              "DocumentMoniker": "E:\\Faks\\Diplomski\\FootballClubBackend\\Repository\\TableRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\TableRepository.cs",
+              "ToolTip": "E:\\Faks\\Diplomski\\FootballClubBackend\\Repository\\TableRepository.cs",
+              "RelativeToolTip": "Repository\\TableRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-29T15:38:16.797Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Squads.cs",
+              "DocumentMoniker": "E:\\Faks\\Diplomski\\FootballClubBackend\\Model\\DTO\\Squads.cs",
+              "RelativeDocumentMoniker": "Model\\DTO\\Squads.cs",
+              "ToolTip": "E:\\Faks\\Diplomski\\FootballClubBackend\\Model\\DTO\\Squads.cs",
+              "RelativeToolTip": "Model\\DTO\\Squads.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-27T17:34:23.727Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "SectionType.cs",
+              "DocumentMoniker": "E:\\Faks\\Diplomski\\FootballClubBackend\\Model\\Enums\\SectionType.cs",
+              "RelativeDocumentMoniker": "Model\\Enums\\SectionType.cs",
+              "ToolTip": "E:\\Faks\\Diplomski\\FootballClubBackend\\Model\\Enums\\SectionType.cs",
+              "RelativeToolTip": "Model\\Enums\\SectionType.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-01-25T11:08:59.519Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ArticleController.cs",
+              "DocumentMoniker": "E:\\Faks\\Diplomski\\FootballClubBackend\\Controllers\\ArticleController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ArticleController.cs",
+              "ToolTip": "E:\\Faks\\Diplomski\\FootballClubBackend\\Controllers\\ArticleController.cs",
+              "RelativeToolTip": "Controllers\\ArticleController.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAqwCYAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-01-17T20:09:59.223Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ArticleRepository.cs",
+              "DocumentMoniker": "E:\\Faks\\Diplomski\\FootballClubBackend\\Repository\\ArticleRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\ArticleRepository.cs",
+              "ToolTip": "E:\\Faks\\Diplomski\\FootballClubBackend\\Repository\\ArticleRepository.cs",
+              "RelativeToolTip": "Repository\\ArticleRepository.cs",
+              "ViewState": "AQIAACAAAAAAAAAAAADgvzoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-01-17T19:57:44.961Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Table.cs",
+              "DocumentMoniker": "E:\\Faks\\Diplomski\\FootballClubBackend\\Model\\Table.cs",
+              "RelativeDocumentMoniker": "Model\\Table.cs",
+              "ToolTip": "E:\\Faks\\Diplomski\\FootballClubBackend\\Model\\Table.cs",
+              "RelativeToolTip": "Model\\Table.cs",
+              "ViewState": "AQIAABkAAAAAAAAAAAAcwA0AAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-01-30T18:52:45.589Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ArticleService.cs",
+              "DocumentMoniker": "E:\\Faks\\Diplomski\\FootballClubBackend\\Service\\ArticleService.cs",
+              "RelativeDocumentMoniker": "Service\\ArticleService.cs",
+              "ToolTip": "E:\\Faks\\Diplomski\\FootballClubBackend\\Service\\ArticleService.cs",
+              "RelativeToolTip": "Service\\ArticleService.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAgwBkAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-01-17T20:09:30.537Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ArticleType.cs",
+              "DocumentMoniker": "E:\\Faks\\Diplomski\\FootballClubBackend\\Model\\Enums\\ArticleType.cs",
+              "RelativeDocumentMoniker": "Model\\Enums\\ArticleType.cs",
+              "ToolTip": "E:\\Faks\\Diplomski\\FootballClubBackend\\Model\\Enums\\ArticleType.cs",
+              "RelativeToolTip": "Model\\Enums\\ArticleType.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-01-30T23:05:50.315Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "TableController.cs",
+              "DocumentMoniker": "E:\\Faks\\Diplomski\\FootballClubBackend\\Controllers\\TableController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TableController.cs",
+              "ToolTip": "E:\\Faks\\Diplomski\\FootballClubBackend\\Controllers\\TableController.cs",
+              "RelativeToolTip": "Controllers\\TableController.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAgwCQAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-01-30T18:52:30.143Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

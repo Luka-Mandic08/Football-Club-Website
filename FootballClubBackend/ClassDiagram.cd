@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="FootballClubBackend.Model.Article" Collapsed="true">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAiAAAAAAAAAEAAAIAAAAAAAACgAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Model\Article.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FootballClubBackend.Model.Section" Collapsed="true">
+    <Position X="8" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Article.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FootballClubBackend.Model.Match">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <AssociationLine Name="Statistics" Type="FootballClubBackend.Model.Statistics.MatchStatistics">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="1.831" Y="0.12" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="OpponentStatistics" Type="FootballClubBackend.Model.Statistics.MatchStatistics" ManuallyRouted="true">
+      <Path>
+        <Point X="5.5" Y="1.113" />
+        <Point X="3.75" Y="1.113" />
+        <Point X="3.75" Y="1.113" />
+        <Point X="2.771" Y="1.113" Type="JumpStart" />
+        <Point X="2.604" Y="1.113" Type="JumpEnd" />
+        <Point X="2" Y="1.113" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="1.82" Y="-0.244" Height="0.182" Width="1.582" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAgCAEAAAKAEAAAMAABAAAEgAACAACAAAgACAAAAAAA=</HashCode>
+      <FileName>Model\Match.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Statistics" />
+      <Property Name="OpponentStatistics" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="FootballClubBackend.Model.MatchEvent">
+    <Position X="5.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAACAAAAAACAAAAAA=</HashCode>
+      <FileName>Model\MatchEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FootballClubBackend.Model.Player" Collapsed="true">
+    <Position X="8" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEABAAAAAgAAAAAAQAhAAQABAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FootballClubBackend.Model.Table" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAQAAAEAAAAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Table.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FootballClubBackend.Model.TableRow" Collapsed="true">
+    <Position X="10" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAQAAggAAgAAAAAAAAAAAAAAAgEAAAgAAAAAA=</HashCode>
+      <FileName>Model\Table.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FootballClubBackend.Model.User" Collapsed="true">
+    <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAACAEAAAAAQABAIQAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Model\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FootballClubBackend.Model.Statistics.AttackingStatistics" Collapsed="true">
+    <Position X="10.75" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAICAIAAAAAAACAMAAAAAEAA=</HashCode>
+      <FileName>Model\Statistics\AttackingStatistics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FootballClubBackend.Model.Statistics.DefendingStatistics" Collapsed="true">
+    <Position X="10.75" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAICCAAAAABABQAAAAAAAAAQIAAAAAA=</HashCode>
+      <FileName>Model\Statistics\DefendingStatistics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FootballClubBackend.Model.Statistics.GeneralStatistics" Collapsed="true">
+    <Position X="10.75" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABBAAAAAAIAQEAAAE=</HashCode>
+      <FileName>Model\Statistics\GeneralStatistics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FootballClubBackend.Model.Statistics.GoalkeepingStatistics" Collapsed="true">
+    <Position X="10.75" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAQAAAAAAAAAAAABAAAIAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Statistics\GoalkeepingStatistics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FootballClubBackend.Model.Statistics.MatchStatistics">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <AssociationLine Name="AttackingMatchStatistics" Type="FootballClubBackend.Model.Statistics.AttackingMatchStatistics">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.11" Y="-0.055" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="GeneralMatchStatistics" Type="FootballClubBackend.Model.Statistics.GeneralMatchStatistics">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.11" Y="-0.023" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAQAAwAAAAA=</HashCode>
+      <FileName>Model\Statistics\MatchStatistics.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DefendingMatchStatistics" />
+      <Property Name="AttackingMatchStatistics" />
+      <Property Name="PassingMatchStatistics" />
+      <Property Name="GeneralMatchStatistics" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="FootballClubBackend.Model.Statistics.GeneralMatchStatistics">
+    <Position X="0.5" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AgAAAgAAAAAAAAAAAAAAIEAAAACAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Model\Statistics\MatchStatistics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FootballClubBackend.Model.Statistics.AttackingMatchStatistics">
+    <Position X="0.5" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAEAAAAAIAAAASAAAAAAAAABIAA=</HashCode>
+      <FileName>Model\Statistics\MatchStatistics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FootballClubBackend.Model.Statistics.PassingMatchStatistics">
+    <Position X="2.75" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAgAAAAQAAAAAACAAAAABAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Statistics\MatchStatistics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FootballClubBackend.Model.Statistics.DefendingMatchStatistics">
+    <Position X="2.75" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAABAAAAAAAABgAABAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Model\Statistics\MatchStatistics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FootballClubBackend.Model.Statistics.PassingStatistics" Collapsed="true">
+    <Position X="10.75" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAABAAAQAAIIABAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Model\Statistics\PassingStatistics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FootballClubBackend.Model.Statistics.PlayerStatistic" Collapsed="true">
+    <Position X="10.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIEiAAAAAQAAAAAAAAAAAACAAACAABAAEBAYAAAAAAA=</HashCode>
+      <FileName>Model\Statistics\PlayerStatistic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="FootballClubBackend.Model.Enums.ArticleType" Collapsed="true">
+    <Position X="8" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Model\Enums\ArticleType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FootballClubBackend.Model.Enums.FirstTeamStatus" Collapsed="true">
+    <Position X="8" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAACAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Enums\FirstTeamStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FootballClubBackend.Model.Enums.Position" Collapsed="true">
+    <Position X="8" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEABAAAAAAAAAgAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Enums\Position.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FootballClubBackend.Model.Enums.SectionType" Collapsed="true">
+    <Position X="8" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BBBAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAg=</HashCode>
+      <FileName>Model\Enums\SectionType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
