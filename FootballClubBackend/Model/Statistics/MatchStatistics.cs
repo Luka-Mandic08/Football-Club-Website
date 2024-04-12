@@ -5,10 +5,37 @@ namespace FootballClubBackend.Model.Statistics
 {
     public class MatchStatistics
     {
-        public GeneralMatchStatistics GeneralMatchStatistics { get; set; }
-        public PassingMatchStatistics PassingMatchStatistics { get; set; }
-        public AttackingMatchStatistics AttackingMatchStatistics { get; set; }
-        public DefendingMatchStatistics DefendingMatchStatistics { get; set; }
+        public PassingMatchStatistics PassingMatchStatistics
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public DefendingMatchStatistics DefendingMatchStatistics
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public GeneralMatchStatistics GeneralMatchStatistics
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public AttackingMatchStatistics AttackingMatchStatistics
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 
     public class GeneralMatchStatistics

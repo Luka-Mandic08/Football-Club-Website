@@ -36,16 +36,39 @@ namespace FootballClubBackend.Model
         [Required]
         public string Badge { get; set; }
 
-        public int? Attendance {  get; set; }
+        public int? Attendance { get; set; }
 
-        public ICollection<MatchEvent>? MatchEvents { get; set; }
+        public MatchStatistics Statistics
+        {
+            get => default;
+            set
+            {
+            }
+        }
 
-        public ICollection<Guid>? SquadIds {  get; set; }
-        public ICollection<Guid>? SubsIds { get; set; }
-        public ICollection<PlayerForSquad>? OpponentSquad { get; set; }
-        public ICollection<PlayerForSquad>? OpponentSubs { get; set; }
-        public MatchStatistics? Statistics { get; set; }
-        public MatchStatistics? OpponentStatistics { get; set; }
+        public MatchStatistics OpponentStatistics
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public MatchEvent MatchEvents
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public Squads Squads
+        {
+            get => default;
+            set
+            {
+            }
+        }
 
         public Match(CreateMatch dto)
         {
@@ -57,6 +80,6 @@ namespace FootballClubBackend.Model
             Badge = "assets/Images/Badges/" + dto.Badge.Split('\\').Last();
         }
 
-        
+
     }
 }

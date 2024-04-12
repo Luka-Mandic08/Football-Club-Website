@@ -26,20 +26,30 @@ namespace FootballClubBackend.Model
         [Required]
         public string PlaceOfBirth { get; set; }
 
-        [Required]
-        public Position Position { get; set; }
-
         [Range(1, 99)]
         public int SquadNumber { get; set; }
-
-        [Required]
-        public FirstTeamStatus Status { get; set; }
 
         [Required]
         public DateTime DateJoined { get; set; }
 
         [Required]
         public string Image {  get; set; }
+
+        public Position Position
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public FirstTeamStatus Status
+        {
+            get => default;
+            set
+            {
+            }
+        }
 
         public Player(string name, string surname, DateTime dateOfBirth, string placeOfBirth, Position position, int squadNumber, FirstTeamStatus status, DateTime dateJoined, string image)
         {

@@ -1,8 +1,6 @@
-﻿using FootballClubBackend.Model;
-using FootballClubBackend.Repository;
+﻿using FootballClubBackend.Repository;
 using FootballClubBackend.Service;
 using Microsoft.IdentityModel.Tokens;
-using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;

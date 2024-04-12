@@ -3,7 +3,6 @@
     public class Squads
     {
         public ICollection<PlayerForSquad>? Squad {  get; set; }
-        public ICollection<PlayerForSquad>? EligiblePlayers { get; set; }
         public ICollection<PlayerForSquad>? OpponentSquad { get; set; }
         public ICollection<PlayerForSquad>? Subs{ get; set; }
         public ICollection<PlayerForSquad>? OpponentSubs { get; set; }

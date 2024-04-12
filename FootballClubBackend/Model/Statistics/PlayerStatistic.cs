@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace FootballClubBackend.Model.Statistics
 {
-    public class PlayerStatistic
+    public class PlayerStatistics
     {
         [Key]
         public Guid? Id { get; set; }
@@ -19,44 +19,50 @@ namespace FootballClubBackend.Model.Statistics
 
         public int Season { get; set; }
 
-        public string Competition {  get; set; }
-
         public string Team { get; set; }
 
-        [Required]
-        public GeneralStatistics GeneralStatistics { get; set; }
-
-        [Required]
-        public PassingStatistics PassingStatistics { get; set; }
-
-        public GoalkeepingStatistics? GoalkeepingStatistics { get; set;}
-        
-        public DefendingStatistics? DefendingStatistics { get; set; }   
-
-        public AttackingStatistics? AttackingStatistics { get; set; }
-
-        public PlayerStatistic() { }
-
-        public PlayerStatistic(ICollection<PlayerStatistic> statistics, bool isGoalkeeper)
+        public PassingStatistics PassingStatistics
         {
-            GeneralStatistics = new GeneralStatistics(statistics.Select(s => s.GeneralStatistics));
-            PassingStatistics = new PassingStatistics(statistics.Select(s => s.PassingStatistics));
-            if (isGoalkeeper)
+            get => default;
+            set
             {
-                GoalkeepingStatistics = new GoalkeepingStatistics(statistics.Select(s => s.GoalkeepingStatistics));
             }
-            else
-            {
-                DefendingStatistics = new DefendingStatistics(statistics.Select(s => s.DefendingStatistics));
-                AttackingStatistics = new AttackingStatistics(statistics.Select(s => s.AttackingStatistics));
-            }
-
-            PlayerId = statistics.Select(s => s.PlayerId).First();
-            PlayerName = statistics.Select(s => s.PlayerName).First();
-            Season = statistics.Select(s => s.Season).First();
-            Competition = statistics.Select(s => s.Competition).First();
-            Team = statistics.Select(s => s.Team).First();
         }
+
+        public GoalkeepingStatistics GoalkeepingStatistics
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public GeneralStatistics GeneralStatistics
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public AttackingStatistics AttackingStatistics
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public DefendingStatistics DefendingStatistics
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public PlayerStatistics()
+        { }
 
     }
 }

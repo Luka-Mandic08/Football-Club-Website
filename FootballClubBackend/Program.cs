@@ -1,10 +1,5 @@
-using FootballClubBackend.Controllers;
 using FootballClubBackend.Helper;
-using FootballClubBackend.Repository;
-using FootballClubBackend.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 

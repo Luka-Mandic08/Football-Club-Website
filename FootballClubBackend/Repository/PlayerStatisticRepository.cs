@@ -8,61 +8,61 @@ namespace FootballClubBackend.Repository
 {
     public class PlayerStatisticRepository
     {
-        private readonly IMongoCollection<PlayerStatistic> collection;
+        private readonly IMongoCollection<PlayerStatistics> collection;
         private readonly IMongoDatabase database;
 
         public PlayerStatisticRepository()
         {
             var client = new MongoClient("mongodb://localhost:27017");
             database = client.GetDatabase("FootballClubDb");
-            collection = database.GetCollection<PlayerStatistic>("PlayerStatistics");
+            collection = database.GetCollection<PlayerStatistics>("PlayerStatistics");
         }
 
-        public ICollection<PlayerStatistic> GetAllForMatchForSquad(Guid matchId)
+        public ICollection<PlayerStatistics> GetAllForMatchForSquad(Guid matchId)
         {
-            var filter = Builders<PlayerStatistic>.Filter.And(
-                Builders<PlayerStatistic>.Filter.Eq(s => s.MatchId, matchId),
-                Builders<PlayerStatistic>.Filter.Eq(s => s.Team, "FK FTN"));
+            var filter = Builders<PlayerStatistics>.Filter.And(
+                Builders<PlayerStatistics>.Filter.Eq(s => s.MatchId, matchId),
+                Builders<PlayerStatistics>.Filter.Eq(s => s.Team, "FK FTN"));
             return collection.Find(filter).ToList();
         }
 
-        public ICollection<PlayerStatistic> GetAllForMatchForOpponentSquad(Guid matchId)
+        public ICollection<PlayerStatistics> GetAllForMatchForOpponentSquad(Guid matchId)
         {
-            var filter = Builders<PlayerStatistic>.Filter.And(
-                Builders<PlayerStatistic>.Filter.Eq(s => s.MatchId, matchId),
-                Builders<PlayerStatistic>.Filter.Ne(s => s.Team, "FK FTN"));
+            var filter = Builders<PlayerStatistics>.Filter.And(
+                Builders<PlayerStatistics>.Filter.Eq(s => s.MatchId, matchId),
+                Builders<PlayerStatistics>.Filter.Ne(s => s.Team, "FK FTN"));
             return collection.Find(filter).ToList();
         }
 
-        public ICollection<PlayerStatistic> GetAllForPlayerBySeasonAndCompetitionById(Guid playerId,int season,string competition)
+        public ICollection<PlayerStatistics> GetAllForPlayerBySeasonAndCompetitionById(Guid playerId,int season,string competition)
         {
-            var filters = new List<FilterDefinition<PlayerStatistic>>();
-            filters.Add(Builders<PlayerStatistic>.Filter.Eq(s => s.PlayerId, playerId));
-            filters.Add(Builders<PlayerStatistic>.Filter.Eq(s => s.Season, season));
+            var filters = new List<FilterDefinition<PlayerStatistics>>();
+            filters.Add(Builders<PlayerStatistics>.Filter.Eq(s => s.PlayerId, playerId));
+            filters.Add(Builders<PlayerStatistics>.Filter.Eq(s => s.Season, season));
             if (!competition.Equals("any"))
             {
-                filters.Add(Builders<PlayerStatistic>.Filter.Eq(s => s.Competition, competition));
+                filters.Add(Builders<PlayerStatistics>.Filter.Eq(s => s.Competition, competition));
             }
-            var filter = Builders<PlayerStatistic>.Filter.And(filters);
+            var filter = Builders<PlayerStatistics>.Filter.And(filters);
             return collection.Find(filter).ToList();
         }
 
-        public ICollection<PlayerStatistic> GetAllForPlayerBySeasonAndCompetitionByName(string name, int season, string competition)
+        public ICollection<PlayerStatistics> GetAllForPlayerBySeasonAndCompetitionByName(string name, int season, string competition)
         {
-            var filters = new List<FilterDefinition<PlayerStatistic>>();
-            filters.Add(Builders<PlayerStatistic>.Filter.Eq(s => s.PlayerName, name));
-            filters.Add(Builders<PlayerStatistic>.Filter.Eq(s => s.Season, season));
+            var filters = new List<FilterDefinition<PlayerStatistics>>();
+            filters.Add(Builders<PlayerStatistics>.Filter.Eq(s => s.PlayerName, name));
+            filters.Add(Builders<PlayerStatistics>.Filter.Eq(s => s.Season, season));
             if (!competition.Equals("any"))
             {
-                filters.Add(Builders<PlayerStatistic>.Filter.Eq(s => s.Competition, competition));
+                filters.Add(Builders<PlayerStatistics>.Filter.Eq(s => s.Competition, competition));
             }
-            var filter = Builders<PlayerStatistic>.Filter.And(filters);
+            var filter = Builders<PlayerStatistics>.Filter.And(filters);
             return collection.Find(filter).ToList();
         }
 
-        public void Create(PlayerStatistic playerStatistic)
+        public void Create(PlayerStatistics playerStatistic)
         {
-            PlayerStatistic? oldStatistics = GetForPlayerAndMatch(playerStatistic.MatchId, playerStatistic.PlayerId);
+            PlayerStatistics? oldStatistics = GetForPlayerAndMatch(playerStatistic.MatchId, playerStatistic.PlayerId);
             if (oldStatistics != null)
             {
                 Delete(oldStatistics);
@@ -71,15 +71,15 @@ namespace FootballClubBackend.Repository
             collection.InsertOne(playerStatistic);
         }
 
-        public PlayerStatistic? GetForPlayerAndMatch(Guid matchId, Guid playerId)
+        public PlayerStatistics? GetForPlayerAndMatch(Guid matchId, Guid playerId)
         {
-            var filter = Builders<PlayerStatistic>.Filter.And(
-                Builders<PlayerStatistic>.Filter.Eq(s => s.PlayerId, playerId),
-                Builders<PlayerStatistic>.Filter.Eq(s => s.MatchId, matchId));
+            var filter = Builders<PlayerStatistics>.Filter.And(
+                Builders<PlayerStatistics>.Filter.Eq(s => s.PlayerId, playerId),
+                Builders<PlayerStatistics>.Filter.Eq(s => s.MatchId, matchId));
             return collection.Find(filter).FirstOrDefault();
         }
 
-        public void Delete(PlayerStatistic playerStatistic)
+        public void Delete(PlayerStatistics playerStatistic)
         {
             collection.DeleteOne(playerStatistic.ToBsonDocument());
         }
