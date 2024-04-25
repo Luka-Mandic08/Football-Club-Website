@@ -13,23 +13,18 @@ namespace FootballClubBackend.Helper
     {
         public static void AddScoped(WebApplicationBuilder builder)
         {
-            builder.Services.AddScoped<PlayerService>();
-            builder.Services.AddScoped<PlayerRepository>();
-
-            builder.Services.AddScoped<PlayerStatisticService>();
-            builder.Services.AddScoped<PlayerStatisticRepository>();
-
-            builder.Services.AddScoped<MatchService>();
-            builder.Services.AddScoped<MatchRepository>();
-
-            builder.Services.AddScoped<UserService>();
-            builder.Services.AddScoped<UserRepository>();
-
-            builder.Services.AddScoped<ArticleService>();
-            builder.Services.AddScoped<ArticleRepository>();
-
-            builder.Services.AddScoped<TableService>();
-            builder.Services.AddScoped<TableRepository>();
+                builder.Services.AddScoped<PlayerService>();
+                builder.Services.AddScoped<PlayerRepository>();
+                builder.Services.AddScoped<PlayerStatisticService>();
+                builder.Services.AddScoped<PlayerStatisticRepository>();
+                builder.Services.AddScoped<MatchService>();
+                builder.Services.AddScoped<MatchRepository>();
+                builder.Services.AddScoped<UserService>();
+                builder.Services.AddScoped<UserRepository>();
+                builder.Services.AddScoped<ArticleService>();
+                builder.Services.AddScoped<ArticleRepository>();
+                builder.Services.AddScoped<TableService>();
+                builder.Services.AddScoped<TableRepository>();
         }
     }
 

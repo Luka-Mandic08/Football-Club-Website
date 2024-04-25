@@ -36,6 +36,10 @@ export class MatchService {
     return this.http.get<MatchPreview[]>(this.route+'getForNewArticle',{headers:this.headers});
   }
 
+  getForHomePage(): Observable<MatchPreview[]> {
+    return this.http.get<MatchPreview[]>(this.route+'getForHomePage',{headers:this.headers});
+  }
+
   getByDate(date:string): Observable<MatchPreview> {
     return this.http.get<MatchPreview>(this.route+'getByDate/'+date,{headers:this.headers});
   }

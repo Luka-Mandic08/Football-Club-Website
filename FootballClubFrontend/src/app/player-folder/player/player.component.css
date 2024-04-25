@@ -60,6 +60,7 @@ img {
     flex-direction: row;
     align-items: flex-end;
     justify-content: flex-start;
+    margin-bottom: 10px;
 }
 
 

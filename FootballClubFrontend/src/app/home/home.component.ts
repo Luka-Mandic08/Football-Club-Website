@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ArticleService } from '../services/article-service.service';
 import { Article } from '../model/article';
 import { Router } from '@angular/router';
+import { MatchPreview } from '../model/match';
+import { MatchService } from '../services/match-service.service';
 
 @Component({
   selector: 'app-home',
@@ -14,8 +16,10 @@ export class HomeComponent {
   featuredArticlePhoto !: string | ArrayBuffer | null | undefined
   articles : Article[] = []
   featuredArticleHeader !: string | ArrayBuffer | null | undefined
+  match !: MatchPreview 
+  result !: MatchPreview
 
-  constructor(public articleService: ArticleService,private router: Router){}
+  constructor(public articleService: ArticleService, public matchService: MatchService,private router: Router){}
 
   ngOnInit(){
     this.articleService.getForHomePage().subscribe(
@@ -24,6 +28,12 @@ export class HomeComponent {
         this.featuredArticlePhoto = response[0].paragraphs.find(element=>element.sectionType==3)?.content
         this.featuredArticleHeader = response[0].paragraphs.find(element=>element.sectionType==0)?.content
         this.articles = response.slice(1)
+      }
+    )
+    this.matchService.getForHomePage().subscribe(
+      response => {
+        this.match = response[0]
+        this.result = response[1]
       }
     )
   }

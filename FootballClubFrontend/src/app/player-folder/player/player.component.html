@@ -36,6 +36,7 @@
         </select>
     </div>
     <app-match-player-statistics [selectedStats]="playerStats" *ngIf="playerStats.generalStatistics"></app-match-player-statistics>
+    <div *ngIf="!playerStats.generalStatistics">No stats found</div>
     <label class="header">Related articles</label>
     <app-article-card *ngFor="let article of articles" [article]="article"></app-article-card>
 </div>

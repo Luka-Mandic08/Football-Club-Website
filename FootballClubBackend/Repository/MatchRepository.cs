@@ -23,6 +23,22 @@ namespace FootballClubBackend.Repository
             collection.InsertOne(match);
         }
 
+        public Match Update(Match match)
+        {
+            var filter = Builders<Match>.Filter.Eq(m => m.Id, match.Id);
+            var update = Builders<Match>.Update.
+                Set(m => m.Attendance, match.Attendance).
+                Set(m => m.Venue, match.Venue).
+                Set(m => m.Opponent, match.Opponent).
+                Set(m => m.Badge, match.Badge).
+                Set(m => m.Referee, match.Referee).
+                Set(m => m.Start, match.Start).
+                Set(m => m.Competition, match.Competition);
+            var options = new FindOneAndUpdateOptions<Match> 
+                { ReturnDocument = ReturnDocument.After };
+            return collection.FindOneAndUpdate(filter, update, options);
+        }
+
         public ICollection<Match> GetFixtures(string competition)
         {
             var sortDefinition = Builders<Match>.Sort.Ascending(m => m.Start);
@@ -69,11 +85,23 @@ namespace FootballClubBackend.Repository
             return matches.Concat(collection.Find(filter).Sort(sortDefinition).Limit(7).ToList());
         }
 
+        public IEnumerable<Match> GetForHomePage()
+        {
+            IEnumerable<Match> matches;
+            var filter = Builders<Match>.Filter.Lte(m => m.Start, DateTime.Now);
+            var sortDefinition = Builders<Match>.Sort.Descending(m => m.Start);
+            matches = collection.Find(filter).Sort(sortDefinition).Limit(1).ToList();
+            filter = Builders<Match>.Filter.Gte(m => m.Start, DateTime.Now);
+            sortDefinition = Builders<Match>.Sort.Ascending(m => m.Start);
+            return matches.Concat(collection.Find(filter).Sort(sortDefinition).Limit(1).ToList());
+        }
+
         public Match? GetByDate(DateTime start)
         {
             var helperDateFrom = start.Date;
             var helperDateTo = helperDateFrom.AddDays(1);
-            var matchFilter = Builders<Match>.Filter.And(Builders<Match>.Filter.Gte(m => m.Start, helperDateFrom),
+            var matchFilter = Builders<Match>.Filter.And(
+                Builders<Match>.Filter.Gte(m => m.Start, helperDateFrom),
                 Builders<Match>.Filter.Lte(m => m.Start, helperDateTo)
             );
             return collection.Find(matchFilter).FirstOrDefault();

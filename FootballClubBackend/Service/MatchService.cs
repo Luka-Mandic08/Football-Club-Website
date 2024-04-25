@@ -27,6 +27,15 @@ namespace FootballClubBackend.Service
             return "Date taken";
         }
 
+        public Match? Update(Match match)
+        {
+            if (_matchRepository.GetByDate(match.Start) == null)
+            {
+                return _matchRepository.Update(match);
+            }
+            return null;
+        }
+
         public ICollection<Match> GetFixtures(string competition)
         {
             return _matchRepository.GetFixtures(competition);
@@ -45,7 +54,12 @@ namespace FootballClubBackend.Service
         {
             return _matchRepository.GetForNewArticle().ToList();
         }
-        
+
+        public ICollection<Match> GetForHomePage()
+        {
+            return _matchRepository.GetForHomePage().ToList();
+        }
+
         public MatchPreview GetByDate(DateTime start)
         {
             Match? match = _matchRepository.GetByDate(start);
@@ -85,24 +99,32 @@ namespace FootballClubBackend.Service
             }
         }
 
-        public Squads GetMatchSquads(Guid id)
+        public Squads? GetMatchSquads(Guid id)
         {
             Match match = _matchRepository.GetById(id);
+            if (match == null)
+                return null;
             var squadIds = match.SquadIds;
             var subsIds = match.SubsIds;
             var opponentSquad = match.OpponentSquad;
             var opponentSubs = match.OpponentSubs;
-            var squad = _playerRepository.GetInMatchSquad(squadIds);
-            var subs = _playerRepository.GetInMatchSquad(subsIds);
+            var squad = _playerRepository.
+                GetInMatchSquad(squadIds);
+            var subs = _playerRepository.
+                GetInMatchSquad(subsIds);
             ICollection<Player> eligiblePlayers;
-            if (squadIds != null || subsIds!=null) {
-                eligiblePlayers = _playerRepository.GetEligibleForMatch(squadIds,subsIds);
+            if (squadIds != null || subsIds != null)
+            {
+                eligiblePlayers = _playerRepository.
+                    GetEligibleForMatch(squadIds,subsIds);
             }
             else
             {
-                eligiblePlayers = _playerRepository.GetAllActive();
+                eligiblePlayers = _playerRepository.
+                    GetAllActive();
             }
-            return new Squads(squad,eligiblePlayers,opponentSquad,subs,opponentSubs);
+            return new Squads(squad,eligiblePlayers,
+                opponentSquad,subs,opponentSubs);
         }
 
         public Squads UpdateMatchSquads(Guid id,Squads squads)

@@ -1,0 +1,48 @@
+<a [routerLink]="['/match', formatedDateForUrl,formatedOpponentName]" routerLinkActive="active">
+    <div class="match-card">
+      <div class="match-info">
+        <div>{{formatedDate}}</div>
+        <div>{{match.venue}}</div>
+        <div>{{match.competition}}</div>
+      </div>
+      <div *ngIf="match.venue=='Stadion Novi Sad'" class="match-teams">
+        <div class="team">
+          <div class="image-container">
+            <img src="assets//Images//Badges//FTN.png">
+          </div>
+          <div>FK FTN</div>
+        </div>
+        <div class="result">
+          <h1 *ngIf="match.goals!==-1">{{match.goals}} - {{match.opponentGoals}}</h1>
+          <h1 *ngIf="match.goals===-1">V</h1>         
+        </div>
+        <div class="team">
+          <div class="image-container">
+            <img src={{match.badge}} *ngIf="match.badge">
+            <img src="assets//Images//Badges//Default.png" *ngIf="!match.badge">
+          </div>
+          <div>{{match.opponent}}</div>
+        </div>
+      </div>
+      <div *ngIf="match.venue!='Stadion Novi Sad'" class="match-teams">
+        <div class="team">
+          <div class="image-container">
+            <img src={{match.badge}} *ngIf="match.badge">
+            <img src="assets//Images//Badges//Default.png" *ngIf="!match.badge">
+          </div>
+          <div>{{match.opponent}}</div>
+        </div>
+        <div class="result">
+          <h1 *ngIf="match.goals!==-1">{{match.opponentGoals}} - {{match.goals}}</h1>
+          <h1 *ngIf="match.goals===-1">V</h1>   
+        </div> 
+        <div class="team">          
+          <div class="image-container">
+            <img src="assets//Images//Badges//FTN.png">
+          </div>
+          <div>FK FTN</div>
+        </div>
+      </div>
+      <div class="referee">Referee: {{match.referee}}</div>
+    </div>
+  </a>

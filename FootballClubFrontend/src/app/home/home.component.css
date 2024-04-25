@@ -1,9 +1,25 @@
 .main-div {
     display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.articles {
+    display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin-left: 20%;
-    margin-right: 20%;
+    width: 65%;
+    margin-right: 15px;
+}
+
+.matches {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 25%;
+    margin-top: 67px;
 }
 
 .article-grid{
@@ -11,8 +27,6 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-left: 10%;
-    margin-right: 10%;
 }
 
 .featured-article {
@@ -61,6 +75,7 @@ img {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    max-width: 38%;
 }
 
 h1 {
@@ -77,3 +92,4 @@ h2 {
 h3 {
     padding: 10px;
 }
+

@@ -57,6 +57,16 @@ namespace FootballClubBackend.Model
             Badge = "assets/Images/Badges/" + dto.Badge.Split('\\').Last();
         }
 
-        
+        public Match(UpdateMatchDto dto)
+        {
+            Id = Guid.Parse(dto.Id);
+            Venue = dto.Venue;
+            Start = dto.Start;
+            Referee = dto.Referee;
+            Opponent = dto.Opponent;
+            Competition = dto.Competition;
+            Badge = "assets/Images/Badges/" + dto.Badge.Split('\\').Last();
+            Attendance = dto.Attendance;
+        }
     }
 }

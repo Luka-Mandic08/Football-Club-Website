@@ -36,6 +36,7 @@ import { HomeComponent } from './home/home.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ArticlesComponent } from './article-folder/articles/articles.component';
 import { ArticleCardVerticalComponent } from './article-folder/article-card-vertical/article-card-vertical.component';
+import { MatchCardVerticalComponent } from './match-folder/match-card-vertical/match-card-vertical.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { ArticleCardVerticalComponent } from './article-folder/article-card-vert
     HomeComponent,
     ArticlesComponent,
     ArticleCardVerticalComponent,
+    MatchCardVerticalComponent,
   ],
   imports: [
     BrowserModule,

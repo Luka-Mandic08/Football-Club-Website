@@ -36,6 +36,16 @@ namespace FootballClubBackend.Controllers
             }
         }
 
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
+        [HttpPut("update/match")]
+        public ActionResult Update(UpdateMatchDto dto)
+        {
+            Match? match = _matchService.Update(new Match(dto));
+            if (match != null)
+                return Ok(match);
+            return BadRequest(new { message = "Date is taken" });
+        }
+
         [HttpGet("fixtures/{competition}")]
         public ActionResult GetFixtures(string competition,int year)
         {
@@ -62,11 +72,22 @@ namespace FootballClubBackend.Controllers
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
         [HttpGet("getForNewArticle")]
-        public ActionResult GetMatch()
+        public ActionResult GetForNewArticle()
         {
             return Ok(_matchService.GetForNewArticle());
         }
-        
+
+        [HttpGet("getForHomePage")]
+        public ActionResult GetForHomePage()
+        {
+            var results = new List<MatchPreview>();
+            foreach (var result in _matchService.GetForHomePage())
+            {
+                results.Add(new MatchPreview(result));
+            }
+            return Ok(results);
+        }
+
         [HttpGet("getByDate/{date:datetime}")]
         public ActionResult GetMatchByDate(DateTime date)
         {
@@ -97,7 +118,10 @@ namespace FootballClubBackend.Controllers
         public ActionResult GetSquads(string id)
         {
             var guid = Guid.Parse(id);
-            return Ok(_matchService.GetMatchSquads(guid));
+            Squads? squads = _matchService.GetMatchSquads(guid);
+            if (squads != null)
+                return Ok(_matchService.GetMatchSquads(guid));
+            return BadRequest(new { message = "Unable to get squads" });
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]

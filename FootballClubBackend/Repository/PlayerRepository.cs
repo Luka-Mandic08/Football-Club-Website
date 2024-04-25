@@ -58,15 +58,6 @@ namespace FootballClubBackend.Repository
 
         public ICollection<Player> GetEligibleForMatch(ICollection<Guid>? squadIds, ICollection<Guid>? subsIds)
         {
-            if (squadIds == null)
-            {
-                squadIds = subsIds;
-            }
-            if (subsIds == null)
-            {
-                subsIds = squadIds;
-            }
-
             var filter = Builders<Player>.Filter.And(
                 Builders<Player>.Filter.Eq(p => p.Status,FirstTeamStatus.Active),
                 Builders<Player>.Filter.Nin(p => p.Id, squadIds),
